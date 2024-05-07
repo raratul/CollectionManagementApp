@@ -3,7 +3,11 @@ class ItemsController < ApplicationController
 
   # GET /items or /items.json
   def index
-    @items = Item.all
+    if params[:search].present?
+      @items = Item.where("name ILIKE ?", "%#{params[:search]}%")
+    else
+      @items = Item.all
+    end
   end
 
   # GET /items/1 or /items/1.json
