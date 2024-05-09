@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>User collections</h1>
+
+<div id="user_collections">
+  <% @user_collections.each do |user_collection| %>
+    <%= render user_collection %>
+    <p>
+      <%= link_to "Show this user collection", user_collection %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New user collection", new_user_collection_path %>
