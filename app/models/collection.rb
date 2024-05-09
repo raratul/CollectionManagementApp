@@ -6,4 +6,5 @@ class Collection < ApplicationRecord
 
   def custom_fields
   end
+  serialize :custom_fields, JSON
 end
