@@ -19,6 +19,7 @@ gem 'simple_form'
 gem 'acts-as-taggable-on'
 gem 'pagy'
 gem 'globalize'
+gem 'omniauth'
 
 # Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
 gem "jsbundling-rails"
