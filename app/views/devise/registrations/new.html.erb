@@ -3,28 +3,21 @@
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= f.error_notification %>
 
-  <div class="form-group col">
-    <div class="row">
+  <div class="form-inputs">
     <%= f.input :email,
                 required: true,
                 autofocus: true,
-                input_html: { autocomplete: "email" }%></div>
-    <br>
-   <div class="row">
+                input_html: { autocomplete: "email", style: "width: 45vw; margin-left: 6vw; margin-right: 6vw; margin-bottom: 3vw;" }%>
+
     <%= f.input :password,
                 required: true,
                 hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                input_html: { autocomplete: "new-password" } %>
-              </div>
-  <br>
-  <div class="row">          
+                input_html: { autocomplete: "new-password", style: "width: 45vw; margin-left: 6vw; margin-right: 6vw; margin-bottom: 3vw;" } %>
+        
     <%= f.input :password_confirmation,
                 required: true,
-                input_html: { autocomplete: "new-password" } %>
-              </div>
+                input_html: { autocomplete: "new-password", style: "width: 45vw; margin-left: 6vw; margin-right: 6vw; margin-bottom: 3vw;" } %>
   </div>
-
-  <br>
 
   <div class="form-actions">
     <%= f.button :submit, "Sign up", class: "btn btn-primary" %>
