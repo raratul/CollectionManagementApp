@@ -3,9 +3,9 @@
 <h1>Collections</h1>
 
 <% @collections.each do |collection| %>
-  <div>
-    <h2><%= link_to collection.name, collection_path(collection) %></h2>
-    <p><%= collection.description %></p>
+  <div class="row">
+    <h2 class="col"><%= link_to collection.name, collection_path(collection) %></h2>
+    <p class="col"><%= collection.description %></p>
   </div>
 <% end %>
 

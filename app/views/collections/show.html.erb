@@ -3,10 +3,12 @@
 <%= render @collection %>
 
 <div>
-  <%= link_to "Edit this collection", edit_collection_path(@collection) %> |
+  <% if current_user %> 
+    <%= link_to "Edit this collection", edit_collection_path(@collection) %>
+    <%= button_to "Destroy this collection", @collection, method: :delete %>
+  <% end %>
+  
   <%= link_to "Back to collections", collections_path %>
-
-  <%= button_to "Destroy this collection", @collection, method: :delete %>
 </div>
 
 <h1><%= @collection.name %></h1>
