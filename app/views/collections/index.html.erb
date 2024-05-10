@@ -18,4 +18,7 @@
   <% end %>
 </div>
 
-<%= link_to "New collection", new_collection_path %>
+<% if current_user %>  
+  <%= link_to "New collection", new_collection_path %>
+<% end %>
+
