@@ -18,9 +18,14 @@ Rails.application.routes.draw do
     get 'latest_items', to: 'items#latest_items', as: :latest_items
   
     get 'admin', to: 'admin#index', as: :admin
+    patch 'admin/block_user/:id', to: 'admin#block_user', as: :block_user
+    patch 'admin/unblock_user/:id', to: 'admin#unblock_user', as: :unblock_user
+    delete 'admin/delete_user/:id', to: 'admin#delete_user', as: :delete_user
 
     resources :users, only: [] do
       resources :collections, controller: 'user_collections', only: [:index]
     end
-  end
+end
   
+
+
