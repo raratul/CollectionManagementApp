@@ -22,6 +22,17 @@ class AdminController < ApplicationController
       user.destroy
       redirect_to admin_path, notice: "#{user.email} has been deleted."
     end
+
+    def make_admin
+      user = User.find(params[:id])
+      user.update(admin: true)
+      redirect_to admin_path, notice: "#{user.email} is now an admin."
+    end
   
+    def remove_admin
+      user = User.find(params[:id])
+      user.update(admin: false)
+      redirect_to admin_path, notice: "#{user.email} is no longer an admin."
+    end
 end
   

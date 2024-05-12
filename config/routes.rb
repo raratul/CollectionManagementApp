@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
     root to: 'collections#index'
   
-    devise_for :users
+    devise_for :users, controllers: { registrations: 'registrations' }
   
     resources :collections do
       resources :items
