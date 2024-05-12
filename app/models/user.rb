@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable,
+         :trackable
 
          has_many :collections
          has_many :items, through: :collections
@@ -10,17 +11,10 @@ class User < ApplicationRecord
          has_many :user_collections
          has_many :collections_managed, through: :user_collections, source: :collection
 
-         attr_accessor :name, :last_login_at, :status
+         validates :name, presence: true
 
-        def self.first_admin?
-          where(admin: true).count.zero?
-        end
-
-        # before_validation :set_default_status
-
-        # private
-      
-        # def set_default_status
-        #   self.status ||= 'active'
-        # end
+         def self.first_admin?
+           where(admin: true).count.zero?
+         end
+        
 end

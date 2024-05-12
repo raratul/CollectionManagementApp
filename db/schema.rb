@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_12_094543) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_12_185103) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "collections", force: :cascade do |t|
     t.string "name"
     t.text "description"
-    t.string "topic"
+    t.string "category"
     t.string "image"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
@@ -45,6 +45,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_12_094543) do
     t.index ["collection_id"], name: "index_items_on_collection_id"
   end
 
+  create_table "likes", force: :cascade do |t|
+    t.boolean "liked", default: false
+    t.bigint "item_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_likes_on_item_id"
+    t.index ["user_id"], name: "index_likes_on_user_id"
+  end
+
   create_table "tags", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -66,12 +76,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_12_094543) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "admin"
+    t.boolean "admin", default: false
     t.string "name"
-    t.datetime "last_login_at"
-    t.string "status", default: "active"
+    t.boolean "blocked", default: false
+    t.integer "sign_in_count", default: 0, null: false
+    t.inet "current_sign_in_ip"
+    t.inet "last_sign_in_ip"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -80,6 +94,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_12_094543) do
   add_foreign_key "comments", "items"
   add_foreign_key "comments", "users"
   add_foreign_key "items", "collections"
+  add_foreign_key "likes", "items"
+  add_foreign_key "likes", "users"
   add_foreign_key "user_collections", "collections"
   add_foreign_key "user_collections", "users"
 end

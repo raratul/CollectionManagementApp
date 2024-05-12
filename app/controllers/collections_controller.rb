@@ -57,13 +57,6 @@ class CollectionsController < ApplicationController
     end
   end
 
-  def export_csv
-    @collections = Collection.all
-    respond_to do |format|
-      format.csv { send_data @collections.to_csv, filename: "collections.csv" }
-    end
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_collection
@@ -72,6 +65,6 @@ class CollectionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def collection_params
-      params.require(:collection).permit(:name, :description, :topic, :image, :user_id)
+      params.require(:collection).permit(:name, :description, :category, :image, :user_id)
     end
 end

@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
+    resources :user_collections
+    resources :likes
+    devise_for :users, controllers: {
+        sessions: 'users/sessions',
+        registrations: 'users/registrations'
+      }
     root to: 'collections#index'
-  
-    devise_for :users, controllers: { registrations: 'registrations' }
-  
+
     resources :collections do
       resources :items
     end

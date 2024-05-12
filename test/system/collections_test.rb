@@ -14,10 +14,10 @@ class CollectionsTest < ApplicationSystemTestCase
     visit collections_url
     click_on "New collection"
 
+    fill_in "Category", with: @collection.category
     fill_in "Description", with: @collection.description
     fill_in "Image", with: @collection.image
     fill_in "Name", with: @collection.name
-    fill_in "Topic", with: @collection.topic
     fill_in "User", with: @collection.user_id
     click_on "Create Collection"
 
@@ -29,10 +29,10 @@ class CollectionsTest < ApplicationSystemTestCase
     visit collection_url(@collection)
     click_on "Edit this collection", match: :first
 
+    fill_in "Category", with: @collection.category
     fill_in "Description", with: @collection.description
     fill_in "Image", with: @collection.image
     fill_in "Name", with: @collection.name
-    fill_in "Topic", with: @collection.topic
     fill_in "User", with: @collection.user_id
     click_on "Update Collection"
 

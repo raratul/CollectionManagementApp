@@ -35,4 +35,3 @@ class AdminController < ApplicationController
       redirect_to admin_path, notice: "#{user.email} is no longer an admin."
     end
 end
-  
