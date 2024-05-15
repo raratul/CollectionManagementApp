@@ -40,13 +40,13 @@
               <%= link_to t('nav.register'), new_user_registration_path, class: 'nav-link' %>
             </li>
           <% end %>
-          <li class="nav-item ms-5">
-            <a class="nav-link" href="#" id="theme-toggle">
+          <li class="nav-item ms-5 me-3">
+            <a class="btn btn-outline-dark" href="#" id="theme-toggle">
               <%= @theme == 'dark' ? t('nav.switch_to_light') : t('nav.switch_to_dark') %>
             </a>
           </li>
           <li class="nav-item">
-            <%= link_to t('nav.switch_language'), toggle_language_path, method: :post, class: 'nav-link' %>
+            <%= link_to t('nav.switch_language'), toggle_language_path, method: :post, class: 'btn btn-outline-info' %>
           </li>
         </ul>
       </div>
