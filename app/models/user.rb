@@ -18,4 +18,12 @@ class User < ApplicationRecord
          def self.first_admin?
            where(admin: true).count.zero?
          end
+
+         def active_for_authentication?
+          super && !blocked?
+        end
+      
+        def inactive_message
+          !blocked? ? super : :blocked
+        end
 end

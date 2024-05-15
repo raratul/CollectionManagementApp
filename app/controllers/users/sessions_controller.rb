@@ -3,6 +3,7 @@
 class Users::SessionsController < Devise::SessionsController
   before_action :configure_sign_in_params, only: [:create]
   before_action :authenticate_admin!, except: [:new, :create, :destroy]
+  before_action :blocked_user!
 
   # GET /resource/sign_in
   def new

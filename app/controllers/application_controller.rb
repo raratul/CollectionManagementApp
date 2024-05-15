@@ -33,6 +33,13 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def blocked_user!
+    if current_user&.blocked?
+      sign_out current_user
+      redirect_to root_path, alert: "Your account has been blocked. Please contact the administrator."
+    end
+  end
+
   def authenticate_admin!
     redirect_to root_path, alert: "You are not authorized to access this page." unless current_user&.admin?
   end

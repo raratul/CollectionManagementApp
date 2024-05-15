@@ -5,6 +5,7 @@ pl:
       send_instructions: "Otrzymasz email z instrukcjami jak potwierdzić swój adres email w ciągu kilku minut."
       send_paranoid_instructions: "Jeśli Twój adres email istnieje w naszej bazie danych, otrzymasz email z instrukcjami jak potwierdzić swój adres email w ciągu kilku minut."
     failure:
+      blocked: "Twoje konto zostało zablokowane. Skontaktuj się z administratorem."
       already_authenticated: "Jesteś już zalogowany."
       inactive: "Twoje konto nie zostało jeszcze aktywowane."
       invalid: "Nieprawidłowy %{authentication_keys} lub hasło."
