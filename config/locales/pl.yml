@@ -1,2 +1,13 @@
 pl:
-  hello: "Witaj świecie"
+  site:
+    title: "Aplikacja do Zarządzania Kolekcjami"
+  nav:
+    home: "Strona Główna"
+    my_collections: "Moje Kolekcje"
+    admin: "Admin"
+    logout: "Wyloguj się"
+    login: "Zaloguj się"
+    register: "Zarejestruj się"
+    switch_to_light: "Przełącz na jasny motyw"
+    switch_to_dark: "Przełącz na ciemny motyw"
+    switch_language: "Przełącz na angielski"

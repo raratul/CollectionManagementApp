@@ -31,6 +31,7 @@ Rails.application.routes.draw do
     resources :collections, controller: 'user_collections', only: [:index]
   end
 
+  get 'toggle_language', to: 'application#toggle_language'
   post 'toggle_theme', to: 'application#toggle_theme'
 
   root to: 'collections#index'

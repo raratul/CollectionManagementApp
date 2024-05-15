@@ -3,6 +3,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :trackable
 
+         attr_accessor :name, :theme, :locale
+
          has_many :collections
          has_many :items, through: :collections
          has_many :comments
@@ -13,6 +15,7 @@ class User < ApplicationRecord
 
          validates :name, presence: true
          validates :theme, inclusion: { in: %w[light dark], message: "%{value} is not a valid theme" }, allow_nil: true
+         validates :language, inclusion: { in: %w[en pl], message: "%{value} is not a valid language" }, allow_nil: true
 
          def self.first_admin?
            where(admin: true).count.zero?
