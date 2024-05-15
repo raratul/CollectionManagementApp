@@ -3,8 +3,7 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
   before_action :configure_account_update_params, only: [:update]
-  before_action :authenticate_admin!, except: [:new, :create]
-  before_action :correct_user, only: [:edit, :update, :destroy]
+  before_action :authenticate_admin!, except: [:new, :create, :edit, :update, :destroy]
 
   # GET /resource/sign_up
   def new
