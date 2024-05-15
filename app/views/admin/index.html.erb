@@ -1,6 +1,4 @@
-<h1 class="d-flex justify-content-center">Admin Page</h1>
-
-<h3 class="d-flex justify-content-center mb-3">Users Panel</h3>
+<h1 class="d-flex justify-content-center mt-3">Admin Page</h1>
 
 <%= form_with(url: batch_action_admin_path, method: :patch) do |f| %>
   <div class="mt-5 mb-5">
@@ -18,8 +16,8 @@
           <th>Name</th>
           <th>Email</th>
           <th>Last Login Time</th>
-          <th>Admin?</th>
-          <th>Blocked?</th>
+          <th>Admin/User</th>
+          <th>Blocked/Active</th>
           <th>Select</th>
         </tr>
       </thead>
@@ -30,8 +28,8 @@
             <td><%= user.name %></td>
             <td><%= user.email %></td>
             <td><%= user.current_sign_in_at %></td>
-            <td><%= user.admin? ? 'Yes' : 'No' %></td>
-            <td><%= user.blocked? ? 'Yes' : 'No' %></td>
+            <td><%= user.admin? ? 'Admin' : 'User' %></td>
+            <td><%= user.blocked? ? 'Blocked' : 'Active' %></td>
             <td><%= check_box_tag "user_ids[]", user.id %></td>
           </tr>
         <% end %>

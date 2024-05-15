@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="<%= I18n.locale %>">
 <head>
   <title><%= t('site.title') %></title>
   <%= csrf_meta_tags %>
@@ -7,17 +7,18 @@
 
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body data-bs-theme="<%= @theme %>">
-  <nav class="mb-3 navbar navbar-expand-lg navbar-dark bg-secondary">
-    <div class="container container-fluid">
-      <a class="navbar-brand me-5" href="#"><%= t('site.title') %></a>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
+    <div class="container">
+      <a class="navbar-brand me-auto" href="#"><%= t('site.title') %></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item ms-5">
             <%= link_to t('nav.home'), root_path, class: 'nav-link' %>
           </li>
           <% if user_signed_in? %>
@@ -40,15 +41,16 @@
               <%= link_to t('nav.register'), new_user_registration_path, class: 'nav-link' %>
             </li>
           <% end %>
-          <li class="nav-item ms-5 me-3">
-            <a class="btn btn-outline-dark" href="#" id="theme-toggle">
-              <%= @theme == 'dark' ? t('nav.switch_to_light') : t('nav.switch_to_dark') %>
-            </a>
-          </li>
-          <li class="nav-item">
-            <%= link_to t('nav.switch_language'), toggle_language_path, method: :post, class: 'btn btn-outline-info' %>
-          </li>
         </ul>
+        <form class="d-flex">
+          <input class="form-control me-2" type="search" placeholder="<%= t('nav.search') %>" aria-label="Search">
+        </form>
+        <div class="d-flex align-items-center ms-2">
+          <a class="btn btn-outline-dark me-2" href="#" id="theme-toggle">
+            <%= @theme == 'dark' ? t('nav.switch_to_light') : t('nav.switch_to_dark') %>
+          </a>
+          <%= link_to t('nav.switch_language'), toggle_language_path, method: :post, class: 'btn btn-outline-info' %>
+        </div>
       </div>
     </div>
   </nav>
