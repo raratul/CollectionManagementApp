@@ -1,41 +1,34 @@
 class ApplicationController < ActionController::Base
   before_action :set_theme
-  before_action :set_locale
+  before_action :set_language
 
   def set_theme
-    @theme = if user_signed_in?
-               current_user.theme || 'light'
-             else
-               session[:theme] || 'light'
-             end
+    theme = user_signed_in? ? current_user.theme : session[:theme]
+    theme ||= 'light'
+    @theme = theme
   end
 
-  def set_locale
-    I18n.locale = if user_signed_in?
-                    current_user.locale || I18n.default_locale
-                  else
-                    session[:locale] || I18n.default_locale
-                  end
-  end
-
-  def toggle_theme
-    new_theme = params[:theme] == 'dark' ? 'dark' : 'light'
-    if user_signed_in?
-      current_user.update(theme: new_theme)
-    else
-      session[:theme] = new_theme
-    end
-    head :ok
+  def set_language
+    I18n.locale = current_user&.language || session[:language] || I18n.default_locale
   end
 
   def toggle_language
-    new_locale = I18n.locale == :en ? :pl : :en
+    new_language = I18n.locale == :en ? :pl : :en
     if user_signed_in?
-      current_user.update(locale: new_locale)
+      current_user.update(language: new_language)
     else
-      session[:locale] = new_locale
+      session[:language] = new_language
     end
     redirect_back fallback_location: root_path
+  end
+
+  def toggle_theme
+    if user_signed_in?
+      current_user.update(theme: params[:theme])
+    else
+      session[:theme] = params[:theme]
+    end
+    render json: { status: 'ok' }
   end
 
   private

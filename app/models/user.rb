@@ -3,8 +3,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :trackable
 
-         attr_accessor :name, :theme, :locale
-
          has_many :collections
          has_many :items, through: :collections
          has_many :comments
@@ -20,5 +18,4 @@ class User < ApplicationRecord
          def self.first_admin?
            where(admin: true).count.zero?
          end
-        
 end

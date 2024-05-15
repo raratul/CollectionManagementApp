@@ -4,7 +4,7 @@ en:
   nav:
     home: "Home"
     my_collections: "My Collections"
-    admin: "Admin"
+    admin_page: "Admin Page"
     logout: "Logout"
     login: "Login"
     register: "Register"

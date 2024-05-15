@@ -4,7 +4,7 @@ pl:
   nav:
     home: "Strona Główna"
     my_collections: "Moje Kolekcje"
-    admin: "Admin"
+    admin_page: "Strona administratora"
     logout: "Wyloguj się"
     login: "Zaloguj się"
     register: "Zarejestruj się"
