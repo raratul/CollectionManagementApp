@@ -12,13 +12,13 @@
 <body data-bs-theme="<%= @theme %>">
   <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
     <div class="container">
-      <a class="navbar-brand me-auto" href="#"><%= t('site.title') %></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <a class="navbar-brand me-5" href="#"><%= t('site.title') %></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar01" aria-controls="navbar01" aria-expanded="false" aria-label="Toggle navigation" id="navbar-toggler">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
+      <div class="collapse navbar-collapse" id="navbar01">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item ms-5">
+          <li class="nav-item">
             <%= link_to t('nav.home'), root_path, class: 'nav-link' %>
           </li>
           <% if user_signed_in? %>
@@ -44,6 +44,7 @@
         </ul>
         <form class="d-flex">
           <input class="form-control me-2" type="search" placeholder="<%= t('nav.search') %>" aria-label="Search">
+          <button class="btn btn-success d-lg-none" type="submit"><%= t('nav.search') %></button>
         </form>
         <div class="d-flex align-items-center ms-2">
           <a class="btn btn-outline-dark me-2" href="#" id="theme-toggle">
@@ -83,5 +84,15 @@
       });
     });
   </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var navbarToggler = document.getElementById('navbar-toggler');
+      var navbarCollapse = document.getElementById('navbar01');
+  
+      navbarToggler.addEventListener('click', function() {
+        navbarCollapse.classList.toggle('show');
+      });
+    });
+  </script>  
 </body>
 </html>
