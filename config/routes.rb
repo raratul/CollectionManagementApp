@@ -33,6 +33,7 @@ Rails.application.routes.draw do
 
   get 'toggle_language', to: 'application#toggle_language'
   post 'toggle_theme', to: 'application#toggle_theme'
+  patch 'batch_action_admin', to: 'admin#batch_action'
 
   root to: 'collections#index'
 end
