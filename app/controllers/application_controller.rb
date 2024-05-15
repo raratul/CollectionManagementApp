@@ -28,7 +28,6 @@ class ApplicationController < ActionController::Base
     else
       session[:theme] = params[:theme]
     end
-    render json: { status: 'ok' }
   end
 
   private
