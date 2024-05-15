@@ -1,5 +1,7 @@
 class CollectionsController < ApplicationController
   before_action :set_collection, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_admin!, except: [:index, :show]
 
   # GET /collections or /collections.json
   def index
@@ -8,6 +10,9 @@ class CollectionsController < ApplicationController
 
   # GET /collections/1 or /collections/1.json
   def show
+  end
+
+  def admin_page
   end
 
   # GET /collections/new

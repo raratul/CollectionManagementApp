@@ -8,7 +8,7 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 </head>
-<body class="bg-light">
+<body data-bs-theme="light">
   <nav class=" mb-3 navbar navbar-expand-lg navbar-dark bg-secondary">
     <div class="container container-fluid">
       <a class="navbar-brand me-5" href="#">Collection Management App</a>
@@ -24,6 +24,11 @@
             <li class="nav-item">
               <%= link_to 'My Collections', user_collections_path(current_user), class: 'nav-link' %>
             </li>
+            <% if current_user.admin? %>
+              <li class="nav-item">
+                <%= link_to 'Admin', admin_path, class: 'nav-link' %>
+              </li>
+            <% end %>
             <li class="nav-item">
               <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'nav-link' %>
             </li>
