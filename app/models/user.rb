@@ -12,6 +12,7 @@ class User < ApplicationRecord
          has_many :collections_managed, through: :user_collections, source: :collection
 
          validates :name, presence: true
+         validates :theme, inclusion: { in: %w[light dark], message: "%{value} is not a valid theme" }, allow_nil: true
 
          def self.first_admin?
            where(admin: true).count.zero?
