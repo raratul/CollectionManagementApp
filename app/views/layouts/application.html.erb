@@ -8,7 +8,7 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 </head>
-<body data-bs-theme="dark">
+<body data-bs-theme="<%= session[:theme] || 'light' %>">
   <nav class=" mb-3 navbar navbar-expand-lg navbar-dark bg-secondary">
     <div class="container container-fluid">
       <a class="navbar-brand me-5" href="#">Collection Management App</a>
@@ -40,6 +40,11 @@
               <%= link_to 'Register', new_user_registration_path, class: 'nav-link' %>
             </li>
           <% end %>
+          <li class="nav-item">
+            <a class="nav-link" href="#" id="theme-toggle">
+              <%= session[:theme] == 'dark' ? 'Switch to Light Theme' : 'Switch to Dark Theme' %>
+            </a>
+          </li>
         </ul>
       </div>
     </div>
@@ -48,5 +53,30 @@
   <div class="container">
     <%= yield %>
   </div>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const themeToggle = document.getElementById('theme-toggle');
+      themeToggle.addEventListener('click', (event) => {
+        event.preventDefault();
+        const currentTheme = document.body.getAttribute('data-bs-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        document.body.setAttribute('data-bs-theme', newTheme);
+
+        fetch('/toggle_theme', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+          },
+          body: JSON.stringify({ theme: newTheme })
+        }).then(response => {
+          if (response.ok) {
+            location.reload();
+          }
+        });
+      });
+    });
+  </script>
 </body>
 </html>

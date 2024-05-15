@@ -31,5 +31,7 @@ Rails.application.routes.draw do
     resources :collections, controller: 'user_collections', only: [:index]
   end
 
+  post 'toggle_theme', to: 'application#toggle_theme'
+
   root to: 'collections#index'
 end

@@ -7,8 +7,8 @@
       <th>User ID</th>
       <th>Name</th>
       <th>Email</th>
-      <th>Admin</th>
-      <th>Blocked</th>
+      <th>Admin?</th>
+      <th>Blocked?</th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -26,7 +26,11 @@
           <% else %>
             <%= link_to "Make Admin", add_admin_path(user), method: :patch %>
           <% end %>
-          <%= link_to "Block", block_user_path(user), method: :patch %>
+          <% if user.blocked? %>
+            <%= link_to "Unblock", unblock_user_path(user), method: :patch %>
+          <% else %>
+            <%= link_to "Block", block_user_path(user), method: :patch %>
+          <% end %>
           <%= link_to "Delete", delete_user_path(user), method: :delete, data: { confirm: "Are you sure?" } %>
         </td>
       </tr>
