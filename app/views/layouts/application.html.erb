@@ -60,6 +60,10 @@
     <%= yield %>
   </div>
   
+  <footer style="position: fixed; bottom: 0; width: 100%", class="d-flex justify-content-center mt-3">
+    <h6><%= t('footer.text') %></h6>
+  </footer>
+
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const themeToggle = document.getElementById('theme-toggle');
