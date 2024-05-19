@@ -1,6 +1,32 @@
-<p style="color: green"><%= notice %></p>
-
 <%= render @item %>
+
+<h1><%= @item.name %></h1>
+<p>Tags: <%= @item.tags %></p>
+<ul>
+  <% @item.custom_field_values.each do |field, value| %>
+    <li><strong><%= field.humanize %>:</strong> <%= value %></li>
+  <% end %>
+</ul>
+
+<h2>Comments</h2>
+<div id="comments">
+  <% @comments.each do |comment| %>
+    <div>
+      <p><strong><%= comment.user.name %>:</strong> <%= comment.body %></p>
+    </div>
+  <% end %>
+</div>
+
+<h3>Add a comment:</h3>
+<%= form_with(model: [@item, @item.comments.build], remote: true) do |form| %>
+  <div>
+    <%= form.label :body %>
+    <%= form.text_area :body %>
+  </div>
+  <div>
+    <%= form.submit 'Add Comment' %>
+  </div>
+<% end %>
 
 <div>
   <%= link_to "Edit this item", edit_item_path(@item) %> |
