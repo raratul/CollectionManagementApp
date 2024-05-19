@@ -1,4 +1,14 @@
 class Item < ApplicationRecord
+  include PgSearch::Model
+  pg_search_scope :search, against: [:name, :tags, :custom_string1_value, :custom_string2_value, :custom_string3_value,
+                                           :custom_text1_value, :custom_text2_value, :custom_text3_value],
+                           associated_against: {
+                             comments: [:body]
+                           },
+                           using: {
+                             tsearch: { prefix: true }
+                           }
+
   belongs_to :collection
   has_many :comments, dependent: :destroy
   has_many :taggings, as: :taggable, dependent: :destroy
