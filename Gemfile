@@ -12,7 +12,6 @@ gem "puma", ">= 5.0"
 
 gem 'devise'
 gem 'simple_form'
-gem 'acts-as-taggable-on'
 gem 'pagy'
 gem 'globalize'
 gem 'omniauth'
@@ -46,4 +45,4 @@ end
 
 gem "pg_search", "~> 2.3"
 gem 'bootstrap', '~> 5.0.0'
-
+gem 'acts-as-taggable-on', '~> 5.0'
