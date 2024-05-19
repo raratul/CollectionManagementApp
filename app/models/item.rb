@@ -1,7 +1,9 @@
 class Item < ApplicationRecord
+  acts_as_taggable_on :tags
+
   include PgSearch::Model
-  pg_search_scope :search, against: [:name, :tags, :custom_string1_value, :custom_string2_value, :custom_string3_value,
-                                           :custom_text1_value, :custom_text2_value, :custom_text3_value],
+  pg_search_scope :search, against: [:name, :custom_string1_value, :custom_string2_value, :custom_string3_value, 
+                                            :custom_text1_value, :custom_text2_value, :custom_text3_value],
                            associated_against: {
                              comments: [:body]
                            },
@@ -11,8 +13,6 @@ class Item < ApplicationRecord
 
   belongs_to :collection
   has_many :comments, dependent: :destroy
-  has_many :taggings, as: :taggable, dependent: :destroy
-  has_many :tags, through: :taggings
 
   validates :name, presence: true
 
