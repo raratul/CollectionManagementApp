@@ -1,6 +1,26 @@
-<p style="color: green"><%= notice %></p>
 
 <%= render @collection %>
+
+<h1><%= @collection.name %></h1>
+<p><%= @collection.description %></p>
+<p>Category: <%= @collection.category %></p>
+<%= image_tag(@collection.image_url) if @collection.image_url.present? %>
+
+<h2>Items</h2>
+<%= link_to 'New Item', new_collection_item_path(@collection) %>
+
+<% @items.each do |item| %>
+  <div>
+    <h3><%= link_to item.name, [@collection, item] %></h3>
+    <p>Tags: <%= item.tags %></p>
+    <ul>
+      <% item.custom_field_values.each do |field, value| %>
+        <li><strong><%= field.humanize %>:</strong> <%= value %></li>
+      <% end %>
+    </ul>
+    <p><%= link_to 'Edit', edit_collection_item_path(@collection, item) %> | <%= link_to 'Delete', [@collection, item], method: :delete, data: { confirm: 'Are you sure?' } %></p>
+  </div>
+<% end %>
 
 <div>
   <%= link_to "Edit this collection", edit_collection_path(@collection) %> |
