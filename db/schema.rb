@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_19_030236) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_19_033101) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -98,6 +98,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_19_030236) do
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
+  create_table "taggings", force: :cascade do |t|
+    t.bigint "tag_id", null: false
+    t.string "taggable_type"
+    t.bigint "taggable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tag_id"], name: "index_taggings_on_tag_id"
+    t.index ["taggable_type", "taggable_id"], name: "index_taggings_on_taggable"
+  end
+
   create_table "tags", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -132,4 +142,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_19_030236) do
   add_foreign_key "items", "collections"
   add_foreign_key "likes", "items"
   add_foreign_key "likes", "users"
+  add_foreign_key "taggings", "tags"
 end
