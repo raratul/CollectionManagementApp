@@ -75,8 +75,8 @@
 # end
 
 class CollectionsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
-  before_action :authenticate_admin!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index, :show, :home]
+  before_action :authenticate_admin!, except: [:index, :show, :home]
   before_action :set_collection, only: %i[show edit update destroy]
 
   def index
@@ -89,6 +89,9 @@ class CollectionsController < ApplicationController
 
   def new
     @collection = current_user.collections.build
+  end
+
+  def home
   end
 
   def create

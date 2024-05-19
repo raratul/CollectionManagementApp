@@ -8,7 +8,6 @@ Rails.application.routes.draw do
     resources :items
   end
   
-  resources :user_collections
   resources :likes
   resources :comments
 
@@ -27,13 +26,9 @@ Rails.application.routes.draw do
   get 'admin/add_admin/:id', to: 'admin#add_admin', as: :add_admin
   get 'admin/remove_admin/:id', to: 'admin#remove_admin', as: :remove_admin
 
-  resources :users, only: [] do
-    resources :collections, controller: 'user_collections', only: [:index]
-  end
-
   get 'toggle_language', to: 'application#toggle_language'
   post 'toggle_theme', to: 'application#toggle_theme'
   patch 'batch_action_admin', to: 'admin#batch_action'
 
-  root to: 'collections#index'
+  root to: 'collections#home'
 end

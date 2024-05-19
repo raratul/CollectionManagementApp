@@ -1,14 +1,11 @@
-<p style="color: green"><%= notice %></p>
+<h1>My Collections</h1>
+<%= link_to 'New Collection', new_collection_path %>
 
-<h1>Collections</h1>
-
-<div id="collections">
-  <% @collections.each do |collection| %>
-    <%= render collection %>
-    <p>
-      <%= link_to "Show this collection", collection %>
-    </p>
-  <% end %>
-</div>
-
-<%= link_to "New collection", new_collection_path %>
+<% @collections.each do |collection| %>
+  <div>
+    <h2><%= link_to collection.name, collection %></h2>
+    <p><%= collection.description %></p>
+    <p>Category: <%= collection.category %></p>
+    <p><%= link_to 'Edit', edit_collection_path(collection) %> | <%= link_to 'Delete', collection, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+  </div>
+<% end %>
