@@ -1,0 +1,37 @@
+<%= form_with(model: [@collection, @item]) do |form| %>
+  <div>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+  <div>
+    <%= form.label :tags %>
+    <%= text_field_tag :tag_list, @item.tag_list.join(", "), data: { autocomplete_source: tags_path } %>
+  </div>
+  <% @collection.custom_fields.each do |field, name| %>
+    <div>
+      <%= form.label field %>
+      <%= form.text_field field %>
+    </div>
+  <% end %>
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<script>
+  $(function() {
+    var availableTags = [];
+    $.ajax({
+      url: "<%= tags_path %>",
+      dataType: "json",
+      success: function(data) {
+        availableTags = data.map(function(tag) {
+          return tag.name;
+        });
+        $("[data-autocomplete-source]").autocomplete({
+          source: availableTags
+        });
+      }
+    });
+  });
+</script>
