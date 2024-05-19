@@ -1,23 +1,20 @@
 class Item < ApplicationRecord
   belongs_to :collection
-  has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :taggings, as: :taggable, dependent: :destroy
+  has_many :tags, through: :taggings
 
   validates :name, presence: true
 
-  def self.tagged_with(name)
-    where("tags @> ARRAY[?]::varchar[]", name)
-  end
-
-  def self.tag_counts
-    select("unnest(tags) AS tag").group("tag").order("count_all DESC").count
-  end
-
-  def all_tags=(names)
-    self.tags = names.split(",").map(&:strip)
-  end
-
-  def all_tags
-    tags.join(", ")
+  def custom_field_values
+    values = {}
+    (1..3).each do |i|
+      values["custom_string#{i}_value"] = send("custom_string#{i}_value") if collection.send("custom_string#{i}_state")
+      values["custom_int#{i}_value"] = send("custom_int#{i}_value") if collection.send("custom_int#{i}_state")
+      values["custom_text#{i}_value"] = send("custom_text#{i}_value") if collection.send("custom_text#{i}_state")
+      values["custom_bool#{i}_value"] = send("custom_bool#{i}_value") if collection.send("custom_bool#{i}_state")
+      values["custom_date#{i}_value"] = send("custom_date#{i}_value") if collection.send("custom_date#{i}_state")
+    end
+    values
   end
 end
