@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_19_015641) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_19_024431) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -55,9 +55,18 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_19_015641) do
     t.index ["user_id"], name: "index_collections_on_user_id"
   end
 
+  create_table "comments", force: :cascade do |t|
+    t.text "body"
+    t.bigint "user_id", null: false
+    t.bigint "item_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_comments_on_item_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
   create_table "items", force: :cascade do |t|
     t.string "name"
-    t.string "tags"
     t.bigint "collection_id", null: false
     t.string "custom_string1_value"
     t.string "custom_string2_value"
@@ -76,6 +85,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_19_015641) do
     t.date "custom_date3_value"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "tags", default: [], array: true
     t.index ["collection_id"], name: "index_items_on_collection_id"
   end
 
@@ -108,5 +118,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_19_015641) do
   end
 
   add_foreign_key "collections", "users"
+  add_foreign_key "comments", "items"
+  add_foreign_key "comments", "users"
   add_foreign_key "items", "collections"
 end
