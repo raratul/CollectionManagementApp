@@ -20,10 +20,3 @@
     <p>Number of Items: <%= collection.items.count %></p>
   </div>
 <% end %>
-
-<h2>Tag Cloud</h2>
-<div id="tag-cloud">
-  <% @tag_cloud.each do |tag| %>
-    <%= link_to tag.name, search_path(query: tag.name), class: "tag-#{tag.taggings.count}" %>
-  <% end %>
-</div>
