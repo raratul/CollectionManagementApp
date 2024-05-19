@@ -1,2 +1,9 @@
-<h1>Collections</h1>
+<h1>All Collections</h1>
 
+<% @collections.each do |collection| %>
+  <div>
+    <h2><%= link_to collection.name, collection %></h2>
+    <p><%= collection.description %></p>
+    <p>Category: <%= collection.category %></p>
+  </div>
+<% end %>

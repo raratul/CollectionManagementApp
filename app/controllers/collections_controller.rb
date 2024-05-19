@@ -92,6 +92,7 @@ class CollectionsController < ApplicationController
   end
 
   def home
+    @collections = Collection.all
   end
 
   def create
