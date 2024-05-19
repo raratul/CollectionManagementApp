@@ -4,12 +4,14 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
 
+  resources :tags, only: [:index]
   resources :collections do
-    resources :items
+    resources :items do
+      resources :comments, only: [:create]
+    end
   end
   
   resources :likes
-  resources :comments
 
   devise_scope :user do
     get 'users/sign_out' => 'devise/sessions#destroy'
