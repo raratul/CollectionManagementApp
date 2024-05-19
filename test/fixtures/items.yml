@@ -1,0 +1,41 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  tags: MyString
+  collection: one
+  custom_string1_value: MyString
+  custom_string2_value: MyString
+  custom_string3_value: MyString
+  custom_int1_value: 1
+  custom_int2_value: 1
+  custom_int3_value: 1
+  custom_text1_value: MyText
+  custom_text2_value: MyText
+  custom_text3_value: MyText
+  custom_bool1_value: false
+  custom_bool2_value: false
+  custom_bool3_value: false
+  custom_date1_value: 2024-05-19
+  custom_date2_value: 2024-05-19
+  custom_date3_value: 2024-05-19
+
+two:
+  name: MyString
+  tags: MyString
+  collection: two
+  custom_string1_value: MyString
+  custom_string2_value: MyString
+  custom_string3_value: MyString
+  custom_int1_value: 1
+  custom_int2_value: 1
+  custom_int3_value: 1
+  custom_text1_value: MyText
+  custom_text2_value: MyText
+  custom_text3_value: MyText
+  custom_bool1_value: false
+  custom_bool2_value: false
+  custom_bool3_value: false
+  custom_date1_value: 2024-05-19
+  custom_date2_value: 2024-05-19
+  custom_date3_value: 2024-05-19

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_18_134815) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_19_014610) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -55,6 +55,30 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_18_134815) do
     t.index ["user_id"], name: "index_collections_on_user_id"
   end
 
+  create_table "items", force: :cascade do |t|
+    t.string "name"
+    t.string "tags"
+    t.bigint "collection_id", null: false
+    t.string "custom_string1_value"
+    t.string "custom_string2_value"
+    t.string "custom_string3_value"
+    t.integer "custom_int1_value"
+    t.integer "custom_int2_value"
+    t.integer "custom_int3_value"
+    t.text "custom_text1_value"
+    t.text "custom_text2_value"
+    t.text "custom_text3_value"
+    t.boolean "custom_bool1_value"
+    t.boolean "custom_bool2_value"
+    t.boolean "custom_bool3_value"
+    t.date "custom_date1_value"
+    t.date "custom_date2_value"
+    t.date "custom_date3_value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["collection_id"], name: "index_items_on_collection_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -78,4 +102,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_18_134815) do
   end
 
   add_foreign_key "collections", "users"
+  add_foreign_key "items", "collections"
 end
