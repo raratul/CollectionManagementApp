@@ -13,8 +13,13 @@ class Item < ApplicationRecord
 
   belongs_to :collection
   has_many :comments, dependent: :destroy
+  has_many :likes, dependent: :destroy
 
   validates :name, presence: true
+
+  def liked_by?(user)
+    likes.exists?(user: user)
+  end
 
   def custom_field_values
     values = {}
