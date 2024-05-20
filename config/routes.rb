@@ -32,5 +32,7 @@ Rails.application.routes.draw do
   post 'toggle_theme', to: 'application#toggle_theme'
   patch 'batch_action_admin', to: 'admin#batch_action'
 
+  mount ActionCable.server => '/cable'
+
   root to: 'home#index'
 end
