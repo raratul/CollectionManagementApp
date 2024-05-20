@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
+  get 'users/show'
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     registrations: 'users/registrations'
   }
+
+  resources :users, only: [:show]
 
   resources :tags, only: [:index]
   resources :collections do

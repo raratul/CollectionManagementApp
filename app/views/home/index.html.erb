@@ -6,7 +6,7 @@
     <li>
       <%= link_to item.name, collection_item_path(item.collection, item) %>
       (from <%= link_to item.collection.name, item.collection %>)
-      by <%= link_to item.user.name, item.user %>
+      by <%= link_to item.user.name, user_path(item.user) %>
     </li>
   <% end %>
 </ul>
@@ -15,7 +15,7 @@
 <ul>
   <% @top_collections.each do |collection| %>
     <li>
-      <%= link_to collection.name, collection %> by <%= link_to collection.user.name, collection.user %>
+      <%= link_to collection.name, collection %> by <%= link_to collection.user.name, user_path(collection.user) %>
     </li>
   <% end %>
 </ul>
