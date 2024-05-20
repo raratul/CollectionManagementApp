@@ -1,22 +1,32 @@
-<h1>Welcome to the Collection Management App</h1>
+<h1>Welcome to Collection Management App</h1>
 
 <h2>Latest Items</h2>
-<% @latest_items.each do |item| %>
-  <div>
-    <h3><%= link_to item.name, [item.collection, item] %></h3>
-    <p>Tags: <%= item.tags %></p>
-    <ul>
-      <% item.custom_field_values.each do |field, value| %>
-        <li><strong><%= field.humanize %>:</strong> <%= value %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
+<ul>
+  <% @latest_items.each do |item| %>
+    <li>
+      <%= link_to item.name, collection_item_path(item.collection, item) %>
+      (from <%= link_to item.collection.name, item.collection %>)
+      by <%= link_to item.user.name, item.user %>
+    </li>
+  <% end %>
+</ul>
 
-<h2>Largest Collections</h2>
-<% @largest_collections.each do |collection| %>
-  <div>
-    <h3><%= link_to collection.name, collection %></h3>
-    <p>Number of Items: <%= collection.items.count %></p>
-  </div>
-<% end %>
+<h2>Top 5 Largest Collections</h2>
+<ul>
+  <% @top_collections.each do |collection| %>
+    <li>
+      <%= link_to collection.name, collection %> by <%= link_to collection.user.name, collection.user %>
+    </li>
+  <% end %>
+</ul>
+
+<h2>Tag Cloud</h2>
+<div id="tag-cloud">
+  <% if @tag_cloud.present? %>
+    <% @tag_cloud.each do |tag| %>
+      <%= link_to tag.name, search_path(query: tag.name), class: "tag-#{tag.taggings.count}" %>
+    <% end %>
+  <% else %>
+    <p>No tags available.</p>
+  <% end %>
+</div>
