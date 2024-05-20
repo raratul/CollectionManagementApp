@@ -73,9 +73,9 @@ class CollectionsController < ApplicationController
     collection.custom_text1_state = collection.custom_text1_name.present?
     collection.custom_text2_state = collection.custom_text2_name.present?
     collection.custom_text3_state = collection.custom_text3_name.present?
-    collection.custom_boolean1_state = collection.custom_boolean1_name.present?
-    collection.custom_boolean2_state = collection.custom_boolean2_name.present?
-    collection.custom_boolean3_state = collection.custom_boolean3_name.present?
+    collection.custom_bool1_state = collection.custom_bool1_name.present?
+    collection.custom_bool2_state = collection.custom_bool2_name.present?
+    collection.custom_bool3_state = collection.custom_bool3_name.present?
     collection.custom_date1_state = collection.custom_date1_name.present?
     collection.custom_date2_state = collection.custom_date2_name.present?
     collection.custom_date3_state = collection.custom_date3_name.present?
