@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_19_095557) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_20_111416) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -41,9 +41,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_19_095557) do
     t.boolean "custom_bool1_state"
     t.string "custom_bool1_name"
     t.boolean "custom_bool2_state"
-    t.boolean "custom_bool2_name"
+    t.string "custom_bool2_name"
     t.boolean "custom_bool3_state"
-    t.boolean "custom_bool3_name"
+    t.string "custom_bool3_name"
     t.boolean "custom_date1_state"
     t.string "custom_date1_name"
     t.boolean "custom_date2_state"
