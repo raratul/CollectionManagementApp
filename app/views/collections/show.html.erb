@@ -1,30 +1,27 @@
+<div class="container mt-5">
+  <h1 class="mb-4"><%= @collection.name %></h1>
 
-<%= render @collection %>
+  <p><strong>Description:</strong> <%= @collection.description %></p>
+  <p><strong>Category:</strong> <%= @collection.category %></p>
+  <p><strong>Image URL:</strong> <%= @collection.image_url %></p>
 
-<h1><%= @collection.name %></h1>
-<p><%= @collection.description %></p>
-<p>Category: <%= @collection.category %></p>
-<%= image_tag(@collection.image_url) if @collection.image_url.present? %>
+  <h5>Custom Fields</h5>
+  <ul>
+    <% if @collection.custom_string1_name.present? %>
+      <li><strong><%= @collection.custom_string1_name %>:</strong> ...</li>
+    <% end %>
+    <% if @collection.custom_string2_name.present? %>
+      <li><strong><%= @collection.custom_string2_name %>:</strong> ...</li>
+    <% end %>
+    <% if @collection.custom_string3_name.present? %>
+      <li><strong><%= @collection.custom_string3_name %>:</strong> ...</li>
+    <% end %>
 
-<h2>Items</h2>
-<%= link_to 'New Item', new_collection_item_path(@collection) %>
+  </ul>
 
-<% @items.each do |item| %>
-  <div>
-    <h3><%= link_to item.name, [@collection, item] %></h3>
-    <p>Tags: <%= item.tags %></p>
-    <ul>
-      <% item.custom_field_values.each do |field, value| %>
-        <li><strong><%= field.humanize %>:</strong> <%= value %></li>
-      <% end %>
-    </ul>
-    <p><%= link_to 'Edit', edit_collection_item_path(@collection, item) %> | <%= link_to 'Delete', [@collection, item], method: :delete, data: { confirm: 'Are you sure?' } %></p>
+  <div class="mb-3">
+    <%= link_to 'Edit', edit_collection_path(@collection), class: 'btn btn-primary' %>
+    <%= link_to 'Back', collections_path, class: 'btn btn-secondary' %>
+    <%= link_to 'Delete', @collection, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
   </div>
-<% end %>
-
-<div>
-  <%= link_to "Edit this collection", edit_collection_path(@collection) %> |
-  <%= link_to "Back to collections", collections_path %>
-
-  <%= button_to "Destroy this collection", @collection, method: :delete %>
 </div>

@@ -1,58 +1,59 @@
-<h1>New Collection</h1>
+<div class="container mt-5">
+  <h1 class="mb-4">New Collection</h1>
 
-<%= form_with(model: @collection, local: true) do |form| %>
-  <% if @collection.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@collection.errors.count, "error") %> prohibited this collection from being saved:</h2>
-      <ul>
-        <% @collection.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+  <%= form_with(model: @collection, local: true, html: { class: 'needs-validation', novalidate: true }) do |form| %>
+    <% if @collection.errors.any? %>
+      <div class="alert alert-danger">
+        <h4 class="alert-heading"><%= pluralize(@collection.errors.count, "error") %> prohibited this collection from being saved:</h4>
+        <ul>
+          <% @collection.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="mb-3">
+      <%= form.label :name, class: 'form-label' %>
+      <%= form.text_field :name, class: 'form-control', required: true %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :description, class: 'form-label' %>
+      <%= form.text_area :description, class: 'form-control', rows: 3 %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :category, class: 'form-label' %>
+      <%= form.select :category, ['Books', 'Signs', 'Silverware', 'Other'], {}, class: 'form-select' %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :image_url, class: 'form-label' %>
+      <%= form.text_field :image_url, class: 'form-control' %>
+    </div>
+
+    <h5>Custom Fields</h5>
+
+    <div class="mb-3">
+      <%= form.label :custom_string1_name, 'Custom String Field 1 Name', class: 'form-label' %>
+      <%= form.text_field :custom_string1_name, class: 'form-control' %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :custom_string2_name, 'Custom String Field 2 Name', class: 'form-label' %>
+      <%= form.text_field :custom_string2_name, class: 'form-control' %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :custom_string3_name, 'Custom String Field 3 Name', class: 'form-label' %>
+      <%= form.text_field :custom_string3_name, class: 'form-control' %>
+    </div>
+
+
+    <div class="mb-3">
+      <%= form.submit 'Create Collection', class: 'btn btn-primary' %>
+      <%= link_to 'Back', collections_path, class: 'btn btn-secondary' %>
     </div>
   <% end %>
-
-  <div>
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
-
-  <div>
-    <%= form.label :description %>
-    <%= form.text_area :description %>
-  </div>
-
-  <div>
-    <%= form.label :category %>
-    <%= form.select :category, ['Books', 'Signs', 'Silverware', 'Other'] %>
-  </div>
-
-  <div>
-    <%= form.label :image_url %>
-    <%= form.text_field :image_url %>
-  </div>
-
-  <div>
-    <%= form.label :custom_string1_state %>
-    <%= form.check_box :custom_string1_state %>
-    <%= form.text_field :custom_string1_name, placeholder: 'Custom String Field 1 Name' %>
-  </div>
-
-  <div>
-    <%= form.label :custom_string2_state %>
-    <%= form.check_box :custom_string2_state %>
-    <%= form.text_field :custom_string2_name, placeholder: 'Custom String Field 2 Name' %>
-  </div>
-
-  <div>
-    <%= form.label :custom_string3_state %>
-    <%= form.check_box :custom_string3_state %>
-    <%= form.text_field :custom_string3_name, placeholder: 'Custom String Field 3 Name' %>
-  </div>
-
-  <div>
-    <%= form.submit 'Create Collection' %>
-  </div>
-<% end %>
-
-<%= link_to 'Back', collections_path %>
+</div>
