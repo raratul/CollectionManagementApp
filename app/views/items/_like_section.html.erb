@@ -1,0 +1,11 @@
+<div id="like-section">
+    <% if current_user %>
+      <% if item.liked_by?(current_user) %>
+        <%= link_to 'Unlike', collection_item_like_path(item.collection, item), method: :delete, remote: true %>
+      <% else %>
+        <%= link_to 'Like', collection_item_like_path(item.collection, item), method: :post, remote: true %>
+      <% end %>
+    <% end %>
+    <p>Likes: <%= item.likes.count %></p>
+</div>
+  
