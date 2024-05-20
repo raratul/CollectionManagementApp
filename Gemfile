@@ -47,4 +47,4 @@ gem "pg_search", "~> 2.3"
 gem 'bootstrap', '~> 5.0.0'
 gem 'acts-as-taggable-on', '~> 5.0'
 gem 'jquery-ui-rails'
-
+gem 'sassc-rails'

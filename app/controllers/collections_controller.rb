@@ -2,6 +2,7 @@ class CollectionsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :authenticate_admin!, except: [:index, :show]
   before_action :set_collection, only: %i[show edit update destroy]
+  before_action :authorize_user!, only: [:edit, :update, :destroy]
 
   def index
     @collections = current_user.collections
@@ -24,7 +25,8 @@ class CollectionsController < ApplicationController
     end
   end
 
-  def edit; end
+  def edit
+  end
 
   def update
     if @collection.update(collection_params)
@@ -42,7 +44,13 @@ class CollectionsController < ApplicationController
   private
 
   def set_collection
-    @collection = current_user.collections.find(params[:id])
+    @collection = Collection.find(params[:id])
+  end
+
+  def authorize_user!
+    unless current_user.admin? || @collection.user == current_user
+      redirect_to collections_path, alert: 'You are not authorized to perform this action.'
+    end
   end
 
   def collection_params
