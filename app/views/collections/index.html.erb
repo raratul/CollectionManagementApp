@@ -1,11 +1,23 @@
-<h1>My Collections</h1>
-<%= link_to 'New Collection', new_collection_path %>
+<h1 class="my-4">My Collections</h1>
+<div class="mb-4">
+  <%= link_to 'New Collection', new_collection_path, class: 'btn btn-primary' %>
+</div>
 
-<% @collections.each do |collection| %>
-  <div>
-    <h2><%= link_to collection.name, collection %></h2>
-    <p><%= collection.description %></p>
-    <p>Category: <%= collection.category %></p>
-    <p><%= link_to 'Edit', edit_collection_path(collection) %> | <%= link_to 'Delete', collection, method: :delete, data: { confirm: 'Are you sure?' } %></p>
-  </div>
-<% end %>
+<div class="row">
+  <% @collections.each do |collection| %>
+    <div class="col-md-4 mb-4">
+      <div class="card h-100">
+        <% if collection.image_url.present? %>
+          <img src="<%= collection.image_url %>" class="card-img-top" alt="<%= collection.name %>">
+        <% end %>
+        <div class="card-body">
+          <h5 class="card-title"><%= link_to collection.name, collection %></h5>
+          <p class="card-text"><%= collection.description %></p>
+          <p class="card-text"><small class="text-muted">Category: <%= collection.category %></small></p>
+          <%= link_to 'Edit', edit_collection_path(collection), class: 'btn btn-secondary btn-sm' %>
+          <%= link_to 'Delete', collection, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

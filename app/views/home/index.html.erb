@@ -1,32 +1,47 @@
-<h1>Welcome to Collection Management App</h1>
+<div class="container my-5">
+  <h1 class="mb-4">Welcome to Collection Management App</h1>
 
-<h2>Latest Items</h2>
-<ul>
-  <% @latest_items.each do |item| %>
-    <li>
-      <%= link_to item.name, collection_item_path(item.collection, item) %>
-      (from <%= link_to item.collection.name, item.collection %>)
-      by <%= link_to item.user.name, user_path(item.user) %>
-    </li>
-  <% end %>
-</ul>
-
-<h2>Top 5 Largest Collections</h2>
-<ul>
-  <% @top_collections.each do |collection| %>
-    <li>
-      <%= link_to collection.name, collection %> by <%= link_to collection.user.name, user_path(collection.user) %>
-    </li>
-  <% end %>
-</ul>
-
-<h2>Tag Cloud</h2>
-<div id="tag-cloud">
-  <% if @tag_cloud.present? %>
-    <% @tag_cloud.each do |tag| %>
-      <%= link_to tag.name, search_path(query: tag.name), class: "tag-#{tag.taggings.count}" %>
+  <h2 class="mb-3">Latest Items</h2>
+  <ul class="list-group mb-4">
+    <% @latest_items.each do |item| %>
+      <li class="list-group-item">
+        <%= link_to item.name, collection_item_path(item.collection, item) %>
+        (from <%= link_to item.collection.name, item.collection %>)
+        by <%= link_to item.user.name, user_path(item.user) %>
+      </li>
     <% end %>
-  <% else %>
-    <p>No tags available.</p>
-  <% end %>
+  </ul>
+
+  <h2 class="mb-3">Top 5 Largest Collections</h2>
+  <ul class="list-group mb-4">
+    <% @top_collections.each do |collection| %>
+      <li class="list-group-item">
+        <%= link_to collection.name, collection %> by <%= link_to collection.user.name, user_path(collection.user) %>
+      </li>
+    <% end %>
+  </ul>
+
+  <h2 class="mb-3">Tag Cloud</h2>
+  <div id="tag-cloud" class="mb-4">
+    <% if @tag_cloud.present? %>
+      <% @tag_cloud.each do |tag| %>
+        <%= link_to tag.name, search_path(query: tag.name), class: "badge badge-pill badge-primary tag-#{tag.taggings.count}" %>
+      <% end %>
+    <% else %>
+      <p>No tags available.</p>
+    <% end %>
+  </div>
 </div>
+
+<style>
+  #tag-cloud .badge {
+    font-size: 1rem;
+    margin: 0.2rem;
+  }
+
+  @media (max-width: 576px) {
+    #tag-cloud .badge {
+      font-size: 0.8rem;
+    }
+  }
+</style>
