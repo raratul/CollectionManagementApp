@@ -8,11 +8,10 @@ Rails.application.routes.draw do
   resources :collections do
     resources :items do
       resources :comments, only: [:create]
+      resource :like, only: [:create, :destroy]
     end
   end
   
-  resources :likes
-
   devise_scope :user do
     get 'users/sign_out' => 'devise/sessions#destroy'
   end
