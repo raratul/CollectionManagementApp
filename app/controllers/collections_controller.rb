@@ -1,6 +1,6 @@
 class CollectionsController < ApplicationController
-  before_action :authenticate_user!
-  before_action :authenticate_admin!
+  before_action :authenticate_user!, except: [:show]
+  before_action :authenticate_admin!, except: [:show]
   before_action :set_collection, only: [:show, :edit, :update, :destroy]
   before_action :authorize_user!, only: [:edit, :update, :destroy]
 

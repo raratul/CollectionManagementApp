@@ -1,42 +1,55 @@
-<h2>Sign up</h2>
+<div class="container mt-3">
+  <h2 class="mb-4 text-center">Sign up</h2>
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= f.error_notification %>
+  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: 'needs-validation', novalidate: true }) do |f| %>
+    <%= f.error_notification %>
 
-  <div class="form-inputs">
-    <%= f.input :name,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "name", style: "width: 45vw; margin-left: 6vw; margin-right: 6vw; margin-bottom: 3vw;" }%>
+    <div class="form-group">
+      <%= f.input :name,
+                  required: true,
+                  autofocus: true,
+                  input_html: { autocomplete: "name", class: "form-control" },
+                  wrapper_html: { class: "mb-3" } %>
+    </div>
 
-    <%= f.input :email,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "email", style: "width: 45vw; margin-left: 6vw; margin-right: 6vw; margin-bottom: 3vw;" }%>
+    <div class="form-group">
+      <%= f.input :email,
+                  required: true,
+                  autofocus: true,
+                  input_html: { autocomplete: "email", class: "form-control" },
+                  wrapper_html: { class: "mb-3" } %>
+    </div>
 
-    <%= f.input :password,
-                required: true,
-                hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                input_html: { autocomplete: "new-password", style: "width: 45vw; margin-left: 6vw; margin-right: 6vw; margin-bottom: 3vw;" } %>
-        
-    <%= f.input :password_confirmation,
-                required: true,
-                input_html: { autocomplete: "new-password", style: "width: 45vw; margin-left: 6vw; margin-right: 6vw; margin-bottom: 3vw;" } %>
-  </div>
+    <div class="form-group">
+      <%= f.input :password,
+                  required: true,
+                  hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                  input_html: { autocomplete: "new-password", class: "form-control" },
+                  wrapper_html: { class: "mb-3" } %>
+    </div>
 
-  <% if User.first_admin? %>
-    <div class="field">
-      <%= f.check_box :admin %>
-      <%= f.label :admin, 'Register as admin' %>
+    <div class="form-group">
+      <%= f.input :password_confirmation,
+                  required: true,
+                  input_html: { autocomplete: "new-password", class: "form-control" },
+                  wrapper_html: { class: "mb-3" } %>
+    </div>
+
+    <br>
+
+    <% if User.first_admin? %>
+      <div class="form-group form-check">
+        <%= f.check_box :admin, class: "form-check-input" %>
+        <%= f.label :admin, 'Register as admin', class: "form-check-label" %>
+      </div>
+    <% end %>
+
+    <div class="form-group">
+      <%= f.button :submit, "Sign up", class: "btn btn-primary btn-block" %>
     </div>
   <% end %>
 
   <br>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Sign up", class: "btn btn-primary" %>
-  </div>
-  <br>
-<% end %>
-
-<%= render "devise/shared/links" %>
+  <%= render "devise/shared/links" %>
+</div>

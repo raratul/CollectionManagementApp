@@ -16,7 +16,7 @@
   <ul class="list-group mb-4">
     <% @top_collections.each do |collection| %>
       <li class="list-group-item">
-        <%= link_to collection.name, collection %> by <%= link_to collection.user.name, user_path(collection.user) %>
+        <%= link_to collection.name, collection %>
       </li>
     <% end %>
   </ul>
