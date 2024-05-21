@@ -1,8 +1,9 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!
-  before_action :authenticate_admin!
-  before_action :set_collection
-  before_action :set_item, only: %i[show edit update destroy]
+  before_action :authenticate_user!, except: [:show]
+  before_action :authenticate_admin!, except: [:show]
+  before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_collection, only: [:new, :create]
+  before_action :authorize_user!, only: [:edit, :update, :destroy]
 
   def index
     @items = @collection.items
@@ -10,6 +11,7 @@ class ItemsController < ApplicationController
 
   def show
     @comments = @item.comments
+    @comment = Comment.new
   end
 
   def new
@@ -25,7 +27,8 @@ class ItemsController < ApplicationController
     end
   end
 
-  def edit; end
+  def edit
+  end
 
   def update
     if @item.update(item_params)
@@ -37,17 +40,23 @@ class ItemsController < ApplicationController
 
   def destroy
     @item.destroy
-    redirect_to collection_items_url(@collection), notice: 'Item was successfully destroyed.'
+    redirect_to collection_path(@item.collection), notice: 'Item was successfully destroyed.'
   end
 
   private
 
   def set_collection
-    @collection = current_user.collections.find(params[:collection_id])
+    @collection = Collection.find(params[:collection_id])
   end
 
   def set_item
     @item = @collection.items.find(params[:id])
+  end
+
+  def authorize_user!
+    unless current_user.admin? || @item.collection.user == current_user
+      redirect_to collection_path(@item.collection), alert: 'You are not authorized to perform this action.'
+    end
   end
 
   def item_params
