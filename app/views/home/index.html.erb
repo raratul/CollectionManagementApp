@@ -1,6 +1,13 @@
 <div class="container my-3">
   <h1 class="mb-4 text-center">Welcome to Collection Management App</h1>
 
+  <% if user_signed_in? %>
+    <h3 class="text-success text-center mt-2 mb-2">
+      Hi <%= current_user.name %>, <br>
+      User ID: <%= current_user.id %>, User Email: <%= current_user.email %>
+    </h3>
+  <% end %>
+
   <h1 class="mb-4">Latest Items</h1>
   <ul class="list-group">
     <% @latest_items.each do |item| %>
