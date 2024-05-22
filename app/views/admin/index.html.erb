@@ -1,12 +1,16 @@
 <h1 class="text-center mt-3"><%= t('admin_page.userspanel') %></h1>
 
 <%= form_with(url: batch_action_admin_path, method: :patch) do |f| %>
-  <div class="mt-3 mb-5">
+  <div class="mt-3 mb-3">
     <%= submit_tag t('admin_page.makeadmin'), class: "btn btn-outline-success me-3 mt-3", name: "add_admins" %>
     <%= submit_tag t('admin_page.removeadmin'), class: "btn btn-outline-secondary me-3 mt-3", name: "remove_admins" %>
     <%= submit_tag t('admin_page.unblock'), class: "btn btn-outline-info me-3 mt-3", name: "unblock_users" %>
     <%= submit_tag t('admin_page.block'), class: "btn btn-outline-warning me-3 mt-3", name: "block_users" %>
     <%= submit_tag t('admin_page.delete'), class: "btn btn-outline-danger me-3 mt-3", name: "delete_users", data: { confirm: "Are you sure?" } %>  
+  </div>
+  <div class="mt-3 mb-3">
+    <label for="userFilter" class="form-label"><%= t('admin_page.filterbyuserid') %>:</label>
+    <input type="number" id="userFilter" class="form-control" placeholder="<%= t('admin_page.enteruserid') %>">
   </div>
   <div class="table-responsive">
     <table class="table table-striped table-hover">
@@ -21,9 +25,9 @@
           <th><%= t('admin_page.select') %></th>
         </tr>
       </thead>
-      <tbody>
+      <tbody id="usersTable">
         <% @users.each do |user| %>
-          <tr>
+          <tr data-user-id="<%= user.id %>">
             <td><%= user.id %></td>
             <td><%= user.name %></td>
             <td><%= user.email %></td>
@@ -37,3 +41,28 @@
     </table>
   </div>  
 <% end %>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const userFilter = document.getElementById('userFilter');
+    const tableRows = document.querySelectorAll('#usersTable tr');
+
+    const filterTable = () => {
+      const userId = userFilter.value.trim();
+
+      tableRows.forEach(row => {
+        const rowUserId = row.getAttribute('data-user-id');
+
+        let showRow = true;
+
+        if (userId && rowUserId !== userId) {
+          showRow = false;
+        }
+
+        row.style.display = showRow ? '' : 'none';
+      });
+    };
+
+    userFilter.addEventListener('input', filterTable);
+  });
+</script>

@@ -3,7 +3,6 @@ class ItemsController < ApplicationController
   before_action :authenticate_admin!, except: [:show]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :set_collection, only: [:index, :new, :create]
-  before_action :authorize_user!, only: [:edit, :update, :destroy]
 
   def index
     @items = @collection.items
@@ -51,12 +50,6 @@ class ItemsController < ApplicationController
 
   def set_item
     @item = Item.find(params[:id])
-  end
-
-  def authorize_user!
-    unless current_user.admin? || @item.collection.user == current_user
-      redirect_to collection_path(@item.collection), alert: 'You are not authorized to perform this action.'
-    end
   end
 
   def item_params

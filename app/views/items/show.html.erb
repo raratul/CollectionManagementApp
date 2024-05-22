@@ -34,7 +34,7 @@
       <div id="comments" class="list-group">
         <% @comments.each do |comment| %>
           <div class="list-group-item">
-            <p><strong>UserID:<%= comment.user.id %> | </strong><strong><%= comment.user.name %>:</strong> <%= comment.body %></p>
+            <p><strong>User ID: <%= comment.user.id %> | </strong><strong><%= comment.user.name %>:</strong> <%= comment.body %></p>
           </div>
         <% end %>
       </div>
