@@ -19,6 +19,7 @@
         <tr>
           <th>Item ID</th>
           <th>Item Name</th>
+          <th>Tags</th>
           <% if @collection.custom_string1_name.present? %>
             <th><%= @collection.custom_string1_name %></th>
           <% end %>
@@ -72,6 +73,7 @@
           <tr>
             <td><%= item.id %></td>
             <td><%= link_to item.name, item_path(item) %></td>
+            <td><%= link_to item.tag, item_path(item) %></td>
             <% if @collection.custom_string1_name.present? %>
               <td><%= item.custom_string1_value %></td>
             <% end %>
