@@ -1,6 +1,7 @@
-<h1>New Item</h1>
+<div class="container mt-3">
+  <h1 class="mb-4">New Item</h1>
 
-<%= form_with(model: @item, local: true) do |form| %>
+<%= form_with(model: [@collection, @item], local: true, html: { class: 'needs-validation', novalidate: true }) do |form| %>
   <% if @item.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@item.errors.count, "error") %> prohibited this item from being saved:</h2>
@@ -19,7 +20,7 @@
 
   <div>
     <%= form.label :tags %>
-    <%= form.text_field :tags %>
+    <%= form.text_field :tag %>
   </div>
 
   <% if @collection.custom_string1_state %>
@@ -41,11 +42,10 @@
     </div>
   <% end %>
 
-  <!-- Add similar blocks for integers, text, boolean, and date fields -->
-
   <div>
     <%= form.submit 'Create Item' %>
   </div>
 <% end %>
+</div>
 
 <%= link_to 'Back', collection_path(@collection) %>
