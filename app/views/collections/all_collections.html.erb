@@ -1,5 +1,9 @@
 <h1 class="my-3 text-center">All Collections</h1>
 
+<div class="mb-4">
+  <button id="exportCsv" class="btn btn-success">Export to CSV</button>
+</div>
+
 <div class="row mb-3">
   <div class="col-md-6">
     <label for="categoryFilter" class="form-label">Filter by Category:</label>
@@ -84,6 +88,31 @@
 
     categoryFilter.addEventListener('change', filterTable);
     userFilter.addEventListener('input', filterTable);
+
+    document.getElementById('exportCsv').addEventListener('click', () => {
+      const visibleRows = document.querySelectorAll('#collectionsTable tr:not([style*="display: none"])');
+      let csvContent = "data:text/csv;charset=utf-8,Collection ID,User ID,Collection Name,Category,Image URL\n";
+
+      visibleRows.forEach(row => {
+        const cols = row.querySelectorAll('td');
+        let rowData = [];
+        cols.forEach(col => {
+          if (col.querySelector('img')) {
+            rowData.push(col.querySelector('img').src);
+          } else {
+            rowData.push(col.innerText);
+          }
+        });
+        csvContent += rowData.join(",") + "\n";
+      });
+
+      const encodedUri = encodeURI(csvContent);
+      const link = document.createElement('a');
+      link.setAttribute('href', encodedUri);
+      link.setAttribute('download', 'collections.csv');
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    });
   });
 </script>
-

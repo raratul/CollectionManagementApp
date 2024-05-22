@@ -2,6 +2,7 @@
 
 <div class="mb-4">
   <%= link_to 'New Collection', new_collection_path, class: 'btn btn-primary' %>
+  <button id="myexportCsv" class="btn btn-success ms-3">Export to CSV</button>
 </div>
 
 <div class="row mb-3">
@@ -27,7 +28,7 @@
       <th>Actions</th>
     </tr>
   </thead>
-  <tbody id="collectionsTable">
+  <tbody id="mycollectionsTable">
     <% @collections.each do |collection| %>
       <tr data-category="<%= collection.category %>" data-user-id="<%= collection.user_id %>">
         <td><%= collection.id %></td>
@@ -53,25 +54,44 @@
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     const categoryFilter = document.getElementById('categoryFilter');
-    const tableRows = document.querySelectorAll('#collectionsTable tr');
+    const tableRows = document.querySelectorAll('#mycollectionsTable tr');
 
     const filterTable = () => {
       const category = categoryFilter.value;
 
       tableRows.forEach(row => {
         const rowCategory = row.getAttribute('data-category');
-
-        let showRow = true;
-
-        if (category && rowCategory !== category) {
-          showRow = false;
-        }
-
-        row.style.display = showRow ? '' : 'none';
+        row.style.display = (!category || rowCategory === category) ? '' : 'none';
       });
     };
 
     categoryFilter.addEventListener('change', filterTable);
-    userFilter.addEventListener('input', filterTable);
+
+    document.getElementById('myexportCsv').addEventListener('click', () => {
+      const visibleRows = Array.from(document.querySelectorAll('#mycollectionsTable tr'))
+        .filter(row => row.style.display !== 'none');
+      let csvContent = "data:text/csv;charset=utf-8,Collection ID,User ID,Collection Name,Category,Image URL\n";
+
+      visibleRows.forEach(row => {
+        const cols = row.querySelectorAll('td');
+        let rowData = [];
+        cols.forEach(col => {
+          if (col.querySelector('img')) {
+            rowData.push(col.querySelector('img').src);
+          } else {
+            rowData.push(col.innerText.trim());
+          }
+        });
+        csvContent += rowData.join(",") + "\n";
+      });
+
+      const encodedUri = encodeURI(csvContent);
+      const link = document.createElement('a');
+      link.setAttribute('href', encodedUri);
+      link.setAttribute('download', 'mycollections.csv');
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    });
   });
 </script>
