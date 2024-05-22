@@ -1,8 +1,7 @@
 class CollectionsController < ApplicationController
-  before_action :authenticate_user!, except: [:show]
-  before_action :authenticate_admin!, except: [:show, :index, :new, :create]
+  before_action :authenticate_user!, except: [:show, :all_collections]
+  before_action :authenticate_admin!, except: [:show, :index, :new, :create, :all_collections]
   before_action :set_collection, only: [:show, :edit, :update, :destroy]
-  before_action :authorize_user!, only: [:edit, :update, :destroy]
 
   def index
     @collections = current_user.collections
@@ -14,6 +13,10 @@ class CollectionsController < ApplicationController
 
   def new
     @collection = current_user.collections.build
+  end
+
+  def all_collections
+    @collections = Collection.all
   end
 
   def create
@@ -47,12 +50,6 @@ class CollectionsController < ApplicationController
 
   def set_collection
     @collection = Collection.find(params[:id])
-  end
-
-  def authorize_user!
-    unless current_user.admin? || @collection.user == current_user
-      redirect_to collections_path, alert: 'You are not authorized to perform this action.'
-    end
   end
 
   def collection_params

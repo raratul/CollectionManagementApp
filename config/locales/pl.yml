@@ -3,6 +3,7 @@ pl:
     title: "Aplikacja do Zarządzania Kolekcjami"
   nav:
     home: "Strona Główna"
+    all_collections: "Wszystkie kolekcje"
     my_collections: "Moje Kolekcje"
     admin_page: "Strona administratora"
     logout: "Wyloguj się"

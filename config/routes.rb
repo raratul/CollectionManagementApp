@@ -5,12 +5,14 @@ Rails.application.routes.draw do
   }
 
   resources :tags, only: [:index]
-  resources :collections do
+  resources :collections, shallow: true do
     resources :items, shallow: true do
-      resources :comments, only: [:create]
+      resources :comments, only: [:create, :update, :destroy]
       resource :like, only: [:create, :destroy]
     end
   end
+
+  get 'collections-all', to: 'collections#all_collections', as: :all_collections
   
   devise_scope :user do
     get 'users/sign_out' => 'devise/sessions#destroy'

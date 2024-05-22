@@ -1,0 +1,23 @@
+<h1 class="my-3 text-center">All Collections</h1>
+<div class="row">
+  <% @collections.each do |collection| %>
+    <div class="col-md-4 mb-4">
+      <div class="card h-100">
+        <% if collection.image_url.present? %>
+          <img src="<%= collection.image_url %>" class="card-img-top" alt="<%= collection.name %>">
+        <% end %>
+        <div class="card-body">
+          <h5 class="card-title"><%= link_to collection.name, collection %></h5>
+          <p class="card-text"><%= collection.description %></p>
+          <p class="card-text"><small class="text-muted">Category: <%= collection.category %></small></p>
+          <% if user_signed_in? %>
+            <% if current_user.admin? %>
+                <%= link_to 'Edit', edit_collection_path(collection), class: 'btn btn-secondary btn-sm' %>
+                <%= link_to 'Delete', collection, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

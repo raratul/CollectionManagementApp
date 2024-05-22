@@ -1,38 +1,62 @@
-<h1><%= @item.name %></h1>
-<p>Tags: <%= @item.tags %></p>
-<ul>
-  <% @item.custom_field_values.each do |field, value| %>
-    <li><strong><%= field.humanize %>:</strong> <%= value %></li>
-  <% end %>
-</ul>
+<div class="container mt-5">
+  <div class="row mb-4">
+    <div class="col">
+      <h1><%= @item.name %></h1>
+      <p><strong>Tags:</strong> <span class="badge badge-secondary"><%= @item.tag %></span></p>
+      <ul class="list-group">
+        <% @item.custom_field_values.each do |field, value| %>
+          <li class="list-group-item">
+            <strong><%= field.humanize %>:</strong> <%= value %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
 
-<div id="like-section">
+  <div class="row mb-4">
+    <div class="col">
+      <div class="d-flex align-items-center">
+        <% if current_user %>
+          <% if @item.liked_by?(current_user) %>
+            <%= link_to 'Unlike', collection_path(@item.collection, @item), method: :delete, remote: true, class: "btn btn-outline-danger me-3" %>
+          <% else %>
+            <%= link_to 'Like', collection_path(@item.collection, @item), method: :post, remote: true, class: "btn btn-outline-primary me-3" %>
+          <% end %>
+        <% end %>
+        <p class="mb-0"><strong>Likes:</strong> <%= @item.likes.count %></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4">
+    <div class="col">
+      <h2>Comments</h2>
+      <div id="comments" class="list-group">
+        <% @comments.each do |comment| %>
+          <div class="list-group-item">
+            <p><strong>UserID:<%= comment.user.id %> | </strong><strong><%= comment.user.name %>:</strong> <%= comment.body %></p>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
   <% if current_user %>
-    <% if @item.liked_by?(current_user) %>
-      <%= link_to 'Unlike', collection_item_like_path(@item.collection, @item), method: :delete, remote: true %>
-    <% else %>
-      <%= link_to 'Like', collection_item_like_path(@item.collection, @item), method: :post, remote: true %>
-    <% end %>
-  <% end %>
-  <p>Likes: <%= @item.likes.count %></p>
-</div>
-
-<h2>Comments</h2>
-<div id="comments">
-  <% @comments.each do |comment| %>
-    <div>
-      <p><strong><%= comment.user.name %>:</strong> <%= comment.body %></p>
+    <div class="row mb-4">
+      <div class="col">
+        <%= form_with(model: [@item, @item.comments.build], remote: true, class: "needs-validation") do |form| %>
+          <div class="form-group">
+            <%= form.label :Add_A_Comment %>
+            <%= form.text_area :body, class: "form-control", rows: 3 %>
+          </div>
+          <div class="form-group">
+            <%= form.submit 'Enter', class: "btn btn-primary mt-2" %>
+          </div>
+        <% end %>
+      </div>
     </div>
   <% end %>
-</div>
 
-<h3>Add a comment:</h3>
-<%= form_with(model: [@item, @item.comments.build], remote: true) do |form| %>
-  <div>
-    <%= form.label :body %>
-    <%= form.text_area :body %>
-  </div>
-  <div>
-    <%= form.submit 'Add Comment' %>
-  </div>
-<% end %>
+  <%= link_to 'Back to Home Page', root_path, class: "btn btn-secondary" %>
+ 
+</div>

@@ -3,6 +3,7 @@ en:
     title: "Collection Management App"
   nav:
     home: "Home"
+    all_collections: "All Collections"
     my_collections: "My Collections"
     admin_page: "Admin Page"
     logout: "Logout"
