@@ -12,6 +12,13 @@
     <%= link_to 'Delete', @collection, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
   </div>
 
+  <div class="row mb-3">
+    <div class="col-md-6">
+      <label for="itemFilter" class="form-label">Filter by Item ID:</label>
+      <input type="number" id="itemFilter" class="form-control" placeholder="Enter Item ID">
+    </div>
+  </div>
+
   <h5>Items</h5>
   <div class="table-responsive">
     <table class="table table-striped table-bordered">
@@ -68,9 +75,9 @@
           <th>Actions</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody id="itemsTable">
         <% @collection.items.each do |item| %>
-          <tr>
+          <tr data-item-id="<%= item.id %>">
             <td><%= item.id %></td>
             <td><%= link_to item.name, item_path(item) %></td>
             <td><%= link_to item.tag, item_path(item) %></td>
@@ -102,13 +109,13 @@
               <td><%= item.custom_text3_value %></td>
             <% end %>
             <% if @collection.custom_bool1_name.present? %>
-              <td><%= item.custom_bool1_value %></td>
+              <td><%= item.custom_bool1_value ? 'Yes' : 'No' %></td>
             <% end %>
             <% if @collection.custom_bool2_name.present? %>
-              <td><%= item.custom_bool2_value %></td>
+              <td><%= item.custom_bool2_value ? 'Yes' : 'No' %></td>
             <% end %>
             <% if @collection.custom_bool3_name.present? %>
-              <td><%= item.custom_bool3_value %></td>
+              <td><%= item.custom_bool3_value ? 'Yes' : 'No' %></td>
             <% end %>
             <% if @collection.custom_date1_name.present? %>
               <td><%= item.custom_date1_value %></td>
@@ -129,3 +136,21 @@
     </table>
   </div>
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const itemFilter = document.getElementById('itemFilter');
+    const tableRows = document.querySelectorAll('#itemsTable tr');
+
+    const filterTable = () => {
+      const itemId = itemFilter.value.trim();
+
+      tableRows.forEach(row => {
+        const rowItemId = row.getAttribute('data-item-id');
+        row.style.display = (!itemId || rowItemId === itemId) ? '' : 'none';
+      });
+    };
+
+    itemFilter.addEventListener('input', filterTable);
+  });
+</script>
