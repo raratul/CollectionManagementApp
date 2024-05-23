@@ -18,9 +18,9 @@
       <div class="d-flex align-items-center">
         <% if current_user %>
           <% if @item.liked_by?(current_user) %>
-            <%= link_to 'Unlike', collection_path(@item.collection, @item), method: :delete, remote: true, class: "btn btn-outline-danger me-3" %>
+            <%= link_to 'Unlike', collection_item_like_path(@item.collection, @item), method: :delete, remote: true, class: "btn btn-outline-danger me-3" %>
           <% else %>
-            <%= link_to 'Like', collection_path(@item.collection, @item), method: :post, remote: true, class: "btn btn-outline-primary me-3" %>
+            <%= link_to 'Like', collection_item_likes_path(@item.collection, @item), method: :post, remote: true, class: "btn btn-outline-primary me-3" %>
           <% end %>
         <% end %>
         <p class="mb-0"><strong>Likes:</strong> <%= @item.likes.count %></p>
@@ -31,11 +31,9 @@
   <div class="row mb-4">
     <div class="col">
       <h2>Comments</h2>
-      <div id="comments" class="list-group">
+      <div id="comments" class="list-group" data-item-id="<%= @item.id %>">
         <% @comments.each do |comment| %>
-          <div class="list-group-item">
-            <p><strong>User ID: <%= comment.user.id %> | </strong><strong><%= comment.user.name %>:</strong> <%= comment.body %></p>
-          </div>
+          <%= render partial: 'comments/comment', locals: { comment: comment } %>
         <% end %>
       </div>
     </div>
@@ -58,5 +56,4 @@
   <% end %>
 
   <%= link_to 'Back to Home Page', root_path, class: "btn btn-secondary" %>
- 
 </div>
