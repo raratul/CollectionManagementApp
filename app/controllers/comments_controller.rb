@@ -6,7 +6,7 @@ class CommentsController < ApplicationController
     @comment = @item.comments.build(comment_params)
     @comment.user = current_user
     if @comment.save
-      ActionCable.server.broadcast "comments_#{@item.id}", comment_partial: render_to_string(@comment)
+      ActionCable.server.broadcast "comments_#{@item.id}", comment_partial: render_to_string(partial: 'comments/comment', locals: { comment: @comment })
       head :ok
     else
       render 'items/show'
