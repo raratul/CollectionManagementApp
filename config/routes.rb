@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :tags, only: [:index]
   resources :collections, shallow: true do
     resources :items, shallow: true do
-      resources :comments, only: [:create, :update, :destroy]
+      resources :comments, only: [:create, :destroy]
       resource :like, only: [:create, :destroy]
     end
   end
