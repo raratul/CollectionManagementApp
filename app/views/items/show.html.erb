@@ -1,5 +1,5 @@
 <div class="container mt-5">
-  <div class="row mb-4">
+  <div class="row mb-4 text-center">
     <div class="col">
       <h1><%= @item.name %></h1>
       <p><strong>Tags:</strong> <span class="badge badge-secondary"><%= @item.tag %></span></p>
@@ -16,14 +16,12 @@
   <div class="row mb-4">
     <div class="col">
       <div class="d-flex align-items-center">
-        <% if current_user %>
-          <% if @item.liked_by?(current_user) %>
-            <%= link_to 'Unlike', collection_item_like_path(@item.collection, @item), method: :delete, remote: true, class: "btn btn-outline-danger me-3" %>
-          <% else %>
-            <%= link_to 'Like', collection_item_likes_path(@item.collection, @item), method: :post, remote: true, class: "btn btn-outline-primary me-3" %>
-          <% end %>
+        <% if current_user && @item.likes.exists?(user: current_user) %>
+          <%= button_to 'Unlike',item_like_path(@item), method: :delete, remote: true, class: 'btn btn-outline-danger like-button me-3'%>
+        <% else %>
+          <%= button_to 'Like', item_like_path(@item), method: :post, remote: true, class: 'btn btn-outline-primary like-button me-3'%>
         <% end %>
-        <p class="mb-0"><strong>Likes:</strong> <%= @item.likes.count %></p>
+        <p class="mb-0 like-count ml-2"><strong>Likes:</strong> <%= @item.likes.count %></p>
       </div>
     </div>
   </div>
@@ -32,28 +30,73 @@
     <div class="col">
       <h2>Comments</h2>
       <div id="comments" class="list-group" data-item-id="<%= @item.id %>">
-        <% @comments.each do |comment| %>
-          <%= render partial: 'comments/comment', locals: { comment: comment } %>
+        <% @item.comments.each do |comment| %>
+          <div class="list-group-item" id="comment-<%= comment.id %>">
+            <p><strong><%= comment.user.email %>:</strong> <%= comment.body %></p>
+            <% if comment.user == current_user || current_user.admin? %>
+              <%= link_to 'Delete Comment', item_comments_path(comment.item, comment), method: :delete, remote: true, class: 'btn btn-outline-danger btn-sm' %>
+            <% end %>
+          </div>
         <% end %>
       </div>
     </div>
   </div>
 
-  <% if current_user %>
-    <div class="row mb-4">
-      <div class="col">
-        <%= form_with(model: [@item, @item.comments.build], remote: true, class: "needs-validation") do |form| %>
+  <div class="row mb-4">
+    <div class="col">
+      <% if user_signed_in? %>
+        <%= form_with(model: [@item, @item.comments.build], remote: true, id: "comment-form") do |form| %>
           <div class="form-group">
-            <%= form.label :Add_A_Comment %>
+            <%= form.label :body, 'Add a Comment' %>
             <%= form.text_area :body, class: "form-control", rows: 3 %>
           </div>
           <div class="form-group">
             <%= form.submit 'Enter', class: "btn btn-primary mt-2" %>
           </div>
         <% end %>
-      </div>
+      <% else %>
+        <p>You must be <%= link_to 'logged in', new_user_session_path %> to add a comment.</p>
+      <% end %>
     </div>
-  <% end %>
+  </div>  
 
   <%= link_to 'Back to Home Page', root_path, class: "btn btn-secondary" %>
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const commentForm = document.getElementById('comment-form');
+    if (commentForm) {
+      commentForm.addEventListener('ajax:success', (event) => {
+        const [data, status, xhr] = event.detail;
+        const commentsDiv = document.getElementById('comments');
+        commentsDiv.insertAdjacentHTML('beforeend', xhr.responseText);
+        commentForm.reset();
+      });
+
+      commentForm.addEventListener('ajax:error', (event) => {
+        const [data, status, xhr] = event.detail;
+        alert('Error: ' + xhr.responseText);
+      });
+    }
+
+    const commentsDiv = document.getElementById('comments');
+    if (commentsDiv) {
+      commentsDiv.addEventListener('click', (event) => {
+        if (event.target.matches('.btn-danger')) {
+          event.preventDefault();
+          const url = event.target.getAttribute('href');
+          fetch(url, {
+            method: 'DELETE',
+            headers: {
+              'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+              'Accept': 'text/javascript'
+            }
+          }).then(response => response.text()).then(html => {
+            document.getElementById(`comment-${event.target.closest('.list-group-item').id.split('-')[1]}`).remove();
+          });
+        }
+      });
+    }
+  });
+</script>

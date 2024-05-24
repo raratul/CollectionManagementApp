@@ -12,6 +12,8 @@ Rails.application.routes.draw do
     end
   end
 
+  get 'items/:item_id/comments.:id', to: 'comments#destroy'
+
   get 'collections-all', to: 'collections#all_collections', as: :all_collections
   
   devise_scope :user do
@@ -32,8 +34,6 @@ Rails.application.routes.draw do
   get 'toggle_language', to: 'application#toggle_language'
   post 'toggle_theme', to: 'application#toggle_theme'
   patch 'batch_action_admin', to: 'admin#batch_action'
-
-  mount ActionCable.server => '/cable'
 
   root to: 'home#index'
 end

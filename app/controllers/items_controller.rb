@@ -20,7 +20,7 @@ class ItemsController < ApplicationController
   def create
     @item = @collection.items.build(item_params)
     if @item.save
-      redirect_to collections_url, notice: 'Item was successfully created.'
+      redirect_to collection_item_path(@collection, @item), notice: 'Item was successfully created.'
     else
       render :new
     end
@@ -53,9 +53,10 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params.require(:item).permit(:name, :tags, :custom_string1_value, :custom_string2_value, :custom_string3_value,
+    params.require(:item).permit(:name, :tag, :custom_string1_value, :custom_string2_value, :custom_string3_value,
                                  :custom_int1_value, :custom_int2_value, :custom_int3_value, :custom_text1_value,
                                  :custom_text2_value, :custom_text3_value, :custom_bool1_value, :custom_bool2_value,
                                  :custom_bool3_value, :custom_date1_value, :custom_date2_value, :custom_date3_value)
   end
+
 end

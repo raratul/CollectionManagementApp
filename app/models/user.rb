@@ -3,6 +3,7 @@ class User < ApplicationRecord
   has_many :items, through: :collections
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
+  has_many :liked_items, through: :likes, source: :item
 
   validates :name, presence: true
   validates :email, presence: true, uniqueness: true
@@ -19,6 +20,10 @@ class User < ApplicationRecord
 
   def inactive_message
     !blocked? ? super : :blocked
+  end
+
+  def likes?(item)
+    liked_items.include?(item)
   end
 
   devise :database_authenticatable, :registerable,
