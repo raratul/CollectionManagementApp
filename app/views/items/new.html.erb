@@ -1,51 +1,51 @@
 <div class="container mt-3">
   <h1 class="mb-4">New Item</h1>
 
-<%= form_with(model: [@collection, @item], local: true, html: { class: 'needs-validation', novalidate: true }) do |form| %>
-  <% if @item.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@item.errors.count, "error") %> prohibited this item from being saved:</h2>
-      <ul>
-        <% @item.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= form_with(model: [@collection, @item], local: true, html: { class: 'needs-validation', novalidate: true }) do |form| %>
+    <% if @item.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@item.errors.count, "error") %> prohibited this item from being saved:</h2>
+        <ul>
+          <% @item.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
 
-  <div>
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
-
-  <div>
-    <%= form.label :tags %>
-    <%= form.text_field :tag %>
-  </div>
-
-  <% if @collection.custom_string1_state %>
     <div>
-      <%= form.label @collection.custom_string1_name %>
-      <%= form.text_field :custom_string1_value %>
+      <%= form.label :name %>
+      <%= form.text_field :name %>
     </div>
-  <% end %>
-  <% if @collection.custom_string2_state %>
-    <div>
-      <%= form.label @collection.custom_string2_name %>
-      <%= form.text_field :custom_string2_value %>
-    </div>
-  <% end %>
-  <% if @collection.custom_string3_state %>
-    <div>
-      <%= form.label @collection.custom_string3_name %>
-      <%= form.text_field :custom_string3_value %>
-    </div>
-  <% end %>
 
-  <div>
-    <%= form.submit 'Create Item' %>
-  </div>
-<% end %>
+    <div>
+      <%= form.label :tags %>
+      <%= form.text_field :tag %>
+    </div>
+
+    <% if @collection.custom_string1_state %>
+      <div>
+        <%= form.label @collection.custom_string1_name %>
+        <%= form.text_field :custom_string1_value %>
+      </div>
+    <% end %>
+    <% if @collection.custom_string2_state %>
+      <div>
+        <%= form.label @collection.custom_string2_name %>
+        <%= form.text_field :custom_string2_value %>
+      </div>
+    <% end %>
+    <% if @collection.custom_string3_state %>
+      <div>
+        <%= form.label @collection.custom_string3_name %>
+        <%= form.text_field :custom_string3_value %>
+      </div>
+    <% end %>
+
+    <div>
+      <%= form.submit 'Create Item' %>
+    </div>
+  <% end %>
 </div>
 
 <%= link_to 'Back', collection_path(@collection) %>
