@@ -17,7 +17,8 @@
     <% if @latest_items.present? %>
       <% @latest_items.each do |item| %>
         <li class="list-group-item">
-          <%= link_to item.name, item %>
+          <p>Item ID: <%= link_to item.id, item %></p>
+          <p>Item Name: <%= link_to item.name, item %></p> 
         </li>
       <% end %>
     <% else %>

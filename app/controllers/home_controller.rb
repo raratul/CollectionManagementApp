@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   def index
-    @latest_items = Item.order(created_at: :desc).limit(10)
+    @latest_items = Item.order(created_at: :desc).limit(5)
 
     @top_collections = Collection.left_joins(:items).group(:id).order('COUNT(items.id) DESC').limit(5)
 
