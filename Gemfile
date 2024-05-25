@@ -44,4 +44,5 @@ end
 
 gem "pg_search", "~> 2.3"
 gem 'bootstrap', '~> 5.0.0'
+gem 'jquery-rails'
 gem 'acts-as-taggable-on', '~> 5.0'

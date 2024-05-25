@@ -1,9 +1,11 @@
 <div class="container mt-5">
-  <h1 class="mb-4"><%= @collection.name %></h1>
-
-  <p><strong>Description:</strong> <%= @collection.description %></p>
-  <p><strong>Category:</strong> <%= @collection.category %></p>
-  <p><strong>Image URL:</strong> <%= @collection.image_url %></p>
+  <div class="mb-3 text-center">
+    <h1 class="mb-4"><strong>Collection Name:</strong> <%= @collection.name %></h1>
+    <p><strong>Collection ID:</strong> <%= @collection.id %></p>
+    <p><strong>Description:</strong> <%= @collection.description %></p>
+    <p><strong>Category:</strong> <%= @collection.category %></p>
+    <p><strong>Image URL:</strong> <%= @collection.image_url %></p>
+  </div>
 
   <div class="mb-3">
     <%= link_to 'Add An Item', new_collection_item_path(@collection), class: 'btn btn-success' %>

@@ -12,45 +12,40 @@
     </h3>
   <% end %>
 
-  <h1 class="mb-4">Latest Items</h1>
+  <h2 class="mb-4">Latest Items</h2>
   <ul class="list-group">
-    <% @latest_items.each do |item| %>
-      <li class="list-group-item">
-        <%= link_to item.name, item %>
-      </li>
+    <% if @latest_items.present? %>
+      <% @latest_items.each do |item| %>
+        <li class="list-group-item">
+          <%= link_to item.name, item %>
+        </li>
+      <% end %>
+    <% else %>
+      <p>Nothing to show here.</p>
     <% end %>
   </ul>
 
   <h2 class="mb-3">Top 5 Largest Collections</h2>
   <ul class="list-group mb-4">
-    <% @top_collections.each do |collection| %>
-      <li class="list-group-item">
-        <%= link_to collection.name, collection %>
-      </li>
+    <% if @top_collections.present? %>
+      <% @top_collections.each do |collection| %>
+        <li class="list-group-item">
+          <%= link_to collection.name, collection %>
+        </li>
+      <% end %>
+    <% else %>
+      <p>Nothing to show here.</p>
     <% end %>
   </ul>
 
-  <h2 class="mb-3">Tag Cloud</h2>
-  <div id="tag-cloud" class="mb-4">
-    <% if @tag_cloud.present? %>
-      <% @tag_cloud.each do |tag| %>
-        <%= link_to tag.name, search_path(query: tag.name), class: "badge badge-pill badge-primary tag-#{tag.taggings.count}" %>
+  <h2>Tag Cloud</h2>
+  <div>
+    <% if @tags.present? %>
+      <% @tags.each do |tag| %>
+        <%= link_to tag, search_path(query: tag), class: 'badge bg-secondary' %>
       <% end %>
     <% else %>
-      <p>No tags available.</p>
+      <p>Nothing to show here.</p>
     <% end %>
   </div>
 </div>
-
-<style>
-  #tag-cloud .badge {
-    font-size: 1rem;
-    margin: 0.2rem;
-  }
-
-  @media (max-width: 576px) {
-    #tag-cloud .badge {
-      font-size: 0.8rem;
-    }
-  }
-</style>

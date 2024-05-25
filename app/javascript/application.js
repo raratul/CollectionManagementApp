@@ -1,7 +1,9 @@
 // Entry point for the build script in your package.json
-//= require jquery
-//= require jquery-ui
 //= require bootstrap
+//= require jquery3
+//= require popper
+//= require bootstrap-sprockets
+//= require jquery-ui
 //= require rails-ujs
 //= require turbolinks
 //= require_tree .

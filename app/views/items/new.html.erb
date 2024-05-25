@@ -13,39 +13,115 @@
       </div>
     <% end %>
 
-    <div>
-      <%= form.label :name %>
-      <%= form.text_field :name %>
+    <div class="mb-3">
+      <%= form.label :name, class: "form-label" %>
+      <%= form.text_field :name, class: "form-control" %>
     </div>
 
-    <div>
-      <%= form.label :tags %>
-      <%= form.text_field :tag %>
+    <div class="mb-3">
+      <%= form.label :tags, class: "form-label" %>
+      <%= form.text_field :tag, class: "form-control", placeholder: "Enter tags, separated by commas" %>
     </div>
 
     <% if @collection.custom_string1_state %>
-      <div>
-        <%= form.label @collection.custom_string1_name %>
-        <%= form.text_field :custom_string1_value %>
+      <div class="mb-3">
+        <%= form.label @collection.custom_string1_name, class: "form-label" %>
+        <%= form.text_field :custom_string1_value, class: "form-control" %>
       </div>
     <% end %>
     <% if @collection.custom_string2_state %>
-      <div>
-        <%= form.label @collection.custom_string2_name %>
-        <%= form.text_field :custom_string2_value %>
+      <div class="mb-3">
+        <%= form.label @collection.custom_string2_name, class: "form-label" %>
+        <%= form.text_field :custom_string2_value, class: "form-control" %>
       </div>
     <% end %>
     <% if @collection.custom_string3_state %>
-      <div>
-        <%= form.label @collection.custom_string3_name %>
-        <%= form.text_field :custom_string3_value %>
+      <div class="mb-3">
+        <%= form.label @collection.custom_string3_name, class: "form-label" %>
+        <%= form.text_field :custom_string3_value, class: "form-control" %>
       </div>
     <% end %>
 
-    <div>
-      <%= form.submit 'Create Item' %>
+    <% if @collection.custom_int1_state %>
+      <div class="mb-3">
+        <%= form.label @collection.custom_int1_name, class: "form-label" %>
+        <%= form.number_field :custom_int1_value, class: "form-control" %>
+      </div>
+    <% end %>
+    <% if @collection.custom_int2_state %>
+      <div class="mb-3">
+        <%= form.label @collection.custom_int2_name, class: "form-label" %>
+        <%= form.number_field :custom_int2_value, class: "form-control" %>
+      </div>
+    <% end %>
+    <% if @collection.custom_int3_state %>
+      <div class="mb-3">
+        <%= form.label @collection.custom_int3_name, class: "form-label" %>
+        <%= form.number_field :custom_int3_value, class: "form-control" %>
+      </div>
+    <% end %>
+
+    <% if @collection.custom_text1_state %>
+      <div class="mb-3">
+        <%= form.label @collection.custom_text1_name, class: "form-label" %>
+        <%= form.text_area :custom_text1_value, class: "form-control", rows: 3 %>
+      </div>
+    <% end %>
+    <% if @collection.custom_text2_state %>
+      <div class="mb-3">
+        <%= form.label @collection.custom_text2_name, class: "form-label" %>
+        <%= form.text_area :custom_text2_value, class: "form-control", rows: 3 %>
+      </div>
+    <% end %>
+    <% if @collection.custom_text3_state %>
+      <div class="mb-3">
+        <%= form.label @collection.custom_text3_name, class: "form-label" %>
+        <%= form.text_area :custom_text3_value, class: "form-control", rows: 3 %>
+      </div>
+    <% end %>
+
+    <% if @collection.custom_bool1_state %>
+      <div class="mb-3 form-check">
+        <%= form.check_box :custom_bool1_value, class: "form-check-input" %>
+        <%= form.label @collection.custom_bool1_name, class: "form-check-label" %>
+      </div>
+    <% end %>
+    <% if @collection.custom_bool2_state %>
+      <div class="mb-3 form-check">
+        <%= form.check_box :custom_bool2_value, class: "form-check-input" %>
+        <%= form.label @collection.custom_bool2_name, class: "form-check-label" %>
+      </div>
+    <% end %>
+    <% if @collection.custom_bool3_state %>
+      <div class="mb-3 form-check">
+        <%= form.check_box :custom_bool3_value, class: "form-check-input" %>
+        <%= form.label @collection.custom_bool3_name, class: "form-check-label" %>
+      </div>
+    <% end %>
+
+    <% if @collection.custom_date1_state %>
+      <div class="mb-3">
+        <%= form.label @collection.custom_date1_name, class: "form-label" %>
+        <%= form.date_field :custom_date1_value, class: "form-control" %>
+      </div>
+    <% end %>
+    <% if @collection.custom_date2_state %>
+      <div class="mb-3">
+        <%= form.label @collection.custom_date2_name, class: "form-label" %>
+        <%= form.date_field :custom_date2_value, class: "form-control" %>
+      </div>
+    <% end %>
+    <% if @collection.custom_date3_state %>
+      <div class="mb-3">
+        <%= form.label @collection.custom_date3_name, class: "form-label" %>
+        <%= form.date_field :custom_date3_value, class: "form-control" %>
+      </div>
+    <% end %>
+
+    <div class="mb-3">
+      <%= form.submit 'Create Item', class: "btn btn-primary" %>
     </div>
   <% end %>
-</div>
 
-<%= link_to 'Back', collection_path(@collection) %>
+  <%= link_to 'Back', collection_path(@collection), class: "btn btn-secondary mt-3" %>
+</div>

@@ -4,8 +4,6 @@ class HomeController < ApplicationController
 
     @top_collections = Collection.left_joins(:items).group(:id).order('COUNT(items.id) DESC').limit(5)
 
-    @tag_cloud = ActsAsTaggableOn::Tag.most_used(20)
-
-    @tag_cloud ||= []
+    @tags = Item.pluck(:tag).join(',').split(',').uniq
   end
 end
