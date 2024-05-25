@@ -20,7 +20,6 @@ Rails.application.routes.draw do
     get 'users/sign_out' => 'devise/sessions#destroy'
   end
 
-  get 'search', to: 'search#index'
   get 'tag/:tag', to: 'search#tagged', as: :tag
   get 'latest_items', to: 'items#latest_items', as: :latest_items
 
@@ -34,6 +33,12 @@ Rails.application.routes.draw do
   get 'toggle_language', to: 'application#toggle_language'
   post 'toggle_theme', to: 'application#toggle_theme'
   patch 'batch_action_admin', to: 'admin#batch_action'
+
+  resources :tags, only: [] do
+    get :autocomplete, on: :collection
+  end
+
+  get 'search', to: 'search#index'
 
   root to: 'home#index'
 end

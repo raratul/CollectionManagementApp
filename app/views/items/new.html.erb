@@ -20,7 +20,9 @@
 
     <div class="mb-3">
       <%= form.label :tags, class: "form-label" %>
-      <%= form.text_field :tag, class: "form-control", placeholder: "Enter tags, separated by commas" %>
+      <!-- <%= form.text_field :tag, class: "form-control", placeholder: "Enter tags, separated by commas" %> -->
+      <!-- <%= text_field_tag :tag, @item.tag, data: { autocomplete_source: autocomplete_tags_path } %> -->
+      <%= text_field_tag :tag, @item.tag, class: "form-control", placeholder: "Enter tags, separated by commas", data: { autocomplete_source: autocomplete_tags_path } %>
     </div>
 
     <% if @collection.custom_string1_state %>
@@ -125,3 +127,20 @@
 
   <%= link_to 'Back', collection_path(@collection), class: "btn btn-secondary mt-3" %>
 </div>
+
+<script>
+  document.addEventListener('turbolinks:load', () => {
+    const tagField = $("[data-autocomplete-source]");
+    if (tagField.length) {
+      $.ajax({
+        url: tagField.data('autocomplete-source'),
+        dataType: "json",
+        success: function(data) {
+          tagField.autocomplete({
+            source: data
+          });
+        }
+      });
+    }
+  });  
+</script>

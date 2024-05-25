@@ -1,9 +1,6 @@
 class TagsController < ApplicationController
-    def index
-      @tags = Tag.pluck(:name)
-      respond_to do |format|
-        format.json { render json: @tags }
-      end
-    end
+  def autocomplete
+    tags = Item.pluck(:tag).join(',').split(',').uniq
+    render json: tags
+  end
 end
-  

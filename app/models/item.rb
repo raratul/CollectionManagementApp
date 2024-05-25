@@ -1,7 +1,7 @@
 class Item < ApplicationRecord
   include PgSearch::Model
   pg_search_scope :search, against: [:name, :custom_string1_value, :custom_string2_value, :custom_string3_value, 
-                                            :custom_text1_value, :custom_text2_value, :custom_text3_value],
+                                            :custom_text1_value, :custom_text2_value, :custom_text3_value, :tag],
                            associated_against: {
                              comments: [:body]
                            },

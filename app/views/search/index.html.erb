@@ -1,14 +1,9 @@
 <h1>Search Results</h1>
 
-<%= form_with url: search_path, method: :get do %>
-  <%= text_field_tag :query, params[:query] %>
-  <%= submit_tag 'Search' %>
-<% end %>
-
 <% @results.each do |item| %>
   <div>
-    <h3><%= link_to item.name, [item.collection, item] %></h3>
-    <p>Tags: <%= item.tags %></p>
+    <h3><%= link_to item.id, item_path(item) %></h3>
+    <p>Tags: <%= item.tag %></p>
     <ul>
       <% item.custom_field_values.each do |field, value| %>
         <li><strong><%= field.humanize %>:</strong> <%= value %></li>

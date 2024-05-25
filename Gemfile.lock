@@ -75,8 +75,6 @@ GEM
       minitest (>= 5.1)
       mutex_m
       tzinfo (~> 2.0)
-    acts-as-taggable-on (5.0.0)
-      activerecord (>= 4.2.8)
     addressable (2.8.6)
       public_suffix (>= 2.0.2, < 6.0)
     autoprefixer-rails (10.4.16.0)
@@ -287,7 +285,6 @@ PLATFORMS
   x64-mingw-ucrt
 
 DEPENDENCIES
-  acts-as-taggable-on (~> 5.0)
   bootsnap
   bootstrap (~> 5.0.0)
   capybara
