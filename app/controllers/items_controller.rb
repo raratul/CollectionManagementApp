@@ -9,6 +9,8 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @collection = @item.collection
+    @user = @collection.user
     @comments = @item.comments
     @comment = Comment.new
   end

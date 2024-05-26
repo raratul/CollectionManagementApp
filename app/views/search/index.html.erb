@@ -1,13 +1,20 @@
 <h1 class="text-center mt-3">Search Results</h1>
 
-<% @results.each do |item| %>
+<% @resultitem.each do |item| %>
+  <hr>
   <div>
-    <h3><%= link_to item.id, item_path(item) %></h3>
+    <h3>Item ID: <%= link_to item.id, item_path(item) %></h3>
+    <p>Item Name: <%= item.name %></p>
     <p>Tags: <%= item.tag %></p>
-    <ul>
-      <% item.custom_field_values.each do |field, value| %>
-        <li><strong><%= field.humanize %>:</strong> <%= value %></li>
-      <% end %>
-    </ul>
+  </div>
+<% end %>
+
+<% @resultcollection.each do |collection| %>
+  <hr>
+  <div>
+    <h3>Collection ID: <%= link_to collection.id, collection_path(collection) %></h3>
+    <p>Collection Name: <%= collection.name %></p>
+    <p>Collection Category: <%= collection.category %></p>
+    <p>Collection Description: <%= collection.description %></p>
   </div>
 <% end %>

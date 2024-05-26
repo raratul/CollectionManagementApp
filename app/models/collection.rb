@@ -1,4 +1,11 @@
 class Collection < ApplicationRecord
+  include PgSearch::Model
+  pg_search_scope :search, against: [:name, :category, :description, :custom_string1_name, :custom_string2_name, :custom_string3_name, 
+                                            :custom_text1_name, :custom_text2_name, :custom_text3_name],
+                           using: {
+                             tsearch: { prefix: true }
+                           }
+
   belongs_to :user
   has_many :items, dependent: :destroy
   has_many_attached :images

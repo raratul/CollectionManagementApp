@@ -20,8 +20,6 @@
 
     <div class="mb-3">
       <%= form.label :tags, class: "form-label" %>
-      <!-- <%= form.text_field :tag, class: "form-control", placeholder: "Enter tags, separated by commas" %> -->
-      <!-- <%= text_field_tag :tag, @item.tag, data: { autocomplete_source: autocomplete_tags_path } %> -->
       <%= text_field_tag :tag, @item.tag, class: "form-control", placeholder: "Enter tags, separated by commas", data: { autocomplete_source: autocomplete_tags_path } %>
     </div>
 

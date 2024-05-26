@@ -59,9 +59,11 @@
   <div class="container mb-5">
     <%= yield %>
   </div>
+
+  <hr>
   
-  <footer style="position: fixed; bottom: 0; width: 100%", class="d-flex justify-content-center mt-3">
-    <h6><%= t('footer.text') %></h6>
+  <footer style="position: relative; bottom: 0; width: 100%", class="d-flex justify-content-center my-5">
+    <h6 class="mt-5"><%= t('footer.text') %></h6>
   </footer>
 
   <script>

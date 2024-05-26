@@ -1,43 +1,121 @@
 <div class="container mt-5">
   <div class="row mb-4 text-center">
     <div class="col">
-      <h1><%= @item.name %></h1>
+      <h1>Item Name: <%= @item.name %></h1>
+      <h3>Item ID: <%= @item.id %></h3>
+      <h3>Collection ID: <%= @collection.id %></h3>
+      <h3>User ID: <%= @user.id %></h3>
+      <h3>User Name: <%= @user.name %></h3>
       <p><strong>Tags:</strong> <span class="badge badge-secondary"><%= @item.tag %></span></p>
       <ul class="list-group">
-        <% @item.custom_field_values.each do |field, value| %>
+        <% if @collection.custom_string1_state %>
           <li class="list-group-item">
-            <strong><%= field.humanize %>:</strong> <%= value %>
+            <strong><%= @collection.custom_string1_name %>:</strong> <%= @item.custom_string1_value %>
           </li>
         <% end %>
-      </ul>
-    </div>
-  </div>
-
-  <div class="row mb-4">
-    <div class="col">
-      <div class="d-flex align-items-center">
-        <% if current_user && @item.likes.exists?(user: current_user) %>
-          <%= button_to 'Unlike',item_like_path(@item), method: :delete, remote: true, class: 'btn btn-outline-danger like-button me-3'%>
-        <% else %>
-          <%= button_to 'Like', item_like_path(@item), method: :post, remote: true, class: 'btn btn-outline-primary like-button me-3'%>
+        <% if @collection.custom_string2_state %>
+          <li class="list-group-item">
+            <strong><%= @collection.custom_string2_name %>:</strong> <%= @item.custom_string2_value %>
+          </li>
         <% end %>
-        <p class="mb-0 like-count ml-2"><strong>Likes:</strong> <%= @item.likes.count %></p>
+        <% if @collection.custom_string3_state %>
+          <li class="list-group-item">
+            <strong><%= @collection.custom_string3_name %>:</strong> <%= @item.custom_string3_value %>
+          </li>
+        <% end %>
+
+        <% if @collection.custom_int1_state %>
+          <li class="list-group-item">
+            <strong><%= @collection.custom_int1_name %>:</strong> <%= @item.custom_int1_value %>
+          </li>
+        <% end %>
+        <% if @collection.custom_int2_state %>
+          <li class="list-group-item">
+            <strong><%= @collection.custom_int2_name %>:</strong> <%= @item.custom_int2_value %>
+          </li>
+        <% end %>
+        <% if @collection.custom_int3_state %>
+          <li class="list-group-item">
+            <strong><%= @collection.custom_int3_name %>:</strong> <%= @item.custom_int3_value %>
+          </li>
+        <% end %>
+
+        <% if @collection.custom_text1_state %>
+          <li class="list-group-item">
+            <strong><%= @collection.custom_text1_name %>:</strong> <%= @item.custom_text1_value %>
+          </li>
+        <% end %>
+        <% if @collection.custom_text2_state %>
+          <li class="list-group-item">
+            <strong><%= @collection.custom_text2_name %>:</strong> <%= @item.custom_text2_value %>
+          </li>
+        <% end %>
+        <% if @collection.custom_text3_state %>
+          <li class="list-group-item">
+            <strong><%= @collection.custom_text3_name %>:</strong> <%= @item.custom_text3_value %>
+          </li>
+        <% end %>
+
+        <% if @collection.custom_bool1_state %>
+          <li class="list-group-item">
+            <strong><%= @collection.custom_bool1_name %>:</strong> <%= @item.custom_bool1_value %>
+          </li>
+        <% end %>
+        <% if @collection.custom_bool2_state %>
+          <li class="list-group-item">
+            <strong><%= @collection.custom_bool2_name %>:</strong> <%= @item.custom_bool2_value %>
+          </li>
+        <% end %>
+        <% if @collection.custom_bool3_state %>
+          <li class="list-group-item">
+            <strong><%= @collection.custom_bool3_name %>:</strong> <%= @item.custom_bool3_value %>
+          </li>
+        <% end %>
+
+        <% if @collection.custom_date1_state %>
+          <li class="list-group-item">
+            <strong><%= @collection.custom_date1_name %>:</strong> <%= @item.custom_date1_value %>
+          </li>
+        <% end %>
+        <% if @collection.custom_date2_state %>
+          <li class="list-group-item">
+            <strong><%= @collection.custom_date2_name %>:</strong> <%= @item.custom_date2_value %>
+          </li>
+        <% end %>
+        <% if @collection.custom_date3_state %>
+          <li class="list-group-item">
+            <strong><%= @collection.custom_date3_name %>:</strong> <%= @item.custom_date3_value %>
+          </li>
+        <% end %>
+        </ul>
       </div>
     </div>
-  </div>
 
-  <div class="row mb-4">
-    <div class="col">
-      <h2>Comments</h2>
-      <div id="comments" class="list-group" data-item-id="<%= @item.id %>">
-        <% @item.comments.each do |comment| %>
-          <div class="list-group-item" id="comment-<%= comment.id %>">
-            <p><strong><%= comment.user.email %>:</strong> <%= comment.body %></p>
-            <% if comment.user == current_user || current_user.admin? %>
-              <%= link_to 'Delete Comment', item_comments_path(comment.item, comment), method: :delete, remote: true, class: 'btn btn-outline-danger btn-sm' %>
-            <% end %>
-          </div>
-        <% end %>
+    <div class="row mb-4">
+      <div class="col">
+        <div class="d-flex align-items-center">
+          <% if current_user && @item.likes.exists?(user: current_user) %>
+            <%= button_to 'Unlike',item_like_path(@item), method: :delete, remote: true, class: 'btn btn-outline-danger like-button me-3'%>
+          <% else %>
+            <%= button_to 'Like', item_like_path(@item), method: :post, remote: true, class: 'btn btn-outline-primary like-button me-3'%>
+          <% end %>
+          <p class="mb-0 like-count ml-2"><strong>Likes:</strong> <%= @item.likes.count %></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mb-4">
+      <div class="col">
+        <h2>Comments</h2>
+        <div id="comments" class="list-group" data-item-id="<%= @item.id %>">
+          <% @item.comments.each do |comment| %>
+            <div class="list-group-item" id="comment-<%= comment.id %>">
+              <p><strong><%= comment.user.email %>:</strong> <%= comment.body %></p>
+              <% if comment.user == current_user || current_user.admin? %>
+                <%= link_to 'Delete Comment', item_comments_path(comment.item, comment), method: :delete, remote: true, class: 'btn btn-outline-danger btn-sm' %>
+              <% end %>
+            </div>
+          <% end %>
       </div>
     </div>
   </div>
