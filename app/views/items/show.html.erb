@@ -1,11 +1,11 @@
 <div class="container mt-5">
-  <div class="row mb-4 text-center">
+  <div class="row mb-4">
     <div class="col">
       <h1>Item Name: <%= @item.name %></h1>
-      <h3>Item ID: <%= @item.id %></h3>
-      <h3>Collection ID: <%= @collection.id %></h3>
-      <h3>User ID: <%= @user.id %></h3>
-      <h3>User Name: <%= @user.name %></h3>
+      <h6>Item ID: <%= @item.id %></h6>
+      <h6>Collection ID: <%= @collection.id %></h6>
+      <h6>User ID: <%= @user.id %></h6>
+      <h6>User Name: <%= @user.name %></h6>
       <p><strong>Tags:</strong> <span class="badge badge-secondary"><%= @item.tag %></span></p>
       <ul class="list-group">
         <% if @collection.custom_string1_state %>
