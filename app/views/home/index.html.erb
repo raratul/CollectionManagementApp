@@ -41,8 +41,8 @@
 
   <h2>Tag Cloud</h2>
   <div>
-    <% if @tags.present? %>
-      <% @tags.each do |tag| %>
+    <% if @tag_cloud.present? %>
+      <% @tag_cloud.each do |tag| %>
         <%= link_to tag, search_path(query: tag), class: 'badge bg-secondary' %>
       <% end %>
     <% else %>

@@ -4,6 +4,6 @@ class HomeController < ApplicationController
 
     @top_collections = Collection.left_joins(:items).group(:id).order('COUNT(items.id) DESC').limit(5)
 
-    @tags = Item.pluck(:tag).join(',').split(',').uniq
+    @tag_cloud = Item.pluck(:tag).join(',').split(',').uniq
   end
 end
