@@ -3,7 +3,7 @@ class Collection < ApplicationRecord
   has_many :items, dependent: :destroy
   has_many_attached :images
 
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: { scope: :user_id }
   validates :category, presence: true
 
   CATEGORIES = %w[Books Signs Silverware Other].freeze
