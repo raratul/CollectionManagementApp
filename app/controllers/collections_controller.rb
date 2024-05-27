@@ -12,7 +12,11 @@ class CollectionsController < ApplicationController
   end
 
   def new
-    @collection = current_user.collections.build
+    if current_user.admin?
+      @collection = Collection.new
+    else
+      @collection = current_user.collections.build
+    end
   end
 
   def all_collections
@@ -20,7 +24,11 @@ class CollectionsController < ApplicationController
   end
 
   def create
-    @collection = current_user.collections.build(collection_params)
+    if current_user.admin?
+      @collection = Collection.new(collection_params_for_admin)
+    else
+      @collection = current_user.collections.build(collection_params)
+    end
     set_custom_field_states(@collection)
     if @collection.save
       redirect_to @collection, notice: 'Collection was successfully created.'
@@ -59,6 +67,17 @@ class CollectionsController < ApplicationController
                                        :custom_text1_name, :custom_text2_name, :custom_text3_name,
                                        :custom_boolean1_name, :custom_boolean2_name, :custom_boolean3_name,
                                        :custom_date1_name, :custom_date2_name, :custom_date3_name)
+  end
+
+  def collection_params_for_admin
+    params.require(:collection).permit(
+      :name, :description, :category, :user_id, :image_url,
+      :custom_string1_name, :custom_string2_name, :custom_string3_name,
+      :custom_int1_name, :custom_int2_name, :custom_int3_name,
+      :custom_text1_name, :custom_text2_name, :custom_text3_name,
+      :custom_bool1_name, :custom_bool2_name, :custom_bool3_name,
+      :custom_date1_name, :custom_date2_name, :custom_date3_name
+    )
   end
 
   def set_custom_field_states(collection)

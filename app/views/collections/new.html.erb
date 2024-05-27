@@ -13,6 +13,13 @@
       </div>
     <% end %>
 
+    <% if user_signed_in? && current_user.admin? %>
+      <div class="mb-3">
+        <%= form.label :user_id, 'User ID', class: 'form-label' %>
+        <%= form.number_field :user_id, class: 'form-control', required: true %>
+      </div>
+    <% end %>
+
     <div class="mb-3">
       <%= form.label :name, class: 'form-label' %>
       <%= form.text_field :name, class: 'form-control', required: true %>
