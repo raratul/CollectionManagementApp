@@ -1,6 +1,6 @@
 class CollectionsController < ApplicationController
   before_action :authenticate_user!, except: [:show, :all_collections]
-  before_action :authenticate_admin!, except: [:show, :index, :new, :create, :all_collections]
+  before_action :authenticate_admin!, except: [:show, :edit, :update, :index, :new, :create, :all_collections, :destroy]
   before_action :set_collection, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -42,17 +42,21 @@ class CollectionsController < ApplicationController
   end
 
   def update
-    set_custom_field_states(@collection)
-    if @collection.update(collection_params)
-      redirect_to @collection, notice: 'Collection was successfully updated.'
-    else
-      render :edit
+    if @collection.user == current_user or current_user.admin?
+      set_custom_field_states(@collection)
+      if @collection.update(collection_params)
+        redirect_to @collection, notice: 'Collection was successfully updated.'
+      else
+        render :edit
+      end
     end
   end
 
   def destroy
-    @collection.destroy
-    redirect_to collections_url, notice: 'Collection was successfully destroyed.'
+    if @collection.user == current_user or current_user.admin?
+      @collection.destroy
+      redirect_to collections_url, notice: 'Collection was successfully destroyed.'
+    end
   end
 
   private
@@ -66,7 +70,7 @@ class CollectionsController < ApplicationController
                                        :custom_string1_name, :custom_string2_name, :custom_string3_name,
                                        :custom_int1_name, :custom_int2_name, :custom_int3_name,
                                        :custom_text1_name, :custom_text2_name, :custom_text3_name,
-                                       :custom_boolean1_name, :custom_boolean2_name, :custom_boolean3_name,
+                                       :custom_bool1_name, :custom_bool2_name, :custom_bool3_name,
                                        :custom_date1_name, :custom_date2_name, :custom_date3_name)
   end
 

@@ -15,13 +15,14 @@ Rails.application.routes.draw do
   get 'items/:item_id/comments.:id', to: 'comments#destroy'
 
   get 'collections-all', to: 'collections#all_collections', as: :all_collections
+
+  get '%23.:id', to: 'collections#destroy', as: :delete_collection
+
+  get '%2523.:id', to: 'items#destroy', as: :delete_item
   
   devise_scope :user do
     get 'users/sign_out' => 'devise/sessions#destroy'
   end
-
-  get 'tag/:tag', to: 'search#tagged', as: :tag
-  get 'latest_items', to: 'items#latest_items', as: :latest_items
 
   get 'admin', to: 'admin#index', as: :admin
   get 'admin/block_user/:id', to: 'admin#block_user', as: :block_user

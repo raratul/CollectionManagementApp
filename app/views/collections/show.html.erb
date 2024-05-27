@@ -8,12 +8,13 @@
     <p><strong>Image URL:</strong> <%= @collection.image_url %></p>
   </div>
 
-  <div class="mb-3">
-    <%= link_to 'Add An Item', new_collection_item_path(@collection), class: 'btn btn-success' %>
-    <%= link_to 'Edit', edit_collection_path(@collection), class: 'btn btn-primary' %>
-    <%= link_to 'Back', collections_path, class: 'btn btn-secondary' %>
-    <%= link_to 'Delete', @collection, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
-  </div>
+  <% if user_signed_in? and (current_user.admin? or current_user.id == @user.id) %>
+    <div class="mb-3">
+      <%= link_to 'Add An Item', new_collection_item_path(@collection), class: 'btn btn-success' %>
+      <%= link_to 'Edit', edit_collection_path(@collection), class: 'btn btn-secondary' %>
+      <%= link_to 'Delete', delete_collection_path(@collection), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+    </div>
+  <% end %>
 
   <div class="row mb-3">
     <div class="col-md-6">
@@ -75,7 +76,9 @@
           <% if @collection.custom_date3_name.present? %>
             <th><%= @collection.custom_date3_name %></th>
           <% end %>
-          <th>Actions</th>
+          <% if user_signed_in? and (current_user.admin? or current_user.id == @user.id) %>
+            <th>Actions</th>
+          <% end %>
         </tr>
       </thead>
       <tbody id="itemsTable">
@@ -129,10 +132,12 @@
             <% if @collection.custom_date3_name.present? %>
               <td><%= item.custom_date3_value %></td>
             <% end %>
-            <td>
-              <%= link_to 'Edit', edit_item_path(item), class: 'btn btn-primary btn-sm' %>
-              <%= link_to 'Delete', item, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
-            </td>
+            <% if user_signed_in? and (current_user.admin? or current_user.id == @user.id) %>
+              <td>
+                <%= link_to 'Edit', edit_item_path(item), class: 'btn btn-secondary btn-sm' %>
+                <%= link_to 'Delete', delete_item_path(item), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
+              </td>
+            <% end %>
           </tr>
         <% end %>
       </tbody>

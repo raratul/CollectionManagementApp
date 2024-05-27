@@ -17,7 +17,7 @@ class CommentsController < ApplicationController
   
     def destroy
         @comment = @item.comments.find(params[:id])
-        if @comment.user == current_user || current_user.admin?
+        if @item.collection.user == current_user or @comment.user == current_user or current_user.admin?
           @comment.destroy
           respond_to do |format|
             format.html { redirect_to @item }

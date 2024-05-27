@@ -1,50 +1,144 @@
-<h1>Edit Item</h1>
+<div class="container mt-3">
+  <h1 class="mb-4">Edit Item</h1>
 
-<%= form_with(model: @item, local: true) do |form| %>
-  <% if @item.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@item.errors.count, "error") %> prohibited this item from being saved:</h2>
-      <ul>
-        <% @item.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+  <%= form_with(model: @item, local: true, html: { class: 'needs-validation', novalidate: true }) do |form| %>
+    <% if @item.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@item.errors.count, "error") %> prohibited this item from being saved:</h2>
+        <ul>
+          <% @item.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="mb-3">
+      <%= form.label :name, class: "form-label" %>
+      <%= form.text_field :name, class: "form-control", value: @item.name %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :tags, class: "form-label" %>
+      <%= text_field_tag :tag, @item.tag, class: "form-control", placeholder: "Enter tags, separated by commas", data: { autocomplete_source: autocomplete_tags_path } %>
+    </div>
+
+    <% if @collection.custom_string1_state %>
+      <div class="mb-3">
+        <%= form.label @collection.custom_string1_name, class: "form-label" %>
+        <%= form.text_field :custom_string1_value, class: "form-control", value: @item.custom_string1_value %>
+      </div>
+    <% end %>
+    <% if @collection.custom_string2_state %>
+      <div class="mb-3">
+        <%= form.label @collection.custom_string2_name, class: "form-label" %>
+        <%= form.text_field :custom_string2_value, class: "form-control", value: @item.custom_string2_value %>
+      </div>
+    <% end %>
+    <% if @collection.custom_string3_state %>
+      <div class="mb-3">
+        <%= form.label @collection.custom_string3_name, class: "form-label" %>
+        <%= form.text_field :custom_string3_value, class: "form-control", value: @item.custom_string3_value %>
+      </div>
+    <% end %>
+
+    <% if @collection.custom_int1_state %>
+      <div class="mb-3">
+        <%= form.label @collection.custom_int1_name, class: "form-label" %>
+        <%= form.number_field :custom_int1_value, class: "form-control", value: @item.custom_int1_value %>
+      </div>
+    <% end %>
+    <% if @collection.custom_int2_state %>
+      <div class="mb-3">
+        <%= form.label @collection.custom_int2_name, class: "form-label" %>
+        <%= form.number_field :custom_int2_value, class: "form-control", value: @item.custom_int2_value %>
+      </div>
+    <% end %>
+    <% if @collection.custom_int3_state %>
+      <div class="mb-3">
+        <%= form.label @collection.custom_int3_name, class: "form-label" %>
+        <%= form.number_field :custom_int3_value, class: "form-control", value: @item.custom_int3_value %>
+      </div>
+    <% end %>
+
+    <% if @collection.custom_text1_state %>
+      <div class="mb-3">
+        <%= form.label @collection.custom_text1_name, class: "form-label" %>
+        <%= form.text_area :custom_text1_value, class: "form-control", rows: 3, value: @item.custom_text1_value %>
+      </div>
+    <% end %>
+    <% if @collection.custom_text2_state %>
+      <div class="mb-3">
+        <%= form.label @collection.custom_text2_name, class: "form-label" %>
+        <%= form.text_area :custom_text2_value, class: "form-control", rows: 3, value: @item.custom_text2_value %>
+      </div>
+    <% end %>
+    <% if @collection.custom_text3_state %>
+      <div class="mb-3">
+        <%= form.label @collection.custom_text3_name, class: "form-label" %>
+        <%= form.text_area :custom_text3_value, class: "form-control", rows: 3, value: @item.custom_text3_value %>
+      </div>
+    <% end %>
+
+    <% if @collection.custom_bool1_state %>
+      <div class="mb-3 form-check">
+        <%= form.check_box :custom_bool1_value, { class: "form-check-input", checked: @item.custom_bool1_value } %>
+        <%= form.label @collection.custom_bool1_name, class: "form-check-label" %>
+      </div>
+    <% end %>
+    <% if @collection.custom_bool2_state %>
+      <div class="mb-3 form-check">
+        <%= form.check_box :custom_bool2_value, { class: "form-check-input", checked: @item.custom_bool2_value } %>
+        <%= form.label @collection.custom_bool2_name, class: "form-check-label" %>
+      </div>
+    <% end %>
+    <% if @collection.custom_bool3_state %>
+      <div class="mb-3 form-check">
+        <%= form.check_box :custom_bool3_value, { class: "form-check-input", checked: @item.custom_bool3_value } %>
+        <%= form.label @collection.custom_bool3_name, class: "form-check-label" %>
+      </div>
+    <% end %>
+
+    <% if @collection.custom_date1_state %>
+      <div class="mb-3">
+        <%= form.label @collection.custom_date1_name, class: "form-label" %>
+        <%= form.date_field :custom_date1_value, class: "form-control", value: @item.custom_date1_value %>
+      </div>
+    <% end %>
+    <% if @collection.custom_date2_state %>
+      <div class="mb-3">
+        <%= form.label @collection.custom_date2_name, class: "form-label" %>
+        <%= form.date_field :custom_date2_value, class: "form-control", value: @item.custom_date2_value %>
+      </div>
+    <% end %>
+    <% if @collection.custom_date3_state %>
+      <div class="mb-3">
+        <%= form.label @collection.custom_date3_name, class: "form-label" %>
+        <%= form.date_field :custom_date3_value, class: "form-control", value: @item.custom_date3_value %>
+      </div>
+    <% end %>
+
+    <div class="mb-3">
+      <%= form.submit 'Update Item', class: "btn btn-primary" %>
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
+  <%= link_to 'Back', collection_path(@collection), class: "btn btn-secondary mt-3" %>
+</div>
 
-  <div>
-    <%= form.label :tags %>
-    <%= form.text_field :tags %>
-  </div>
-
-  <% if @item.collection.custom_string1_state %>
-    <div>
-      <%= form.label @item.collection.custom_string1_name %>
-      <%= form.text_field :custom_string1_value %>
-    </div>
-  <% end %>
-  <% if @item.collection.custom_string2_state %>
-    <div>
-      <%= form.label @item.collection.custom_string2_name %>
-      <%= form.text_field :custom_string2_value %>
-    </div>
-  <% end %>
-  <% if @item.collection.custom_string3_state %>
-    <div>
-      <%= form.label @item.collection.custom_string3_name %>
-      <%= form.text_field :custom_string3_value %>
-    </div>
-  <% end %>
-
-
-  <div>
-    <%= form.submit 'Update Item' %>
-  </div>
-<% end %>
-
-<%= link_to 'Back', collection_path(@item.collection) %>
+<script>
+  document.addEventListener('turbolinks:load', () => {
+    const tagField = $("[data-autocomplete-source]");
+    if (tagField.length) {
+      $.ajax({
+        url: tagField.data('autocomplete-source'),
+        dataType: "json",
+        success: function(data) {
+          tagField.autocomplete({
+            source: data
+          });
+        }
+      });
+    }
+  });  
+</script>

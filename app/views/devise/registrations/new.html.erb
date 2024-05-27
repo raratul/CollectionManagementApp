@@ -38,10 +38,7 @@
     <br>
 
     <% if User.first_admin? %>
-      <div class="form-group form-check">
-        <%= f.check_box :admin, class: "form-check-input" %>
-        <%= f.label :admin, 'Register as admin', class: "form-check-label" %>
-      </div>
+       <h6> You will be registered as Admin! </h6>
     <% end %>
 
     <br>

@@ -44,7 +44,7 @@
         </td>
         <td>
           <%= link_to 'Edit', edit_collection_path(collection), class: 'btn btn-secondary btn-sm' %>
-          <%= link_to 'Delete', collection, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
+          <%= link_to 'Delete', delete_collection_path(collection), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
         </td>
       </tr>
     <% end %>
