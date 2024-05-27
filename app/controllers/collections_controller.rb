@@ -8,6 +8,7 @@ class CollectionsController < ApplicationController
   end
 
   def show
+    @user = @collection.user
     @items = @collection.items
   end
 

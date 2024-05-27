@@ -12,7 +12,7 @@
     </h3>
   <% end %>
 
-  <h2 class="mb-4">Latest Items</h2>
+  <h2 class="my-3">Latest Items</h2>
   <ul class="list-group">
     <% if @latest_items.present? %>
       <% @latest_items.each do |item| %>
@@ -26,12 +26,13 @@
     <% end %>
   </ul>
 
-  <h2 class="mb-3">Top 5 Largest Collections</h2>
+  <h2 class="my-3">Top 5 Largest Collections</h2>
   <ul class="list-group mb-4">
     <% if @top_collections.present? %>
       <% @top_collections.each do |collection| %>
         <li class="list-group-item">
-          <%= link_to collection.name, collection %>
+          <p>Collection ID: <%= link_to collection.id, collection %></p>
+          <p>Collection Name: <%= link_to collection.name, collection %></p> 
         </li>
       <% end %>
     <% else %>
@@ -39,7 +40,7 @@
     <% end %>
   </ul>
 
-  <h2>Tag Cloud</h2>
+  <h2 class="my-3">Tag Cloud</h2>
   <div>
     <% if @tag_cloud.present? %>
       <% @tag_cloud.each do |tag| %>
