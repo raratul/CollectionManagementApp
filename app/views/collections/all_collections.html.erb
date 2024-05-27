@@ -1,7 +1,10 @@
 <h1 class="my-3 text-center">All Collections</h1>
 
 <div class="mb-4">
-  <button id="exportCsv" class="btn btn-success">Export to CSV</button>
+  <% if user_signed_in? && current_user.admin? %>
+    <%= link_to 'New Collection', new_collection_path, class: 'btn btn-primary' %>
+  <% end %>
+  <button id="exportCsv" class="btn btn-success ms-3">Export to CSV</button>
 </div>
 
 <div class="row mb-3">
