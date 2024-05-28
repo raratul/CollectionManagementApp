@@ -5,7 +5,13 @@
     <p><strong>User ID:</strong> <%= @user.id %></p>
     <p><strong>Description:</strong> <%= @collection.description %></p>
     <p><strong>Category:</strong> <%= @collection.category %></p>
-    <p><strong>Image URL:</strong> <%= @collection.image_url %></p>
+    <p><strong>Image URL:</strong> 
+      <% if @collection.image_url.present? %>
+        <img src="<%= @collection.image_url %>" alt="<%= @collection.name %>" class="img-fluid" style="max-width: 100px;">
+      <% else %>
+        N/A
+      <% end %>
+    </p>
   </div>
 
   <% if user_signed_in? and (current_user.admin? or current_user.id == @user.id) %>

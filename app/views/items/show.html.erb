@@ -94,12 +94,14 @@
     <div class="row mb-4">
       <div class="col">
         <div class="d-flex align-items-center">
-          <% if current_user and @item.likes.exists?(user: current_user) %>
-            <%= button_to 'Unlike',item_like_path(@item), method: :delete, remote: true, class: 'btn btn-outline-danger like-button me-3'%>
-          <% else %>
-            <%= button_to 'Like', item_like_path(@item), method: :post, remote: true, class: 'btn btn-outline-primary like-button me-3'%>
+          <% if user_signed_in? %>
+            <% if current_user and @item.likes.exists?(user: current_user) %>
+              <%= button_to 'Unlike',item_like_path(@item), method: :delete, remote: true, class: 'btn btn-outline-danger like-button me-3'%>
+            <% else %>
+              <%= button_to 'Like', item_like_path(@item), method: :post, remote: true, class: 'btn btn-outline-primary like-button me-3'%>
+            <% end %>
           <% end %>
-          <p class="mb-0 like-count ml-2"><strong>Likes:</strong> <%= @item.likes.count %></p>
+          <p class="mb-0 like-count ml-2 text-primary"><strong>Likes:</strong> <%= @item.likes.count %></p>
         </div>
       </div>
     </div>
@@ -111,8 +113,10 @@
           <% @item.comments.each do |comment| %>
             <div class="list-group-item" id="comment-<%= comment.id %>">
               <p><strong><%= comment.user.email %>:</strong> <%= comment.body %></p>
-              <% if @item.collection.user == current_user or comment.user == current_user or current_user.admin? %>
-                <%= link_to 'Delete Comment', item_comments_path(comment.item, comment), method: :delete, remote: true, class: 'btn btn-outline-danger btn-sm' %>
+              <% if user_signed_in? %>
+                <% if @item.collection.user == current_user or comment.user == current_user or current_user.admin? %>
+                  <%= link_to 'Delete Comment', item_comments_path(comment.item, comment), method: :delete, remote: true, class: 'btn btn-outline-danger btn-sm' %>
+                <% end %>
               <% end %>
             </div>
           <% end %>

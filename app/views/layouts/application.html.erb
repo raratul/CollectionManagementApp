@@ -8,12 +8,17 @@
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      padding-top: 69px;
+    }
+  </style>
 </head>
 <body data-bs-theme="<%= @theme %>">
-  <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-secondary fixed-top">
     <div class="container">
       <a class="navbar-brand me-5 mt-2 mb-2" href="/"><%= t('site.title') %></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar01" aria-controls="navbar01" aria-expanded="false" aria-label="Toggle navigation" id="navbar-toggler">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar01" aria-controls="navbar01" aria-expanded="false" aria-label="Toggle navigation" id="navbar-toggler">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbar01">
@@ -91,8 +96,7 @@
         });
       });
     });
-  </script>
-  <script>
+
     document.addEventListener('DOMContentLoaded', function() {
       var navbarToggler = document.getElementById('navbar-toggler');
       var navbarCollapse = document.getElementById('navbar01');

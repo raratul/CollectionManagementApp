@@ -36,9 +36,14 @@
     </div>
 
     <div class="mb-3">
-      <%= form.label :image_url, class: 'form-label' %>
-      <%= form.text_field :image_url, class: 'form-control' %>
+      <%= form.label :image, class: 'form-label' %>
+      <div id="drop-zone" class="drop-zone">
+        <p>Drag and drop an image here or click to upload</p>
+        <%= form.file_field :image, class: 'form-control', id: 'image-upload', style: 'display: none;' %>
+      </div>
     </div>
+  
+    <%= form.hidden_field :image_url, id: 'image-url' %>
 
     <h5>Custom Fields</h5>
 
@@ -123,3 +128,70 @@
     </div>
   <% end %>
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const dropZone = document.getElementById('drop-zone');
+    const imageUpload = document.getElementById('image-upload');
+    const imageUrlField = document.getElementById('image-url');
+  
+    dropZone.addEventListener('click', () => imageUpload.click());
+  
+    dropZone.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      dropZone.classList.add('dragover');
+    });
+  
+    dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
+  
+    dropZone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      dropZone.classList.remove('dragover');
+      const file = e.dataTransfer.files[0];
+      uploadImage(file);
+    });
+  
+    imageUpload.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      uploadImage(file);
+    });
+  
+    function uploadImage(file) {
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('upload_preset', 'ml_default');
+  
+      fetch('https://api.cloudinary.com/v1_1/dxk4lzf7e/image/upload', {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => response.json())
+      .then(data => {
+        imageUrlField.value = data.secure_url;
+        dropZone.innerHTML = `<img src="${data.secure_url}" alt="Uploaded Image" class="img-fluid" />`;
+      })
+      .catch(err => console.error('Error uploading image:', err));
+    }
+  });  
+</script>
+
+<style>
+.drop-zone {
+  border: 2px dashed #007bff;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.drop-zone.dragover {
+  background-color: #e9ecef;
+  border-color: #0056b3;
+}
+
+.drop-zone p {
+  margin: 0;
+  font-size: 16px;
+  color: #007bff;
+}
+</style>
