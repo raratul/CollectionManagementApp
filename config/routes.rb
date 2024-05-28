@@ -4,7 +4,6 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
 
-  resources :tags, only: [:index]
   resources :collections, shallow: true do
     resources :items, shallow: true do
       resources :comments, only: [:create, :destroy]
