@@ -12,6 +12,15 @@ en:
     switch_to_light: "Light"
     switch_to_dark: "Dark"
     switch_language: "Polish"
+  home:
+    welcome: "Welcome to Collection Management App"
+    hi: "Hi"
+    admin: "Admin"
+    userid: "User ID"
+    useremail: "User Email"
+    latestitems: "Latest Items"
+    itemid: "Item ID"
+    itemname: "Item Name"
   admin_page:
     userspanel: "Users Panel"
     filterbyuserid: "Filter By User ID"
@@ -34,3 +43,4 @@ en:
     active: "Active"
   footer:
     text: "Developed by Md Khairul Islam Ratul"
+ 

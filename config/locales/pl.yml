@@ -12,6 +12,12 @@ pl:
     switch_to_light: "Światło"
     switch_to_dark: "Ciemny"
     switch_language: "Angielski"
+  home:
+    welcome: "Witamy w Aplikacja do Zarządzania Kolekcjami"
+    hi: "Cześć"
+    admin: "Admin"
+    userid: "Identyfikator użytkownika:"
+    useremail: "Adres e-mail użytkownika:"
   admin_page:
     userspanel: "Panel Użytkowników"
     filterbyuserid: "Filtruj według identyfikatora użytkownika"
@@ -34,4 +40,4 @@ pl:
     active: "Aktywny"
   footer:
     text: "Opracowany przez Md Khairul Islam Ratul"
-
+ 

@@ -6,7 +6,7 @@
       <h6>Collection ID: <%= @collection.id %></h6>
       <h6>User ID: <%= @user.id %></h6>
       <h6>User Name: <%= @user.name %></h6>
-      <p><strong>Tags:</strong> <span class="badge badge-secondary"><%= @item.tag %></span></p>
+      <p><strong>Tags:</strong> <%= @item.tag %></p>
       <ul class="list-group">
         <% if @collection.custom_string1_state %>
           <li class="list-group-item">
