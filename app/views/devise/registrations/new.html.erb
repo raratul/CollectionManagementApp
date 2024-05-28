@@ -1,5 +1,5 @@
 <div class="container mt-3">
-  <h2 class="mb-4 text-center">Sign up</h2>
+  <h2 class="mb-4 text-center"><%= t('register.signup') %></h2>
 
   <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: 'needs-validation', novalidate: true }) do |f| %>
     <%= f.error_notification %>
@@ -9,6 +9,7 @@
                   required: true,
                   autofocus: true,
                   input_html: { autocomplete: "name", class: "form-control" },
+                  label: t('register.name'),
                   wrapper_html: { class: "mb-3" } %>
     </div>
 
@@ -17,14 +18,16 @@
                   required: true,
                   autofocus: true,
                   input_html: { autocomplete: "email", class: "form-control" },
+                  label: t('register.email'),
                   wrapper_html: { class: "mb-3" } %>
     </div>
 
     <div class="form-group">
       <%= f.input :password,
                   required: true,
-                  hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                  hint: ("#{@minimum_password_length} #{t('register.characters')}" if @minimum_password_length),
                   input_html: { autocomplete: "new-password", class: "form-control" },
+                  label: t('register.password'),
                   wrapper_html: { class: "mb-3" } %>
     </div>
 
@@ -32,23 +35,24 @@
       <%= f.input :password_confirmation,
                   required: true,
                   input_html: { autocomplete: "new-password", class: "form-control" },
+                  label: t('register.password_confirmation'),
                   wrapper_html: { class: "mb-3" } %>
     </div>
 
     <br>
 
     <% if User.first_admin? %>
-       <h6> You will be registered as Admin! </h6>
+       <h6><%= t('register.register_as_admin') %></h6>
     <% end %>
 
     <br>
 
     <div class="form-group">
-      <%= f.button :submit, "Sign up", class: "btn btn-primary btn-block" %>
+      <%= f.button :submit, t('register.signup'), class: "btn btn-primary btn-block" %>
     </div>
   <% end %>
 
   <br>
 
-  <a href="/users/sign_in">Log in</a>
+  <a href="/users/sign_in"><%= t('register.login') %></a>
 </div>

@@ -33,6 +33,15 @@ pl:
     password: "Hasło"
     remember_me: "Zapamiętaj mnie"
     sign_up: "Zarejestruj się"
+  register:
+    signup: "Zarejestruj się"
+    name: "Nazwa"
+    email: "E-mail"
+    password: "Hasło"
+    password_confirmation: "Potwierdzenie Hasła"
+    register_as_admin: "Zostaniesz zarejestrowany jako Administrator!"
+    login: "Zaloguj się"
+    characters: "minimalna liczba znaków"
   admin_page:
     userspanel: "Panel Użytkowników"
     filterbyuserid: "Filtruj według identyfikatora użytkownika"
