@@ -29,14 +29,13 @@
     </div>
 
     <div class="mb-3">
-      <%= form.label :image, class: 'form-label' %>
+      <%= form.label :image_url, class: 'form-label' %>
+      <%= form.hidden_field :image_url, id: 'image-url', class: 'form-control' %>
       <div id="drop-zone" class="drop-zone">
-        <p>Drag and drop an image here or click to upload</p>
-        <%= form.file_field :image, class: 'form-control', id: 'image-upload', style: 'display: none;' %>
+        <p>Drag & drop an image here or click to select one</p>
+        <%= file_field_tag :image, id: 'image-upload', class: 'form-control', style: 'display: none;' %>
       </div>
     </div>
-  
-    <%= form.hidden_field :image_url, id: 'image-url' %>
 
     <h5>Custom Fields</h5>
 
@@ -127,6 +126,7 @@
     const dropZone = document.getElementById('drop-zone');
     const imageUpload = document.getElementById('image-upload');
     const imageUrlField = document.getElementById('image-url');
+    const imgbbApiKey = 'd267db4a1f6e1a8f9cac3e32931d7d6b';
   
     dropZone.addEventListener('click', () => imageUpload.click());
   
@@ -151,21 +151,24 @@
   
     function uploadImage(file) {
       const formData = new FormData();
-      formData.append('file', file);
-      formData.append('upload_preset', 'ml_default');
+      formData.append('image', file);
   
-      fetch('https://api.cloudinary.com/v1_1/dxk4lzf7e/image/upload', {
+      fetch(`https://api.imgbb.com/1/upload?key=${imgbbApiKey}`, {
         method: 'POST',
         body: formData
       })
       .then(response => response.json())
       .then(data => {
-        imageUrlField.value = data.secure_url;
-        dropZone.innerHTML = `<img src="${data.secure_url}" alt="Uploaded Image" class="img-fluid" />`;
+        if (data.data && data.data.url) {
+          imageUrlField.value = data.data.url;
+          dropZone.innerHTML = `<img src="${data.data.url}" alt="Uploaded Image" class="img-fluid" />`;
+        } else {
+          console.error('Error: No URL found in response', data);
+        }
       })
       .catch(err => console.error('Error uploading image:', err));
     }
-  });  
+  });
 </script>
 
 <style>
