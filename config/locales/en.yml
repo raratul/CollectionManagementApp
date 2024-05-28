@@ -21,6 +21,12 @@ en:
     latestitems: "Latest Items"
     itemid: "Item ID"
     itemname: "Item Name"
+    collectionid: "Collection ID"
+    collectionname: "Collection Name"
+    username: "User Name"
+    nothing: "Nothing to show here"
+    topcollections: "Top 5 Largest Collections"
+    tagcloud: "Tag Cloud"
   admin_page:
     userspanel: "Users Panel"
     filterbyuserid: "Filter By User ID"

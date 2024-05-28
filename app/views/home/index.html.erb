@@ -18,37 +18,37 @@
       <% @latest_items.each do |item| %>
         <li class="list-group-item">
           <h6><%= t('home.itemid') %>: <%= link_to item.id, item %>, <%= t('home.itemname') %>: <%= link_to item.name, item %></h6>
-          <p>Collection ID: <%= item.collection.id %>, Collection Name: <%= item.collection.name %></p>
-          <p>User ID: <%= item.collection.user.id %>, User Name: <%= item.collection.user.name %></p> 
+          <p><%= t('home.collectionid') %>: <%= item.collection.id %>, <%= t('home.collectionname') %>: <%= item.collection.name %></p>
+          <p><%= t('home.userid') %>: <%= item.collection.user.id %>, <%= t('home.username') %>: <%= item.collection.user.name %></p> 
         </li>
       <% end %>
     <% else %>
-      <p>Nothing to show here.</p>
+      <p><%= t('home.nothing') %>.</p>
     <% end %>
   </ul>
 
-  <h2 class="my-3">Top 5 Largest Collections</h2>
+  <h2 class="my-3"><%= t('home.topcollections') %></h2>
   <ul class="list-group mb-4">
     <% if @top_collections.present? %>
       <% @top_collections.each do |collection| %>
         <li class="list-group-item">
-          <p>Collection ID: <%= link_to collection.id, collection %></p>
-          <p>Collection Name: <%= link_to collection.name, collection %></p> 
+          <h6><%= t('home.collectionid') %>: <%= link_to collection.id, collection %>, <%= t('home.collectionname') %>: <%= link_to collection.name, collection %></h6>
+          <p><%= t('home.userid') %>: <%= collection.user.id %>, <%= t('home.username') %>: <%= collection.user.name %></p> 
         </li>
       <% end %>
     <% else %>
-      <p>Nothing to show here.</p>
+      <p><%= t('home.nothing') %>.</p>
     <% end %>
   </ul>
 
-  <h2 class="my-3">Tag Cloud</h2>
+  <h2 class="my-3"><%= t('home.tagcloud') %></h2>
   <div>
     <% if @tag_cloud.present? %>
       <% @tag_cloud.each do |tag| %>
         <%= link_to tag, search_path(query: tag), class: 'badge bg-secondary' %>
       <% end %>
     <% else %>
-      <p>Nothing to show here.</p>
+      <p><%= t('home.nothing') %>.</p>
     <% end %>
   </div>
 </div>
