@@ -27,6 +27,12 @@ en:
     nothing: "Nothing to show here"
     topcollections: "Top 5 Largest Collections"
     tagcloud: "Tag Cloud"
+  login:
+    login: "Log in"
+    email: "Email"
+    password: "Password"
+    remember_me: "Remember me"
+    sign_up: "Sign up"
   admin_page:
     userspanel: "Users Panel"
     filterbyuserid: "Filter By User ID"

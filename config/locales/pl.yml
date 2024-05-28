@@ -27,6 +27,12 @@ pl:
     nothing: "Nic do pokazania"
     topcollections: "Top 5 Największych Kolekcji"
     tagcloud: "Chmura Tagów"
+  login:
+    login: "Zaloguj się"
+    email: "E-mail"
+    password: "Hasło"
+    remember_me: "Zapamiętaj mnie"
+    sign_up: "Zarejestruj się"
   admin_page:
     userspanel: "Panel Użytkowników"
     filterbyuserid: "Filtruj według identyfikatora użytkownika"
