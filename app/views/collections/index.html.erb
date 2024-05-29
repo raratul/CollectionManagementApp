@@ -2,14 +2,14 @@
 
 <div class="mb-4">
   <%= link_to t('mycollections.newcollection'), new_collection_path, class: 'btn btn-primary' %>
-  <button id="myexportCsv" class="btn btn-success ms-3"><%= t('allcollections.export') %></button>
+  <button id="myexportCsv" class="btn btn-success ms-3"><%= t('mycollections.export') %></button>
 </div>
 
 <div class="row mb-3">
   <div class="col-md-6">
-    <label for="categoryFilter" class="form-label"><%= t('allcollections.filterbycategory') %>:</label>
+    <label for="categoryFilter" class="form-label"><%= t('mycollections.filterbycategory') %>:</label>
     <select id="categoryFilter" class="form-select">
-      <option value=""><%= t('allcollections.allcategories') %></option>
+      <option value=""><%= t('mycollections.allcategories') %></option>
       <% ["Books", "Signs", "Silverware", "Other"].each do |category| %>
         <option value="<%= category %>"><%= category %></option>
       <% end %>
