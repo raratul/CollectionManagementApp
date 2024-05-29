@@ -1,38 +1,38 @@
-<h1 class="my-3 text-center">All Collections</h1>
+<h1 class="my-3 text-center"><%= t('allcollections.title') %></h1>
 
 <div class="mb-4">
   <% if user_signed_in? and current_user.admin? %>
-    <%= link_to 'New Collection', new_collection_path, class: 'btn btn-primary me-3' %>
+    <%= link_to t('allcollections.newcollection'), new_collection_path, class: 'btn btn-primary me-3' %>
   <% end %>
-  <button id="exportCsv" class="btn btn-success">Export to CSV</button>
+  <button id="exportCsv" class="btn btn-success"><%= t('allcollections.export') %></button>
 </div>
 
 <div class="row mb-3">
   <div class="col-md-6">
-    <label for="categoryFilter" class="form-label">Filter by Category:</label>
+    <label for="categoryFilter" class="form-label"><%= t('allcollections.filterbycategory') %>:</label>
     <select id="categoryFilter" class="form-select">
-      <option value="">All Categories</option>
+      <option value=""><%= t('allcollections.allcategories') %></option>
       <% ["Books", "Signs", "Silverware", "Other"].each do |category| %>
         <option value="<%= category %>"><%= category %></option>
       <% end %>
     </select>
   </div>
   <div class="col-md-6">
-    <label for="userFilter" class="form-label">Filter by User ID:</label>
-    <input type="number" id="userFilter" class="form-control" placeholder="Enter User ID">
+    <label for="userFilter" class="form-label"><%= t('allcollections.filterbyuser') %>:</label>
+    <input type="number" id="userFilter" class="form-control" placeholder=<%= t('allcollections.enteruserid') %>>
   </div>
 </div>
 
 <table class="table table-striped table-responsive-md">
   <thead>
     <tr>
-      <th>Collection ID</th>
-      <th>User ID</th>
-      <th>Collection Name</th>
-      <th>Category</th>
-      <th>Image URL</th>
+      <th><%= t('allcollections.collectionid') %></th>
+      <th><%= t('allcollections.userid') %></th>
+      <th><%= t('allcollections.collectionname') %></th>
+      <th><%= t('allcollections.category') %></th>
+      <th><%= t('allcollections.image') %></th>
       <% if user_signed_in? and current_user.admin? %>
-        <th>Actions</th>
+        <th><%= t('allcollections.actions') %></th>
       <% end %>
     </tr>
   </thead>
@@ -52,8 +52,8 @@
         </td>
         <% if user_signed_in? and current_user.admin? %>
           <td>
-            <%= link_to 'Edit', edit_collection_path(collection), class: 'btn btn-secondary btn-sm' %>
-            <%= link_to 'Delete', delete_collection_path(collection), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
+            <%= link_to t('allcollections.edit'), edit_collection_path(collection), class: 'btn btn-secondary btn-sm' %>
+            <%= link_to t('allcollections.delete'), delete_collection_path(collection), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
           </td>
         <% end %>
       </tr>
