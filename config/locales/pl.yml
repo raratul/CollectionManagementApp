@@ -42,6 +42,16 @@ pl:
     register_as_admin: "Zostaniesz zarejestrowany jako Administrator!"
     login: "Zaloguj się"
     characters: "minimalna liczba znaków"
+  search:
+    results: "Wyniki Wyszukiwania"
+    itemid: "ID Przedmiotu"
+    itemname: "Nazwa Przedmiotu"
+    tags: "Tagi"
+    collectionid: "ID Kolekcji"
+    collectionname: "Nazwa Kolekcji"
+    collectioncategory: "Kategoria Kolekcji"
+    collectiondescription: "Opis Kolekcji"
+    nothing: "Nic do pokazania"
   admin_page:
     userspanel: "Panel Użytkowników"
     filterbyuserid: "Filtruj według identyfikatora użytkownika"

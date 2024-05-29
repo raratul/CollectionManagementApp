@@ -42,6 +42,16 @@ en:
     register_as_admin: "You will be registered as Admin!"
     login: "Log in"
     characters: "characters minimum"
+  search:
+    results: "Search Results"
+    itemid: "Item ID"
+    itemname: "Item Name"
+    tags: "Tags"
+    collectionid: "Collection ID"
+    collectionname: "Collection Name"
+    collectioncategory: "Collection Category"
+    collectiondescription: "Collection Description"
+    nothing: "Nothing to show here"
   admin_page:
     userspanel: "Users Panel"
     filterbyuserid: "Filter By User ID"

@@ -1,25 +1,25 @@
-<h1 class="text-center my-3">Search Results</h1>
+<h1 class="text-center my-3"><%= t('search.results') %></h1>
 
 <% if @resultitem.present? or @resultcollection.present?%>
   <% @resultitem.each do |item| %>
     <hr>
     <div>
-      <h3>Item ID: <%= link_to item.id, item_path(item) %></h3>
-      <p>Item Name: <%= item.name %></p>
-      <p>Tags: <%= item.tag %></p>
+      <h3><%= t('search.itemid') %>: <%= link_to item.id, item_path(item) %></h3>
+      <p><%= t('search.itemname') %>: <%= item.name %></p>
+      <p><%= t('search.tags') %>: <%= item.tag %></p>
     </div>
   <% end %>
 
   <% @resultcollection.each do |collection| %>
     <hr>
     <div>
-      <h3>Collection ID: <%= link_to collection.id, collection_path(collection) %></h3>
-      <p>Collection Name: <%= collection.name %></p>
-      <p>Collection Category: <%= collection.category %></p>
-      <p>Collection Description: <%= collection.description %></p>
+      <h3><%= t('search.collectionid') %>: <%= link_to collection.id, collection_path(collection) %></h3>
+      <p><%= t('search.collectionname') %>: <%= collection.name %></p>
+      <p><%= t('search.collectioncategory') %>: <%= collection.category %></p>
+      <p><%= t('search.collectiondescription') %>: <%= collection.description %></p>
     </div>
   <% end %>
 <% else %>
   <hr>
-  <h3>Nothing to show here.</h3>
+  <h3><%= t('search.nothing') %>.</h3>
 <% end %>
