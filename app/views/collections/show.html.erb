@@ -18,7 +18,7 @@
     <div class="mb-3">
       <%= link_to t('showcollection.additem'), new_collection_item_path(@collection), class: 'btn btn-success' %>
       <%= link_to t('showcollection.edit'), edit_collection_path(@collection), class: 'btn btn-secondary' %>
-      <%= link_to t('showcollection.delete'), delete_collection_path(@collection), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+      <%= link_to t('showcollection.delete'), '#', onclick: "singleConfirm('Are you sure?', '#{delete_collection_path(@collection)}')", class: 'btn btn-danger' %>
     </div>
   <% end %>
 
@@ -141,7 +141,7 @@
             <% if user_signed_in? and (current_user.admin? or current_user.id == @user.id) %>
               <td>
                 <%= link_to t('showcollection.edit'), edit_item_path(item), class: 'btn btn-secondary btn-sm' %>
-                <%= link_to t('showcollection.delete'), delete_item_path(item), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
+                <%= link_to t('showcollection.delete'), '#', onclick: "singleConfirm('Are you sure?', '#{delete_item_path(item)}')", class: 'btn btn-danger btn-sm' %>
               </td>
             <% end %>
           </tr>
@@ -167,4 +167,14 @@
 
     itemFilter.addEventListener('input', filterTable);
   });
+</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    window.singleConfirm = function(message, url) {
+      if (confirm(message)) {
+          window.location.href = url;
+      }
+    };
+  });  
 </script>

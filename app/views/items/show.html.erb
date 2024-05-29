@@ -1,11 +1,11 @@
 <div class="container mt-3">
   <div class="row mb-4">
     <div class="col">
-      <h1>Item Name: <%= @item.name %></h1>
-      <h3>Item ID: <%= @item.id %></h3>
-      <h6>Collection ID: <%= @collection.id %>, Collection Name: <%= @collection.name %></h6>
-      <h6>User ID: <%= @user.id %>, User Name: <%= @user.name %></h6>
-      <p><strong>Tags:</strong> <%= @item.tag %></p>
+      <h1><%= t('showitem.name') %>: <%= @item.name %></h1>
+      <h3><%= t('showitem.id') %>: <%= @item.id %></h3>
+      <h6><%= t('showitem.collectionid') %>: <%= @collection.id %>, <%= t('showitem.collectionname') %>: <%= @collection.name %></h6>
+      <h6><%= t('showitem.userid') %>: <%= @user.id %>, <%= t('showitem.username') %>: <%= @user.name %></h6>
+      <p><strong><%= t('showitem.tags') %>:</strong> <%= @item.tag %></p>
       <ul class="list-group">
         <% if @collection.custom_string1_state %>
           <li class="list-group-item">
@@ -95,26 +95,26 @@
         <div class="d-flex align-items-center">
           <% if user_signed_in? %>
             <% if current_user and @item.likes.exists?(user: current_user) %>
-              <%= button_to 'Unlike',item_like_path(@item), method: :delete, remote: true, class: 'btn btn-outline-danger like-button me-3'%>
+              <%= button_to t('showitem.unlike'),item_like_path(@item), method: :delete, remote: true, class: 'btn btn-outline-danger like-button me-3'%>
             <% else %>
-              <%= button_to 'Like', item_like_path(@item), method: :post, remote: true, class: 'btn btn-outline-primary like-button me-3'%>
+              <%= button_to t('showitem.like'), item_like_path(@item), method: :post, remote: true, class: 'btn btn-outline-primary like-button me-3'%>
             <% end %>
           <% end %>
-          <p class="mb-0 like-count ml-2 text-primary"><strong>Likes:</strong> <%= @item.likes.count %></p>
+          <p class="mb-0 like-count ml-2 text-primary"><strong><%= t('showitem.likes') %>:</strong> <%= @item.likes.count %></p>
         </div>
       </div>
     </div>
 
     <div class="row mb-4">
       <div class="col">
-        <h2>Comments</h2>
+        <h2><%= t('showitem.comments') %></h2>
         <div id="comments" class="list-group" data-item-id="<%= @item.id %>">
           <% @item.comments.each do |comment| %>
             <div class="list-group-item" id="comment-<%= comment.id %>">
-              <p><strong><%= comment.user.email %>:</strong> <%= comment.body %></p>
+              <p><strong><%= t('showitem.userid') %>: <%= comment.user.id %>, <%= t('showitem.username') %>: <%= comment.user.name %> | </strong> <%= comment.body %></p>
               <% if user_signed_in? %>
                 <% if @item.collection.user == current_user or comment.user == current_user or current_user.admin? %>
-                  <%= link_to 'Delete Comment', item_comments_path(comment.item, comment), method: :delete, remote: true, class: 'btn btn-outline-danger btn-sm' %>
+                  <%= link_to t('showitem.deletecomment'), item_comments_path(comment.item, comment), method: :delete, remote: true, class: 'btn btn-outline-danger btn-sm' %>
                 <% end %>
               <% end %>
             </div>
@@ -128,15 +128,15 @@
       <% if user_signed_in? %>
         <%= form_with(model: [@item, @item.comments.build], remote: true, id: "comment-form") do |form| %>
           <div class="form-group">
-            <%= form.label :body, 'Add a Comment' %>
+            <%= form.label :body, t('showitem.addcomment') %>
             <%= form.text_area :body, class: "form-control", rows: 3 %>
           </div>
           <div class="form-group">
-            <%= form.submit 'Enter Comment', class: "btn btn-primary btn-sm mt-2" %>
+            <%= form.submit t('showitem.entercomment'), class: "btn btn-primary btn-sm mt-2" %>
           </div>
         <% end %>
       <% else %>
-        <p>You must be <%= link_to 'logged in', new_user_session_path %> to add a comment.</p>
+        <p><%= t('showitem.youmustbe') %> <%= link_to t('showitem.loggedin'), new_user_session_path %> <%= t('showitem.toaddacomment') %>.</p>
       <% end %>
     </div>
   </div>  

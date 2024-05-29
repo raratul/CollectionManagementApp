@@ -44,7 +44,7 @@
         </td>
         <td>
           <%= link_to t('mycollections.edit'), edit_collection_path(collection), class: 'btn btn-secondary btn-sm' %>
-          <%= link_to t('mycollections.delete'), delete_collection_path(collection), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
+          <%= link_to t('mycollection.delete'), '#', onclick: "singleConfirm('Are you sure?', '#{delete_collection_path(collection)}')", class: 'btn btn-danger btn-sm' %>
         </td>
       </tr>
     <% end %>
@@ -94,4 +94,14 @@
       document.body.removeChild(link);
     });
   });
+</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    window.singleConfirm = function(message, url) {
+      if (confirm(message)) {
+          window.location.href = url;
+      }
+    };
+  });  
 </script>
