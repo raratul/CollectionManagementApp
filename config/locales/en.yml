@@ -68,6 +68,7 @@ en:
     actions: "Actions"
     edit: "Edit"
     delete: "Delete"
+    sure: "Are you sure?"
   mycollections:
     title: "My Collections"
     newcollection: "New Collection"
@@ -82,6 +83,7 @@ en:
     actions: "Actions"
     edit: "Edit"
     delete: "Delete"
+    sure: "Are you sure?"
   newcollection:
     title: "New Collection"
     userid: "User ID"
@@ -153,6 +155,7 @@ en:
     actions: "Actions"
     yess: "Yes"
     noo: "No"
+    sure: "Are you sure?"
   newitem:
     title: "New Item"
     name: "Name"

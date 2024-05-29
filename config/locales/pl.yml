@@ -68,6 +68,7 @@ pl:
     actions: "Akcje"
     edit: "Edytuj"
     delete: "Usuń"
+    sure: "Jesteś pewny?"
   mycollections:
     title: "Moje Kolekcje"
     newcollection: "Nowa Kolekcja"
@@ -82,6 +83,7 @@ pl:
     actions: "Akcje"
     edit: "Edytuj"
     delete: "Usuń"
+    sure: "Jesteś pewny?"
   newcollection:
     title: "Nowa Kolekcja"
     userid: "ID Użytkownika"
@@ -153,6 +155,7 @@ pl:
     actions: "Akcje"
     yess: "Tak"
     noo: "Nie"
+    sure: "Jesteś pewny?"
   newitem:
     title: "Nowy Przedmiot"
     name: "Nazwa"
