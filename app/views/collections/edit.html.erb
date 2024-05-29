@@ -1,5 +1,5 @@
 <div class="container mt-5">
-  <h1 class="mb-4">Edit Collection</h1>
+  <h1 class="mb-4"><%= t('editcollection.title') %></h1>
 
   <%= form_with(model: @collection, local: true, html: { class: 'needs-validation', novalidate: true }) do |form| %>
     <% if @collection.errors.any? %>
@@ -14,109 +14,109 @@
     <% end %>
 
     <div class="mb-3">
-      <%= form.label :name, class: 'form-label' %>
+      <%= form.label :name, t('editcollection.name'), class: 'form-label' %>
       <%= form.text_field :name, class: 'form-control', required: true %>
     </div>
 
     <div class="mb-3">
-      <%= form.label :description, class: 'form-label' %>
+      <%= form.label :description, t('editcollection.description'), class: 'form-label' %>
       <%= form.text_area :description, class: 'form-control', rows: 3 %>
     </div>
 
     <div class="mb-3">
-      <%= form.label :category, class: 'form-label' %>
+      <%= form.label :category, t('editcollection.category'), class: 'form-label' %>
       <%= form.select :category, ['Books', 'Signs', 'Silverware', 'Other'], {}, class: 'form-select' %>
     </div>
 
     <div class="mb-3">
-      <%= form.label :image_url, class: 'form-label' %>
+      <%= form.label :image_url, t('editcollection.image'), class: 'form-label' %>
       <%= form.hidden_field :image_url, id: 'image-url', class: 'form-control' %>
       <div id="drop-zone" class="drop-zone">
-        <p>Drag & drop an image here or click to select one</p>
+        <p><%= t('editcollection.dropzone') %></p>
         <%= file_field_tag :image, id: 'image-upload', class: 'form-control', style: 'display: none;' %>
       </div>
     </div>
 
-    <h5>Custom Fields</h5>
+    <h5><%= t('editcollection.custom') %></h5>
 
     <div class="mb-3">
-      <%= form.label :custom_string1_name, 'Custom String Field 1 Name', class: 'form-label' %>
+      <%= form.label :custom_string1_name,  t('editcollection.string1'), class: 'form-label' %>
       <%= form.text_field :custom_string1_name, class: 'form-control' %>
     </div>
 
     <div class="mb-3">
-      <%= form.label :custom_string2_name, 'Custom String Field 2 Name', class: 'form-label' %>
+      <%= form.label :custom_string2_name,  t('editcollection.string2'), class: 'form-label' %>
       <%= form.text_field :custom_string2_name, class: 'form-control' %>
     </div>
 
     <div class="mb-3">
-      <%= form.label :custom_string3_name, 'Custom String Field 3 Name', class: 'form-label' %>
+      <%= form.label :custom_string3_name,  t('editcollection.string3'), class: 'form-label' %>
       <%= form.text_field :custom_string3_name, class: 'form-control' %>
     </div>
 
     <div class="mb-3">
-      <%= form.label :custom_int1_name, 'Custom Int Field 1 Name', class: 'form-label' %>
+      <%= form.label :custom_int1_name, t('editcollection.int1'), class: 'form-label' %>
       <%= form.text_field :custom_int1_name, class: 'form-control' %>
     </div>
 
     <div class="mb-3">
-      <%= form.label :custom_int2_name, 'Custom Int Field 2 Name', class: 'form-label' %>
+      <%= form.label :custom_int2_name, t('editcollection.int2'), class: 'form-label' %>
       <%= form.text_field :custom_int2_name, class: 'form-control' %>
     </div>
 
     <div class="mb-3">
-      <%= form.label :custom_int3_name, 'Custom Int Field 3 Name', class: 'form-label' %>
+      <%= form.label :custom_int3_name, t('editcollection.int3'), class: 'form-label' %>
       <%= form.text_field :custom_int3_name, class: 'form-control' %>
     </div>
 
     <div class="mb-3">
-      <%= form.label :custom_text1_name, 'Custom Text Field 1 Name', class: 'form-label' %>
+      <%= form.label :custom_text1_name, t('editcollection.text1'), class: 'form-label' %>
       <%= form.text_field :custom_text1_name, class: 'form-control' %>
     </div>
 
     <div class="mb-3">
-      <%= form.label :custom_text2_name, 'Custom Text Field 2 Name', class: 'form-label' %>
+      <%= form.label :custom_text2_name, t('editcollection.text2'), class: 'form-label' %>
       <%= form.text_field :custom_text2_name, class: 'form-control' %>
     </div>
 
     <div class="mb-3">
-      <%= form.label :custom_text3_name, 'Custom Text Field 3 Name', class: 'form-label' %>
+      <%= form.label :custom_text3_name, t('editcollection.text3'), class: 'form-label' %>
       <%= form.text_field :custom_text3_name, class: 'form-control' %>
     </div>
 
     <div class="mb-3">
-      <%= form.label :custom_bool1_name, 'Custom Bool Field 1 Name', class: 'form-label' %>
+      <%= form.label :custom_bool1_name, t('editcollection.bool1'), class: 'form-label' %>
       <%= form.text_field :custom_bool1_name, class: 'form-control' %>
     </div>
 
     <div class="mb-3">
-      <%= form.label :custom_bool2_name, 'Custom Bool Field 2 Name', class: 'form-label' %>
+      <%= form.label :custom_bool2_name, t('editcollection.bool2'), class: 'form-label' %>
       <%= form.text_field :custom_bool2_name, class: 'form-control' %>
     </div>
 
     <div class="mb-3">
-      <%= form.label :custom_bool3_name, 'Custom Bool Field 3 Name', class: 'form-label' %>
+      <%= form.label :custom_bool3_name, t('editcollection.bool3'), class: 'form-label' %>
       <%= form.text_field :custom_bool3_name, class: 'form-control' %>
     </div>
 
     <div class="mb-3">
-      <%= form.label :custom_date1_name, 'Custom Date Field 1 Name', class: 'form-label' %>
+      <%= form.label :custom_date1_name, t('editcollection.date1'), class: 'form-label' %>
       <%= form.text_field :custom_date1_name, class: 'form-control' %>
     </div>
 
     <div class="mb-3">
-      <%= form.label :custom_date2_name, 'Custom Date Field 2 Name', class: 'form-label' %>
+      <%= form.label :custom_date2_name, t('editcollection.date2'), class: 'form-label' %>
       <%= form.text_field :custom_date2_name, class: 'form-control' %>
     </div>
 
     <div class="mb-3">
-      <%= form.label :custom_date3_name, 'Custom Date Field 3 Name', class: 'form-label' %>
+      <%= form.label :custom_date3_name, t('editcollection.date3'), class: 'form-label' %>
       <%= form.text_field :custom_date3_name, class: 'form-control' %>
     </div>
 
     <div class="mb-3">
-      <%= form.submit 'Update Collection', class: 'btn btn-primary' %>
-      <%= link_to 'Back', collections_path, class: 'btn btn-secondary' %>
+      <%= form.submit t('editcollection.update'), class: 'btn btn-primary' %>
+      <%= link_to t('editcollection.back'), collections_path, class: 'btn btn-secondary' %>
     </div>
   <% end %>
 </div>
