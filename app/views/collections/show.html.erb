@@ -1,13 +1,13 @@
 <div class="container mt-5">
   <div class="mb-3">
     <h1 class="mb-4"><strong><%= t('showcollection.name') %>:</strong> <%= @collection.name %></h1>
-    <p><strong><%= t('showcollection.id') %>:</strong> <%= @collection.id %></p>
+    <h3><%= t('showcollection.id') %>: <%= @collection.id %></h3>
     <p><strong><%= t('showcollection.userid') %>:</strong> <%= @user.id %>, <strong><%= t('showcollection.username') %>:</strong> <%= @user.name %></p>
     <p><strong><%= t('showcollection.description') %>:</strong> <%= @collection.description %></p>
     <p><strong><%= t('showcollection.category') %>:</strong> <%= @collection.category %></p>
-    <p class="me-5"><strong><%= t('showcollection.image') %>:</strong> 
+    <p><strong class="me-3"><%= t('showcollection.image') %>:</strong> 
       <% if @collection.image_url.present? %>
-        <img src="<%= @collection.image_url %>" alt="<%= @collection.name %>" class="img-fluid" style="max-width: 100px;">
+        <img src="<%= @collection.image_url %>" alt="<%= @collection.name %>" class="img-fluid" style="max-width: 300px;">
       <% else %>
         N/A
       <% end %>
