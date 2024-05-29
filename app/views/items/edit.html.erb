@@ -1,5 +1,5 @@
 <div class="container mt-3">
-  <h1 class="mb-4">Edit Item ID: <%= @item.id %></h1>
+  <h1 class="mb-4"><%= t('edititem.title') %>: <%= @item.id %></h1>
 
   <%= form_with(model: @item, local: true, html: { class: 'needs-validation', novalidate: true }) do |form| %>
     <% if @item.errors.any? %>
@@ -14,13 +14,13 @@
     <% end %>
 
     <div class="mb-3">
-      <%= form.label :name, class: "form-label" %>
+      <%= form.label :name, t('edititem.name'), class: "form-label" %>
       <%= form.text_field :name, class: "form-control", value: @item.name %>
     </div>
 
     <div class="mb-3">
-      <%= form.label :tags, class: "form-label" %>
-      <%= text_field_tag :tag, @item.tag, class: "form-control", placeholder: "Enter tags, separated by commas", data: { autocomplete_source: autocomplete_tags_path } %>
+      <%= form.label :tags, t('edititem.tags'), class: "form-label" %>
+      <%= text_field_tag :tag, @item.tag, class: "form-control", placeholder: t('edititem.tagplaceholder'), data: { autocomplete_source: autocomplete_tags_path } %>
     </div>
 
     <% if @collection.custom_string1_state %>
@@ -119,11 +119,11 @@
     <% end %>
 
     <div class="mb-3">
-      <%= form.submit 'Update Item', class: "btn btn-primary" %>
+      <%= form.submit t('edititem.update'), class: "btn btn-primary" %>
     </div>
   <% end %>
 
-  <%= link_to 'Back', collection_path(@collection), class: "btn btn-secondary mt-3" %>
+  <%= link_to t('edititem.back'), collection_path(@collection), class: "btn btn-secondary mt-3" %>
 </div>
 
 <script>

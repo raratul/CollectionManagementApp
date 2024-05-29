@@ -1,5 +1,5 @@
 <div class="container mt-3">
-  <h1 class="mb-4">New Item</h1>
+  <h1 class="mb-4"><%= t('newitem.title') %></h1>
 
   <%= form_with(model: [@collection, @item], local: true, html: { class: 'needs-validation', novalidate: true }) do |form| %>
     <% if @item.errors.any? %>
@@ -14,13 +14,13 @@
     <% end %>
 
     <div class="mb-3">
-      <%= form.label :name, class: "form-label" %>
+      <%= form.label :name, t('newitem.name'), class: "form-label" %>
       <%= form.text_field :name, class: "form-control" %>
     </div>
 
     <div class="mb-3">
-      <%= form.label :tags, class: "form-label" %>
-      <%= text_field_tag :tag, @item.tag, class: "form-control", placeholder: "Enter tags, separated by commas", data: { autocomplete_source: autocomplete_tags_path } %>
+      <%= form.label :tags, t('newitem.tags'), class: "form-label" %>
+      <%= text_field_tag :tag, @item.tag, class: "form-control", placeholder: t('newitem.tagplaceholder'), data: { autocomplete_source: autocomplete_tags_path } %>
     </div>
 
     <% if @collection.custom_string1_state %>
@@ -119,11 +119,11 @@
     <% end %>
 
     <div class="mb-3">
-      <%= form.submit 'Create Item', class: "btn btn-primary" %>
+      <%= form.submit  t('newitem.create'), class: "btn btn-primary" %>
     </div>
   <% end %>
 
-  <%= link_to 'Back', collection_path(@collection), class: "btn btn-secondary mt-3" %>
+  <%= link_to t('newitem.back'), collection_path(@collection), class: "btn btn-secondary mt-3" %>
 </div>
 
 <script>

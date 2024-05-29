@@ -109,7 +109,7 @@ pl:
     create: "Utwórz Kolekcję"
     back: "Z powrotem"
   editcollection:
-    title: "Edytuj Identyfikator Kolekcji"
+    title: "Edytuj Kolekcję ID"
     name: "Nazwa"
     description: "Opis"
     category: "Kategoria"
@@ -153,6 +153,20 @@ pl:
     actions: "Akcje"
     yess: "Tak"
     noo: "Nie"
+  newitem:
+    title: "Nowy Przedmiot"
+    name: "Nazwa"
+    tags: "Tagi"
+    tagplaceholder: "Wpisz tagi, oddzielone przecinkami"
+    create: "Utwórz Przedmiot"
+    back: "Powrót"
+  edititem:
+    title: "Edytuj Przedmiot ID"
+    name: "Nazwa"
+    tags: "Tagi"
+    tagplaceholder: "Wpisz tagi, oddzielone przecinkami"
+    update: "Zaktualizuj Przedmiot"
+    back: "Powrót"
   admin_page:
     userspanel: "Panel Użytkowników"
     filterbyuserid: "Filtruj według identyfikatora użytkownika"

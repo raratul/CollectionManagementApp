@@ -153,6 +153,20 @@ en:
     actions: "Actions"
     yess: "Yes"
     noo: "No"
+  newitem:
+    title: "New Item"
+    name: "Name"
+    tags: "Tags"
+    tagplaceholder: "Enter tags, separated by commas"
+    create: "Create Item"
+    back: "Back"
+  edititem:
+    title: "Edit Item ID"
+    name: "Name"
+    tags: "Tags"
+    tagplaceholder: "Enter tags, separated by commas"
+    update: "Update Item"
+    back: "Back"
   admin_page:
     userspanel: "Users Panel"
     filterbyuserid: "Filter By User ID"
