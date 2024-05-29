@@ -20,7 +20,12 @@
 
     <div class="mb-3">
       <%= form.label :tags, t('edititem.tags'), class: "form-label" %>
-      <%= text_field_tag :tag, @item.tag, class: "form-control", placeholder: t('edititem.tagplaceholder') %>
+      <%= text_field_tag :tag, @item.tag, class: "form-control", placeholder: t('edititem.tagplaceholder'), list: "tag-suggestions" %>
+      <datalist id='tag-suggestions'>
+        <% Item.pluck(:tag).join(',').split(',').uniq.each do |tag|%>
+          <option value=<%=tag%>></option>
+        <%end%>
+      </datalist>
     </div>
 
     <% if @collection.custom_string1_state %>

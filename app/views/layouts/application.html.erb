@@ -48,9 +48,15 @@
           <% end %>
         </ul>
         <%= form_with url: search_path, method: :get, local: true do %>
-          <%= text_field_tag :query, params[:query], placeholder: t('nav.search'), class: "form-control me-2 mt-2 mb-2" %>
+          <%= text_field_tag :query, params[:query], placeholder: t('nav.search'), class: "form-control me-2 mt-2 mb-2", list: "tag-suggestions" %>
           <%= submit_tag t('nav.search'), class: "btn btn-success d-lg-none mt-2 mb-2" %>
+          <datalist id='tag-suggestions'>
+            <% Item.pluck(:tag).join(',').split(',').uniq.each do |tag|%>
+              <option value=<%=tag%>></option>
+            <%end%>
+          </datalist>
         <% end %>
+
         <div class="d-flex align-items-center ms-2">
           <a class="btn btn-outline-dark me-2 mt-2 mb-2" href="#" id="theme-toggle">
             <%= @theme == 'dark' ? t('nav.switch_to_light') : t('nav.switch_to_dark') %>

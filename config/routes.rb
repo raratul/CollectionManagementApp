@@ -34,10 +34,6 @@ Rails.application.routes.draw do
   post 'toggle_theme', to: 'application#toggle_theme'
   patch 'batch_action_admin', to: 'admin#batch_action'
 
-  resources :tags, only: [] do
-    get :autocomplete, on: :collection
-  end
-
   get 'search', to: 'search#index'
 
   root to: 'home#index'
