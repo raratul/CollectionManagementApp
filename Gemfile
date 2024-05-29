@@ -12,7 +12,6 @@ gem "puma", ">= 5.0"
 
 gem 'devise'
 gem 'simple_form'
-gem 'pagy'
 gem 'globalize'
 
 gem "jsbundling-rails"
