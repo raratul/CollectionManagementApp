@@ -20,12 +20,14 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @item = @collection.items.build(item_params)
-    @item.tag = params[:tag].split(',').map(&:strip) if params[:tag]
-    if @item.save
-      redirect_to collection_path(@collection), notice: 'Item was successfully created.'
-    else
-      render :new
+    if @collection.user == current_user or current_user.admin?
+      @item = @collection.items.build(item_params)
+      @item.tag = params[:tag].split(',').map(&:strip) if params[:tag]
+      if @item.save
+        redirect_to collection_path(@collection), notice: 'Item was successfully created.'
+      else
+        render :new
+      end
     end
   end
 

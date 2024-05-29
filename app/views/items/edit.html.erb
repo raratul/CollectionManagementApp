@@ -1,5 +1,5 @@
 <div class="container mt-3">
-  <h1 class="mb-4">Edit Item</h1>
+  <h1 class="mb-4">Edit Item ID: <%= @item.id %></h1>
 
   <%= form_with(model: @item, local: true, html: { class: 'needs-validation', novalidate: true }) do |form| %>
     <% if @item.errors.any? %>

@@ -1,5 +1,5 @@
 <div class="container mt-5">
-  <h1 class="mb-4"><%= t('editcollection.title') %></h1>
+  <h1 class="mb-4"><%= t('editcollection.title') %>: <%= @collection.id %></h1>
 
   <%= form_with(model: @collection, local: true, html: { class: 'needs-validation', novalidate: true }) do |form| %>
     <% if @collection.errors.any? %>

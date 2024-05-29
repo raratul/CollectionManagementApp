@@ -109,7 +109,7 @@ en:
     create: "Create Collection"
     back: "Back"
   editcollection:
-    title: "Edit Collection"
+    title: "Edit Collection ID"
     name: "Name"
     description: "Description"
     category: "Category"

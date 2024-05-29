@@ -109,7 +109,7 @@ pl:
     create: "Utwórz Kolekcję"
     back: "Z powrotem"
   editcollection:
-    title: "Edytuj Kolekcję"
+    title: "Edytuj Identyfikator Kolekcji"
     name: "Nazwa"
     description: "Opis"
     category: "Kategoria"
