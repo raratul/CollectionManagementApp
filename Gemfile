@@ -14,6 +14,8 @@ gem 'devise'
 gem 'simple_form'
 gem 'globalize'
 
+gem "importmap-rails"
+
 gem "jsbundling-rails"
 
 gem "turbo-rails"
