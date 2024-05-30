@@ -57,17 +57,17 @@
 
         <% if @collection.custom_bool1_state %>
           <li class="list-group-item">
-            <strong><%= @collection.custom_bool1_name %>:</strong> <%= @item.custom_bool1_value %>
+            <strong><%= @collection.custom_bool1_name %>:</strong> <%= @item.custom_bool1_value ? t('showcollection.yess') : t('showcollection.noo')%>
           </li>
         <% end %>
         <% if @collection.custom_bool2_state %>
           <li class="list-group-item">
-            <strong><%= @collection.custom_bool2_name %>:</strong> <%= @item.custom_bool2_value %>
+            <strong><%= @collection.custom_bool2_name %>:</strong> <%= @item.custom_bool2_value ? t('showcollection.yess') : t('showcollection.noo')%>
           </li>
         <% end %>
         <% if @collection.custom_bool3_state %>
           <li class="list-group-item">
-            <strong><%= @collection.custom_bool3_name %>:</strong> <%= @item.custom_bool3_value %>
+            <strong><%= @collection.custom_bool3_name %>:</strong> <%= @item.custom_bool3_value ? t('showcollection.yess') : t('showcollection.noo')%>
           </li>
         <% end %>
 
