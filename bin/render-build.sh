@@ -10,4 +10,4 @@ bundle exec rails assets:clean
 bundle exec rails
 
 bin/rails db:environment:set RAILS_ENV=production 
-rake DISABLE_DATABASE_ENVIRONMENT_CHECK=1 db:migrate:reset
+rake DISABLE_DATABASE_ENVIRONMENT_CHECK=1 db:migrate
