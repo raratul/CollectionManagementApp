@@ -98,5 +98,5 @@ Rails.application.configure do
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
 
   config.cache_classes = true
-
+  config.cache_store = :mem_cache_store
 end
