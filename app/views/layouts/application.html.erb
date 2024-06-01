@@ -58,9 +58,11 @@
         <% end %>
 
         <div class="d-flex align-items-center ms-2">
-          <a class="btn btn-outline-dark me-2 mt-2 mb-2" href="#" id="theme-toggle">
-            <%= @theme == 'dark' ? t('nav.switch_to_light') : t('nav.switch_to_dark') %>
-          </a>
+          <%= form_with url: toggle_theme_path, method: :post, local: true do %>
+            <button type="submit" class="btn btn-outline-dark me-2 mt-2 mb-2">
+              <%= @theme == 'dark' ? t('nav.switch_to_light') : t('nav.switch_to_dark') %>
+            </button>
+          <% end %>
           <%= link_to t('nav.switch_language'), toggle_language_path, method: :post, class: 'btn btn-outline-info mt-2 mb-2' %>
         </div>
       </div>
@@ -80,29 +82,6 @@
   </footer>
 
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const themeToggle = document.getElementById('theme-toggle');
-      themeToggle.addEventListener('click', (event) => {
-        event.preventDefault();
-        const currentTheme = document.body.getAttribute('data-bs-theme');
-        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-        document.body.setAttribute('data-bs-theme', newTheme);
-
-        fetch('/toggle_theme', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-          },
-          body: JSON.stringify({ theme: newTheme })
-        }).then(response => {
-          if (response.ok) {
-            location.reload();
-          }
-        });
-      });
-    });
-
     document.addEventListener('DOMContentLoaded', function() {
       var navbarToggler = document.getElementById('navbar-toggler');
       var navbarCollapse = document.getElementById('navbar01');

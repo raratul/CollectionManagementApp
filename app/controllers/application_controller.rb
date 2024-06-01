@@ -23,11 +23,13 @@ class ApplicationController < ActionController::Base
   end
 
   def toggle_theme
+    new_theme = @theme == 'dark' ? 'light' : 'dark'
     if user_signed_in?
-      current_user.update(theme: params[:theme])
+      current_user.update(theme: new_theme)
     else
-      session[:theme] = params[:theme]
+      session[:theme] = new_theme
     end
+    redirect_back fallback_location: root_path
   end
 
   private
