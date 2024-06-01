@@ -18,8 +18,6 @@ gem "importmap-rails"
 
 gem "jsbundling-rails"
 
-
-
 gem "stimulus-rails"
 
 gem "cssbundling-rails"
