@@ -18,7 +18,7 @@ gem "importmap-rails"
 
 gem "jsbundling-rails"
 
-gem "turbo-rails"
+
 
 gem "stimulus-rails"
 
