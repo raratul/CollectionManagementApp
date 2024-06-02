@@ -47,7 +47,7 @@
           <% if collection.image_url.present? %>
             <img src="<%= collection.image_url %>" alt="<%= collection.name %>" class="img-fluid" style="max-width: 100px;">
           <% else %>
-            N/A
+            <img src="https://ibb.co/6ygBQgK" alt="Placeholder Image" class="img-fluid" style="max-height: 300px; object-fit: contain;">
           <% end %>
         </td>
         <% if user_signed_in? and current_user.admin? %>

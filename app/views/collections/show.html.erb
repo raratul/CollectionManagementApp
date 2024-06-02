@@ -9,7 +9,7 @@
       <% if @collection.image_url.present? %>
         <img src="<%= @collection.image_url %>" alt="<%= @collection.name %>" class="img-fluid" style="max-width: 300px;">
       <% else %>
-        N/A
+        <img src="https://ibb.co/6ygBQgK" alt="Placeholder Image" class="img-fluid" style="max-height: 300px; object-fit: contain;">
       <% end %>
     </p>
   </div>
