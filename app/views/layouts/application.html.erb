@@ -15,7 +15,7 @@
   </style>
 </head>
 <body data-bs-theme="<%= @theme %>">
-  <nav class="navbar navbar-expand-lg navbar-dark bg-secondary fixed-top">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-info fixed-top">
     <div class="container">
       <a class="navbar-brand me-5 mt-2 mb-2" href="/"><%= t('site.title') %></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar01" aria-controls="navbar01" aria-expanded="false" aria-label="Toggle navigation" id="navbar-toggler">
@@ -63,7 +63,7 @@
               <%= @theme == 'dark' ? t('nav.switch_to_light') : t('nav.switch_to_dark') %>
             </button>
           <% end %>
-          <%= link_to t('nav.switch_language'), toggle_language_path, method: :post, class: 'btn btn-outline-info mt-2 mb-2' %>
+          <%= link_to t('nav.switch_language'), toggle_language_path, method: :post, class: 'btn btn-outline-light mt-2 mb-2' %>
         </div>
       </div>
     </div>

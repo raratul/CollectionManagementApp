@@ -13,39 +13,52 @@
   <% end %>
 
   <h2 class="my-3"><%= t('home.latestitems') %></h2>
-  <ul class="list-group">
+  <div class="row">
     <% if @latest_items.present? %>
       <% @latest_items.each do |item| %>
-        <li class="list-group-item">
-          <h6><%= t('home.itemid') %>: <%= link_to item.id, item %>, <%= t('home.itemname') %>: <%= link_to item.name, item %></h6>
-          <p><%= t('home.collectionid') %>: <%= item.collection.id %>, <%= t('home.collectionname') %>: <%= item.collection.name %></p>
-          <p><%= t('home.userid') %>: <%= item.collection.user.id %>, <%= t('home.username') %>: <%= item.collection.user.name %></p> 
-        </li>
+        <div class="col-md-4 mb-4">
+          <div class="card h-100 d-flex flex-column">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title"><%= t('home.itemname') %>: <%= link_to item.name, item %></h5>
+              <h6 class="card-subtitle mb-2 text-muted"><%= t('home.itemid') %>: <%= link_to item.id, item %></h6>
+              <p class="card-text"><%= t('home.collectionid') %>: <%= item.collection.id %>, <%= t('home.collectionname') %>: <%= item.collection.name %></p>
+              <p class="card-text"><%= t('home.userid') %>: <%= item.collection.user.id %>, <%= t('home.username') %>: <%= item.collection.user.name %></p>
+            </div>
+          </div>
+        </div>
       <% end %>
     <% else %>
       <p><%= t('home.nothing') %>.</p>
     <% end %>
-  </ul>
+  </div>
 
   <h2 class="my-3"><%= t('home.topcollections') %></h2>
-  <ul class="list-group mb-4">
+  <div class="row">
     <% if @top_collections.present? %>
       <% @top_collections.each do |collection| %>
-        <li class="list-group-item">
-          <h6><%= t('home.collectionid') %>: <%= link_to collection.id, collection %>, <%= t('home.collectionname') %>: <%= link_to collection.name, collection %></h6>
-          <p><%= t('home.userid') %>: <%= collection.user.id %>, <%= t('home.username') %>: <%= collection.user.name %></p> 
-        </li>
+        <div class="col-md-6 mb-4">
+          <div class="card h-100 d-flex flex-column">
+            <% if collection.image_url.present? %>
+              <img src="<%= collection.image_url %>" alt="<%= collection.name %>" class="img-fluid" style="max-height: 300px; object-fit: contain;">
+            <% end %>
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title"><%= t('home.collectionname') %>: <%= link_to collection.name, collection %></h5>
+              <h6 class="card-subtitle mb-2 text-muted"><%= t('home.collectionid') %>: <%= link_to collection.id, collection %></h6>
+              <p class="card-text"><%= t('home.userid') %>: <%= collection.user.id %>, <%= t('home.username') %>: <%= collection.user.name %></p>
+            </div>
+          </div>
+        </div>
       <% end %>
     <% else %>
       <p><%= t('home.nothing') %>.</p>
     <% end %>
-  </ul>
+  </div>
 
   <h2 class="my-3"><%= t('home.tagcloud') %></h2>
-  <div>
+  <div class="d-flex flex-wrap">
     <% if @tag_cloud.present? %>
       <% @tag_cloud.each do |tag| %>
-        <%= link_to tag, search_path(query: tag), class: 'badge bg-secondary' %>
+        <%= link_to tag, search_path(query: tag), class: 'badge bg-secondary m-1 p-2' %>
       <% end %>
     <% else %>
       <p><%= t('home.nothing') %>.</p>
