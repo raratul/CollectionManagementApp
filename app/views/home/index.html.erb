@@ -41,7 +41,7 @@
             <% if collection.image_url.present? %>
               <img src="<%= collection.image_url %>" alt="<%= collection.name %>" class="img-fluid" style="max-height: 300px; object-fit: contain;">
             <% else %>
-              <img src="https://ibb.co/6ygBQgK" alt="Placeholder Image" class="img-fluid" style="max-height: 300px; object-fit: contain;">
+              <img src="https://i.ibb.co/vq6Bc4g/placeholder.jpg" alt="Placeholder Image" class="img-fluid" style="max-height: 300px; object-fit: contain;">
             <% end %>
             <div class="card-body d-flex flex-column">
               <h5 class="card-title"><%= t('home.collectionname') %>: <%= link_to collection.name, collection %></h5>
