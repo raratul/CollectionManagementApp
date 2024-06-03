@@ -33,6 +33,7 @@ en:
     password: "Password"
     remember_me: "Remember me"
     sign_up: "Sign up"
+    facebook: " Continue with Facebook"
   register:
     signup: "Sign up"
     name: "Name"
@@ -42,6 +43,7 @@ en:
     register_as_admin: "You will be registered as Admin!"
     login: "Log in"
     characters: "characters minimum"
+    facebook: " Continue with Facebook"
   search:
     results: "Search Results"
     itemid: "Item ID"

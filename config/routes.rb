@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: {
     sessions: 'users/sessions',
-    registrations: 'users/registrations'
+    registrations: 'users/registrations',
+    omniauth_callbacks: 'users/omniauth_callbacks'
   }
 
   resources :collections, shallow: true do
@@ -18,7 +19,7 @@ Rails.application.routes.draw do
   get '%23.:id', to: 'collections#destroy', as: :delete_collection
 
   get '%2523.:id', to: 'items#destroy', as: :delete_item
-  
+
   devise_scope :user do
     get 'users/sign_out' => 'devise/sessions#destroy'
   end

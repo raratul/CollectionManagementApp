@@ -1,58 +1,80 @@
-<div class="container mt-3">
-  <h2 class="mb-4 text-center"><%= t('register.signup') %></h2>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h2 class="mb-4 text-center"><%= t('register.signup') %></h2>
 
-  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: 'needs-validation', novalidate: true }) do |f| %>
-    <%= f.error_notification %>
+          <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: 'needs-validation', novalidate: true }) do |f| %>
+            <%= f.error_notification %>
 
-    <div class="form-group">
-      <%= f.input :name,
-                  required: true,
-                  autofocus: true,
-                  input_html: { autocomplete: "name", class: "form-control" },
-                  label: t('register.name'),
-                  wrapper_html: { class: "mb-3" } %>
+            <div class="form-group">
+              <%= f.input :name,
+                          required: true,
+                          autofocus: true,
+                          input_html: { autocomplete: "name", class: "form-control" },
+                          label: t('register.name'),
+                          wrapper_html: { class: "mb-3" } %>
+            </div>
+
+            <div class="form-group">
+              <%= f.input :email,
+                          required: true,
+                          autofocus: true,
+                          input_html: { autocomplete: "email", class: "form-control" },
+                          label: t('register.email'),
+                          wrapper_html: { class: "mb-3" } %>
+            </div>
+
+            <div class="form-group">
+              <%= f.input :password,
+                          required: true,
+                          hint: ("#{@minimum_password_length} #{t('register.characters')}" if @minimum_password_length),
+                          input_html: { autocomplete: "new-password", class: "form-control" },
+                          label: t('register.password'),
+                          wrapper_html: { class: "mb-3" } %>
+            </div>
+
+            <div class="form-group mb-3">
+              <%= f.input :password_confirmation,
+                          required: true,
+                          input_html: { autocomplete: "new-password", class: "form-control" },
+                          label: t('register.password_confirmation'),
+                          wrapper_html: { class: "mb-3" } %>
+            </div>
+
+            <% if User.first_admin? %>
+              <h6 class="text-center"><%= t('register.register_as_admin') %></h6>
+            <% end %>
+
+            <div class="form-group my-3">
+              <%= f.button :submit, t('register.signup'), class: "btn btn-primary btn-block" %>
+            </div>
+          <% end %>
+
+          <div class="text-center my-3">
+            <%= button_to user_facebook_omniauth_authorize_path, method: :post, class: 'btn btn-facebook btn-block' do %>
+              <i class="fab fa-facebook-f mr-2"></i>  <%= t('register.facebook') %>
+            <% end %>
+          </div>
+
+          <div class="text-center my-3 fw-bold">
+            <a href="/users/sign_in"><%= t('register.login') %></a>
+          </div>
+        </div>
+      </div>
     </div>
-
-    <div class="form-group">
-      <%= f.input :email,
-                  required: true,
-                  autofocus: true,
-                  input_html: { autocomplete: "email", class: "form-control" },
-                  label: t('register.email'),
-                  wrapper_html: { class: "mb-3" } %>
-    </div>
-
-    <div class="form-group">
-      <%= f.input :password,
-                  required: true,
-                  hint: ("#{@minimum_password_length} #{t('register.characters')}" if @minimum_password_length),
-                  input_html: { autocomplete: "new-password", class: "form-control" },
-                  label: t('register.password'),
-                  wrapper_html: { class: "mb-3" } %>
-    </div>
-
-    <div class="form-group">
-      <%= f.input :password_confirmation,
-                  required: true,
-                  input_html: { autocomplete: "new-password", class: "form-control" },
-                  label: t('register.password_confirmation'),
-                  wrapper_html: { class: "mb-3" } %>
-    </div>
-
-    <br>
-
-    <% if User.first_admin? %>
-       <h6><%= t('register.register_as_admin') %></h6>
-    <% end %>
-
-    <br>
-
-    <div class="form-group">
-      <%= f.button :submit, t('register.signup'), class: "btn btn-primary btn-block" %>
-    </div>
-  <% end %>
-
-  <br>
-
-  <a href="/users/sign_in"><%= t('register.login') %></a>
+  </div>
 </div>
+
+<style>
+  .btn-facebook {
+    background-color: #3b5998;
+    color: white;
+  }
+  
+  .btn-facebook:hover {
+    background-color: #2d4373;
+    color: white;
+  }
+</style>

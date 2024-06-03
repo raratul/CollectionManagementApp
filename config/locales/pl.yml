@@ -33,6 +33,7 @@ pl:
     password: "Hasło"
     remember_me: "Zapamiętaj mnie"
     sign_up: "Zarejestruj się"
+    facebook: " Kontynuuj za pomocą Facebook"
   register:
     signup: "Zarejestruj się"
     name: "Nazwa"
@@ -42,6 +43,7 @@ pl:
     register_as_admin: "Zostaniesz zarejestrowany jako Administrator!"
     login: "Zaloguj się"
     characters: "minimalna liczba znaków"
+    facebook: " Kontynuuj za pomocą Facebook"
   search:
     results: "Wyniki Wyszukiwania"
     itemid: "ID Przedmiotu"
