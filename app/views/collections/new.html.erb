@@ -1,5 +1,9 @@
 <div class="container mt-5">
-  <h1 class="mb-4"><%= t('newcollection.title') %></h1>
+  <h1 class="mb-4"><%= t('newcollection.title') %>
+    <% if user_signed_in? and current_user.admin? %>
+      <%= t('newcollection.pageforadmin') %>
+    <% end %>
+  </h1>
 
   <%= form_with(model: @collection, local: true, html: { class: 'needs-validation', novalidate: true }) do |form| %>
     <% if @collection.errors.any? %>
@@ -16,7 +20,7 @@
     <% if user_signed_in? and current_user.admin? %>
       <div class="mb-3">
         <%= form.label :user_id, t('newcollection.userid'), class: 'form-label' %>
-        <%= form.number_field :user_id, class: 'form-control', required: true %>
+        <%= form.select :user_id, options_for_select([[t('newcollection.myuserid'), current_user.id]] + @users.map { |user| ["#{user.id} - #{user.email}", user.id] }), {}, { class: 'form-select', required: true } %>
       </div>
     <% end %>
 

@@ -88,6 +88,8 @@ pl:
     sure: "Jesteś pewny?"
   newcollection:
     title: "Nowa Kolekcja"
+    pageforadmin: " (Strona dla administratora)"
+    myuserid: "Mój identyfikator użytkownika"
     userid: "ID Użytkownika"
     name: "Nazwa"
     description: "Opis"

@@ -88,6 +88,8 @@ en:
     sure: "Are you sure?"
   newcollection:
     title: "New Collection"
+    pageforadmin: " (Page for Admin)"
+    myuserid: "My User ID"
     userid: "User ID"
     name: "Name"
     description: "Description"

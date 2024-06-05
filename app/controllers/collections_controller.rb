@@ -2,6 +2,7 @@ class CollectionsController < ApplicationController
   before_action :authenticate_user!, except: [:show, :all_collections]
   before_action :authenticate_admin!, except: [:show, :edit, :update, :index, :new, :create, :all_collections, :destroy]
   before_action :set_collection, only: [:show, :edit, :update, :destroy]
+  before_action :set_users, only: [:new, :edit]
 
   def index
     @collections = current_user.collections
@@ -101,5 +102,9 @@ class CollectionsController < ApplicationController
     collection.custom_date1_state = collection.custom_date1_name.present?
     collection.custom_date2_state = collection.custom_date2_name.present?
     collection.custom_date3_state = collection.custom_date3_name.present?
+  end
+
+  def set_users
+    @users = User.all
   end
 end
