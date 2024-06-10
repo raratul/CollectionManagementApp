@@ -55,5 +55,6 @@ gem 'json'
 gem 'jira-ruby'
 gem 'rest-client'
 
+gem 'dotenv-rails'
 gem 'atlassian-jwt'
 gem 'open3'

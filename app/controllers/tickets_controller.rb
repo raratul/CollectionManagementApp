@@ -36,34 +36,26 @@ class TicketsController < ApplicationController
     params.require(:ticket).permit(:summary, :priority, :collection_id)
   end
 
-  def create_issue_via_bash(summary:, description:)
+  def create_issue_via_bash(summary, description)
     command = <<-BASH
-      curl -u rkhairulislam@gmail.com:ATATT3xFfGF0PAbAt3Mkdyrs6TqvugnsrT1LIMZXL9oDG3A7A1w9G0DlsV0M69QfpDOAOp7demuKvy1o14r7Lemg16Y8sYNmUvt5WddLmd5mwrOj-TFdH05v1I8sCROpoH8GJYVfVpirHSF8U8qR7KMhwifzsFRL3PcQlyIDm_Elo1TnP285g-Q=6E185CB7 \
+      curl -u #{ENV['ATLASSIAN_USERNAME']}:#{ENV['ATLASSIAN_API_KEY']} \
            -X POST \
            --data '{
              "fields": {
                "project": {
-                 "key": "CMA"
+                 "key": "#{ENV['PROJECT_KEY']}"
                },
                "summary": "#{summary}",
-               "description": "Collection Name: #{description}",
+               "description": "#{description}",
                "issuetype": {
-                 "name": "Support"
+                 "name": "#{ENV['ISSUE_TYPE']}"
                }
              }
            }' \
            -H "Content-Type: application/json" \
-           https://collectionmanagementapp.atlassian.net/rest/api/2/issue/
+           #{ENV['JIRA_API_URL']}/rest/api/2/issue/
     BASH
 
-    # stdout, stderr, status = Open3.capture3(command)
-
-    # OpenStruct.new(
-    #   success?: status.success?,
-    #   stdout: stdout,
-    #   stderr: stderr,
-    #   status: status
-    # )
     system(command)
   end
 end
