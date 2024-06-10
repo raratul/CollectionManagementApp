@@ -36,9 +36,9 @@ class TicketsController < ApplicationController
     params.require(:ticket).permit(:summary, :priority, :collection_id)
   end
 
-  def create_issue_via_bash(summary, description)
+  def create_issue_via_bash(summary:, description:)
     command = <<-BASH
-      curl -u #{ENV['ATLASSIAN_USERNAME']}:#{Rails.application.secrets.jira_api_token} \
+      curl -u #{ENV['ATLASSIAN_USERNAME']}:#{} \
            -X POST \
            --data '{
              "fields": {
