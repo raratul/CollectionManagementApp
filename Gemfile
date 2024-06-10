@@ -48,3 +48,12 @@ gem 'jquery-rails'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-rails_csrf_protection'
+
+gem 'httparty'
+gem 'kaminari'
+gem 'json'
+gem 'jira-ruby'
+gem 'rest-client'
+
+gem 'atlassian-jwt'
+gem 'open3'

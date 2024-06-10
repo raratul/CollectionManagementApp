@@ -10,6 +10,8 @@ class User < ApplicationRecord
   validates :theme, inclusion: { in: %w[light dark], message: "%{value} is not a valid theme" }, allow_nil: true
   validates :language, inclusion: { in: %w[en pl], message: "%{value} is not a valid language" }, allow_nil: true
 
+  has_many :tickets, dependent: :destroy
+
   def self.first_admin?
     where(admin: true).count.zero?
   end

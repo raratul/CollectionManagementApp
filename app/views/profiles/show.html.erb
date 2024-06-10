@@ -1,0 +1,51 @@
+<div class="container mt-5">
+    <h1><i class="fas fa-user-circle me-2"></i><%= t('profile.title') %></h1>
+    <div class="card mb-3">
+      <div class="card-header">
+        <h2><%= @user.name %></h2>
+      </div>
+      <div class="card-body">
+        <p><strong><%= t('profile.user_id') %>:</strong> <%= @user.id %></p>
+        <p><strong><%= t('profile.email') %>:</strong> <%= @user.email %></p>
+        <%= link_to t('profile.my_collections'), collections_path(@user), class: 'btn btn-primary' %>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="card-header">
+        <h3><%= t('profile.my_tickets') %></h3>
+      </div>
+      <div class="card-body">
+        <table class="table">
+          <thead>
+            <tr>
+              <th><%= t('profile.ticket_id') %></th>
+              <th><%= t('profile.collectionid') %></th>
+              <th><%= t('profile.ticket_summary') %></th>
+              <th><%= t('profile.ticket_priority') %></th>
+              <th><%= t('profile.ticket_status') %></th>
+              <th><%= t('profile.ticket_link') %></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @tickets.each do |ticket| %>
+              <tr>
+                <td><%= ticket.id %></td>
+                <% if ticket.collection_id.present? %>
+                  <td><%= ticket.collection_id %></td>
+                <% else %>
+                  <td><%= "N/A" %></td>
+                <% end %>
+                <td><%= ticket.summary %></td>
+                <td><%= ticket.priority %></td>
+                <td><%= ticket.status %></td>
+                <td><%= link_to t('profile.view_in_jira'), ticket.jira_ticket_url, target: "_blank" %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <%= paginate @tickets %>
+      </div>
+    </div>
+</div>
+  

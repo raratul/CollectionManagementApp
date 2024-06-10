@@ -37,5 +37,8 @@ Rails.application.routes.draw do
 
   get 'search', to: 'search#index'
 
+  resources :tickets, only: [:new, :create, :index]
+  resource :profile, only: [:show], controller: 'profiles'
+
   root to: 'home#index'
 end

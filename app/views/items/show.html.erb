@@ -107,7 +107,7 @@
 
     <div class="row mb-4">
       <div class="col">
-        <h2><%= t('showitem.comments') %></h2>
+        <h2><i class="far fa-comments me-2"></i><%= t('showitem.comments') %></h2>
         <div id="comments" class="list-group" data-item-id="<%= @item.id %>">
           <% @item.comments.each do |comment| %>
             <div class="list-group-item" id="comment-<%= comment.id %>">

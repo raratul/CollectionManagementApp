@@ -1,6 +1,6 @@
 class Collection < ApplicationRecord
   include PgSearch::Model
-  pg_search_scope :search, against: [:name, :category, :description, :custom_string1_name, :custom_string2_name, :custom_string3_name, 
+  pg_search_scope :search, against: [:name, :category, :description, :custom_string1_name, :custom_string2_name, :custom_string3_name,
                                             :custom_text1_name, :custom_text2_name, :custom_text3_name],
                            using: {
                              tsearch: { prefix: true }
@@ -12,6 +12,8 @@ class Collection < ApplicationRecord
 
   validates :name, presence: true, uniqueness: { scope: :user_id }
   validates :category, presence: true
+
+  has_many :tickets, dependent: :destroy
 
   CATEGORIES = %w[Books Signs Silverware Other].freeze
 
