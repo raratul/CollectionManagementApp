@@ -38,7 +38,7 @@ class TicketsController < ApplicationController
 
   def create_issue_via_bash(summary, description)
     command = <<-BASH
-      curl -u #{ENV['ATLASSIAN_USERNAME']}:#{ENV['ATLASSIAN_API_KEY']} \
+      curl -u #{ENV['ATLASSIAN_USERNAME']}:#{Rails.application.secrets.atlassian_api_token} \
            -X POST \
            --data '{
              "fields": {
