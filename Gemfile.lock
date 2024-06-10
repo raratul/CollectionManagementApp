@@ -375,7 +375,6 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  atlassian-jwt
   bootsnap
   bootstrap (~> 5.0.0)
   capybara
