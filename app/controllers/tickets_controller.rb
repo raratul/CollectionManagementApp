@@ -36,7 +36,7 @@ class TicketsController < ApplicationController
 
   def create_issue_via_bash(summary:, description:)
     command = <<-BASH
-      curl -u rkhairulislam@gmail.com:#{} \
+      curl -u rkhairulislam@gmail.com:#{Rails.application.secrets.jira_api_token} \
            -X POST \
            --data '{
              "fields": {
