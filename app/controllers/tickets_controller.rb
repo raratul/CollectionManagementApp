@@ -1,6 +1,4 @@
 require 'open3'
-require 'json'
-require 'rest-client'
 
 class TicketsController < ApplicationController
   before_action :authenticate_user!
@@ -38,22 +36,22 @@ class TicketsController < ApplicationController
 
   def create_issue_via_bash(summary:, description:)
     command = <<-BASH
-      curl -u #{ENV['ATLASSIAN_USERNAME']}:#{Rails.application.secrets.jira_api_token} \
+      curl -u rkhairulislam@gmail.com:#{Rails.application.secrets.jira_api_token} \
            -X POST \
            --data '{
              "fields": {
                "project": {
-                 "key": "#{ENV['PROJECT_KEY']}"
+                 "key": "CMA"
                },
                "summary": "#{summary}",
-               "description": "#{description}",
+               "description": "Collection Name: #{description}",
                "issuetype": {
-                 "name": "#{ENV['ISSUE_TYPE']}"
+                 "name": "Support"
                }
              }
            }' \
            -H "Content-Type: application/json" \
-           #{ENV['JIRA_API_URL']}/rest/api/2/issue/
+           https://collectionmanagementapp.atlassian.net/rest/api/2/issue/
     BASH
 
     system(command)
