@@ -55,4 +55,4 @@ gem 'json'
 gem 'jira-ruby'
 gem 'rest-client'
 
-gem 'open3'
+gem 'open4'
