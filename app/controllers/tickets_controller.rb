@@ -1,5 +1,3 @@
-require 'open4'
-
 class TicketsController < ApplicationController
   before_action :authenticate_user!
 
@@ -54,18 +52,6 @@ class TicketsController < ApplicationController
            https://collectionmanagementapp.atlassian.net/rest/api/2/issue/
     BASH
 
-    status = Open4::popen4(command) do |pid, stdin, stdout, stderr|
-      out = stdout.read.strip
-      err = stderr.read.strip
-      success = pid.value.success?
-
-      OpenStruct.new(
-        success?: success,
-        stdout: out,
-        stderr: err
-      )
-    end
-
-    status
+    system(command)
   end
 end
