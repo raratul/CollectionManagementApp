@@ -1,7 +1,4 @@
 require 'open3'
-require 'dotenv'
-
-Dotenv.load
 
 class TicketsController < ApplicationController
   before_action :authenticate_user!
