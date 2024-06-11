@@ -12,7 +12,7 @@ class TicketsController < ApplicationController
     @ticket.status = 'Opened'
 
     collection_name = Collection.find_by(id: @ticket.collection_id)&.name || 'N/A'
-    description = "Reported by: #{ticket.user.email}\nCollection Name: #{collection_name}"
+    description = "Reported by: #{@ticket.user.email}\nCollection Name: #{collection_name}"
 
     response = create_issue_via_bash(
       summary: @ticket.summary,
