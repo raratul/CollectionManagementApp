@@ -1,4 +1,7 @@
 require 'open3'
+require 'dotenv'
+
+Dotenv.load
 
 class TicketsController < ApplicationController
   before_action :authenticate_user!
@@ -36,7 +39,7 @@ class TicketsController < ApplicationController
 
   def create_issue_via_bash(summary:, description:)
     command = <<-BASH
-      curl -u rkhairulislam@gmail.com:ATATT3xFfGF0cg4a0FZMKKT8msAcnkmTDgRfIIGRklyjp41-c973ZnSceGM-3-kVDFdGxcqKn8WxP3BL-idz7h12u2_q96b74FA8svoFcx5KFAyekmu2TDq3_20tkn-0fVkVb5WIXdNleMiny4onCWhLsRqC--KR7ETiVrJb1AJQOzL41FyDs2U=9CB555B1 \
+      curl -u rkhairulislam@gmail.com:#{ENV['issue_api_key']} \
            -X POST \
            --data '{
              "fields": {
