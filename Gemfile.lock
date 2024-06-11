@@ -240,6 +240,7 @@ GEM
     omniauth-rails_csrf_protection (1.0.2)
       actionpack (>= 4.2)
       omniauth (~> 2.0)
+    open3 (0.2.1)
     orm_adapter (0.5.0)
     pg (1.5.6)
     pg (1.5.6-x64-mingw-ucrt)
@@ -388,6 +389,7 @@ DEPENDENCIES
   omniauth
   omniauth-facebook
   omniauth-rails_csrf_protection
+  open3
   pg
   pg_search (~> 2.3)
   puma (>= 5.0)

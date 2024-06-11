@@ -1,3 +1,5 @@
+require 'open3'
+
 class TicketsController < ApplicationController
   before_action :authenticate_user!
 
@@ -52,6 +54,12 @@ class TicketsController < ApplicationController
            https://collectionmanagementapp.atlassian.net/rest/api/2/issue/
     BASH
 
-    system(command)
+    stdout, stderr, status = Open3.capture3(command)
+
+    OpenStruct.new(
+      success?: status.success?,
+      stdout: stdout,
+      stderr: stderr
+    )
   end
 end

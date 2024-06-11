@@ -54,3 +54,5 @@ gem 'kaminari'
 gem 'json'
 gem 'jira-ruby'
 gem 'rest-client'
+
+gem 'open3'
