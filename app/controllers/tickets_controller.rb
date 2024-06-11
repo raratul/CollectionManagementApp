@@ -12,10 +12,11 @@ class TicketsController < ApplicationController
     @ticket.status = 'Opened'
 
     collection_name = Collection.find_by(id: @ticket.collection_id)&.name || 'N/A'
+    description = "Reported by: #{ticket.user.email}\nCollection Name: #{collection_name}"
 
     response = create_issue_via_bash(
       summary: @ticket.summary,
-      description: collection_name,
+      description: description,
     )
 
     @ticket.jira_ticket_url = "https://collectionmanagementapp.atlassian.net/jira/software/projects/CMA/boards/1"
@@ -44,7 +45,7 @@ class TicketsController < ApplicationController
                  "key": "CMA"
                },
                "summary": "#{summary}",
-               "description": "Collection Name: #{description}",
+               "description": "#{description}",
                "issuetype": {
                  "name": "Support"
                }
