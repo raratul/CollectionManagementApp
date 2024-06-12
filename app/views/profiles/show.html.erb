@@ -8,6 +8,8 @@
         <p><strong><%= t('profile.user_id') %>:</strong> <%= @user.id %></p>
         <p><strong><%= t('profile.email') %>:</strong> <%= @user.email %></p>
         <%= link_to t('profile.my_collections'), collections_path(@user), class: 'btn btn-primary' %>
+        <p class="my-3"><strong><%= t('profile.apitoken') %>:</strong> <%= @user.api_token %></p>
+        <%= button_to t('profile.regenerateapitoken'), regenerate_api_token_profile_path, method: :post, class: 'btn btn-warning' %>
       </div>
     </div>
   

@@ -18,6 +18,8 @@ en:
     user_id: "User ID"
     email: "Email"
     my_collections: "My Collections"
+    apitoken: "API Token"
+    regenerateapitoken: "Regenerate API Token"
     my_tickets: "My Tickets"
     ticket_id: "Ticket ID"
     collectionid: "Collection ID"

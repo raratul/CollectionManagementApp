@@ -18,6 +18,8 @@ pl:
     user_id: "ID Użytkownika"
     email: "Email"
     my_collections: "Moje Kolekcje"
+    apitoken: "Token API"
+    regenerateapitoken: "Regeneruj Token API"
     my_tickets: "Moje Bilety"
     ticket_id: "ID Biletu"
     collectionid: "ID Kolekcji"

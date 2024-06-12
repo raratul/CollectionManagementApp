@@ -12,6 +12,20 @@ class User < ApplicationRecord
 
   has_many :tickets, dependent: :destroy
 
+  before_create :generate_api_token
+
+  def generate_api_token
+    loop do
+      self.api_token = SecureRandom.hex(20)
+      break unless User.exists?(api_token: api_token)
+    end
+  end
+
+  def regenerate_api_token
+    generate_api_token
+    save
+  end
+
   def self.first_admin?
     where(admin: true).count.zero?
   end

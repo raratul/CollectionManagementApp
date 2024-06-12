@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  namespace :api do
+    namespace :v1 do
+      get 'collections/index'
+    end
+  end
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     registrations: 'users/registrations',
@@ -38,7 +43,15 @@ Rails.application.routes.draw do
   get 'search', to: 'search#index'
 
   resources :tickets, only: [:new, :create, :index]
-  resource :profile, only: [:show], controller: 'profiles'
+  resource :profile, only: [:show], controller: 'profiles' do
+    post :regenerate_api_token, on: :member
+  end
+
+  namespace :api do
+    namespace :v1 do
+      resources :collections, only: [:index]
+    end
+  end
 
   root to: 'home#index'
 end
